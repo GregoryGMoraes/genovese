@@ -1,0 +1,104 @@
+{
+  "vinhos": [
+    {
+      "id": 1,
+      "nome": "Sinais",
+      "marca": "Don Guerino",
+      "descricao": "Vinho encorpado com notas de frutas vermelhas e especiarias.",
+      "preco": 89.90,
+      "tipoUva": "Cabernet Sauvignon",
+      "paisOrigem": "Brasil",
+      "imagem": "https://www.donguerino.com.br/img/produtos-internos/Sinais/sinais-cabernet-sauvignon.png"
+    },
+    {
+      "id": 2,
+      "nome": "Asadito de Obra",
+      "marca": "Familia Millan",
+      "descricao": "Aromas intensos de ameixa e toque de baunilha.",
+      "preco": 75.50,
+      "tipoUva": "Malbec",
+      "paisOrigem": "Argentina",
+      "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC7OapqsZj4qenesTHQjwOF79Y_qD1PAL1PQ&s"
+    },
+    {
+      "id": 3,
+      "nome": "Malbec Vintage",
+      "marca": "Don Guerino",
+      "descricao": "Fresco, com notas cítricas e leve toque de carvalho.",
+      "preco": 65.00,
+      "tipoUva": "Malbec",
+      "paisOrigem": "Brasil",
+      "imagem": "https://bebidasdosul.com.br/9690-large_default/vinho-don-guerino-malbec-vintage-750ml.jpg"
+    },
+    {
+      "id": 4,
+      "nome": "Syrah Reserva",
+      "marca": "Salton",
+      "descricao": "Cor rubi intensa com aroma de frutas negras maduras.",
+      "preco": 82.30,
+      "tipoUva": "Syrah",
+      "paisOrigem": "Brasil",
+      "imagem": "https://images.unsplash.com/photo-1584452964155-1f63667bff92?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "id": 5,
+      "nome": "Merlot Elegance",
+      "marca": "Concha y Toro",
+      "descricao": "Paladar suave com taninos equilibrados.",
+      "preco": 58.90,
+      "tipoUva": "Merlot",
+      "paisOrigem": "Chile",
+      "imagem": "https://images.unsplash.com/photo-1619624849765-11c0499b6cf3?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "id": 6,
+      "nome": "Pinot Noir Suave",
+      "marca": "Luis Felipe Edwards",
+      "descricao": "Elegante, com notas florais e frutas vermelhas.",
+      "preco": 72.00,
+      "tipoUva": "Pinot Noir",
+      "paisOrigem": "Chile",
+      "imagem": "https://images.unsplash.com/photo-1600180758890-6559aa1fdf9b?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "id": 7,
+      "nome": "Tannat Corte",
+      "marca": "Garzón",
+      "descricao": "Intenso e estruturado, com final persistente.",
+      "preco": 95.40,
+      "tipoUva": "Tannat",
+      "paisOrigem": "Uruguai",
+      "imagem": "https://bodegagarzon.com/wp-content/uploads/2022/08/tt-corte.png"
+    },
+    {
+      "id": 8,
+      "nome": "Zinfandel Californiano",
+      "marca": "Barefoot",
+      "descricao": "Doce, frutado, ideal para iniciantes.",
+      "preco": 49.90,
+      "tipoUva": "Zinfandel",
+      "paisOrigem": "Estados Unidos",
+      "imagem": "https://images.unsplash.com/photo-1624378442252-e36f3768eb4b?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "id": 9,
+      "nome": "Viejo Feo",
+      "marca": "Tinajas",
+      "descricao": "Frutado com notas de especiarias.",
+      "preco": 59.00,
+      "tipoUva": "Carmenere",
+      "paisOrigem": "Chile",
+      "imagem": "https://images.vivino.com/thumbs/Dj3RpDjAQN2D-T3rup9xgg_pb_x960.png"
+    },
+    {
+      "id": 10,
+      "nome": "Don Guerino",
+      "marca": "Don Guerino",
+      "descricao": "Aromático e levemente adocicado.",
+      "preco": 78.00,
+      "tipoUva": "Moscatel",
+      "paisOrigem": "Brasil",
+      "imagem": "https://www.donguerino.com.br/img/produtos/1666117425-moscatel.png"
+    }
+  ]
+}
