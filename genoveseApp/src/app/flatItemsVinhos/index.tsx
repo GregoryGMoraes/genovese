@@ -1,6 +1,6 @@
 import { useState, useEffect} from 'react'
 import { FlatList } from 'react-native'
-import { Product } from '../product'
+import ProductVinhos from '../productVinhos'
 
 export interface VinhoProps{
     id: string,
@@ -13,7 +13,7 @@ export interface VinhoProps{
     imagem: string,
 }
 
-export function FlatItems(){
+export default function FlatItemsVinhos(){
     const [ vinhos, setVinhos] = useState<VinhoProps[]>([]) 
 
     useEffect(() =>{
@@ -29,8 +29,7 @@ export function FlatItems(){
     return(
         <FlatList 
         data={vinhos}
-        renderItem={ ({item}) => <Product vinho={item}/>}
-        horizontal={true}
+        renderItem={ ({item}) => <ProductVinhos vinho={item}/>}
         contentContainerStyle={{gap:2}}
         showsHorizontalScrollIndicator={false}
         />

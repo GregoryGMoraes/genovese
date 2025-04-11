@@ -4,13 +4,14 @@ interface Props {
     name: string;
 }
 
-export function Section({ name }: Props) {
+export default function Section({ name }: Props) {
     return (
         <View style={styles.container}>
             <Text style={{
                 fontSize: 20,
                 fontWeight: 'bold',
-                marginLeft: 16
+                marginLeft: 16,
+                color: '#560022'
             }}>
                 {name}
             </Text>

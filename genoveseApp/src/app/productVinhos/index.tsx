@@ -1,14 +1,12 @@
 import React from 'react';
 import { View, Image, Text, TouchableOpacity } from "react-native";
-import { VinhoProps } from '../flatItems/index'
-import { useRouter } from 'expo-router'
+import { VinhoProps } from '../flatItemsVinhos/index'
+import { router } from 'expo-router'
 
-export function Product({ vinho }: { vinho: VinhoProps }) {
-
-    const router = useRouter();
+export default function ProductVinhos({ vinho }: { vinho: VinhoProps }) {
 
     return (
-        <View style={{ flexDirection: 'row', width: 300, height: 200, margin: 10, padding: 5, backgroundColor: "white", alignItems: 'center', justifyContent: 'space-between', borderRadius: 10 }}>
+        <View style={{ flexDirection: 'row', width: '95%', height: 200, margin: 10, padding: 5, backgroundColor: "white", alignItems: 'center', justifyContent: 'center', borderRadius: 10 }}>
 
             <View style={{ flex: 1 }}>
                 <Image style={{ width: 100, height: 100, margin: 5 }} source={{ uri: vinho.imagem }} />
@@ -22,7 +20,20 @@ export function Product({ vinho }: { vinho: VinhoProps }) {
                 <Text style={{ fontSize: 20, color: 'green' }}>R${(vinho.preco).toFixed(2)}</Text>
                 <TouchableOpacity style={{ width: '95%', height: 40, margin: 5, backgroundColor: "#560022", alignItems: 'center', borderRadius: 10 }}>
                     <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 18, alignItems: 'center', padding: 10 }}
-                        onPress={() => router.navigate('/details')}
+                        onPress={() => router.push({
+                            pathname: '/detailsVinhos/[id]',
+                            params: {
+                                id: vinho.id,
+                                nome: vinho.nome,
+                                tipo: vinho.tipoUva,
+                                marca: vinho.marca,
+                                descricao: vinho.descricao,
+                                imagem: vinho.imagem,
+                                origem: vinho.paisOrigem,
+                                preco: vinho.preco,
+
+                            }
+                        })}
                     >Ver Detalhes</Text>
                 </TouchableOpacity>
             </View>
