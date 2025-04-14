@@ -1,12 +1,13 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 
 export default function DetailsVinhos() {
-    const { id, nome, tipo, marca, descricao, paisOrigem, preco} = useLocalSearchParams();
+    const { id, nome, tipo, marca, imagem, descricao, paisOrigem, preco} = useLocalSearchParams();
     return (
         <>
         <View style={{ flex: 1, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center' }}>
+            <Image style={{width: 200, height: 200}} source={{ uri: Array.isArray(imagem) ? imagem[0] : imagem }}/>
         </View>
         <View style={{ flex: 2, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center' }}>
             <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{nome}</Text>

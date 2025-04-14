@@ -17,7 +17,7 @@ export default function ProductVinhos({ vinho }: { vinho: VinhoProps }) {
                 <Text style={{ fontSize: 18 }}>{vinho.tipoUva}</Text>
                 <Text style={{ fontSize: 18 }}>{vinho.marca}</Text>
                 <Text style={{ fontSize: 18 }}>Origem: {vinho.paisOrigem}</Text>
-                <Text style={{ fontSize: 20, color: 'green' }}>R${(vinho.preco).toFixed(2)}</Text>
+                <Text style={{ fontSize: 20, color: '#560022', fontWeight: 'bold' }}>R${(vinho.preco).toFixed(2)}</Text>
                 <TouchableOpacity style={{ width: '95%', height: 40, margin: 5, backgroundColor: "#560022", alignItems: 'center', borderRadius: 10 }}>
                     <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 18, alignItems: 'center', padding: 10 }}
                         onPress={() => router.push({

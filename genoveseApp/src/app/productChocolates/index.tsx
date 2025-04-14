@@ -6,7 +6,7 @@ import { router } from 'expo-router'
 export default function ProductChocolates({ chocolate }: { chocolate: ChocolateProps }) {
 
     return (
-        <View style={{ flexDirection: 'row', width: 300, height: 200, margin: 10, padding: 5, backgroundColor: "white", alignItems: 'center', justifyContent: 'space-between', borderRadius: 10 }}>
+        <View style={{ flexDirection: 'row', width: '95%', height: 200, margin: 10, padding: 5, backgroundColor: "white", alignItems: 'center', justifyContent: 'space-between', borderRadius: 10 }}>
 
             <View style={{ flex: 1 }}>
                 <Image style={{ width: 100, height: 100, margin: 5 }} source={{ uri: chocolate.imagem }} />
@@ -17,7 +17,7 @@ export default function ProductChocolates({ chocolate }: { chocolate: ChocolateP
                 <Text style={{ fontSize: 18 }}>{chocolate.tipo}</Text>
                 <Text style={{ fontSize: 18 }}>{chocolate.marca}</Text>
                 <Text style={{ fontSize: 18 }}>Origem: {chocolate.origem}</Text>
-                <Text style={{ fontSize: 20, color: 'green' }}>R${(chocolate.preco).toFixed(2)}</Text>
+                <Text style={{ fontSize: 20, color: '#560022', fontWeight: 'bold' }}>R${(chocolate.preco).toFixed(2)}</Text>
                 <TouchableOpacity style={{ width: '95%', height: 40, margin: 5, backgroundColor: "#560022", alignItems: 'center', borderRadius: 10 }}>
                     <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 18, alignItems: 'center', padding: 10 }}
                         onPress={() => router.push({
@@ -28,6 +28,7 @@ export default function ProductChocolates({ chocolate }: { chocolate: ChocolateP
                                 tipo: chocolate.tipo,
                                 marca: chocolate.marca,
                                 origem: chocolate.origem,
+                                imagem: chocolate.imagem,
                                 descricao: chocolate.descricao,
                                 preco: chocolate.preco,
 
