@@ -1,36 +1,36 @@
 import React from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { QueijoProps } from '../flatItemsQueijos/index'
+import { FriosProps } from '../flatItemsFrios/index'
 import { router } from 'expo-router'
 
-export default function ProductQueijos({ queijo }: { queijo: QueijoProps }) {
+export default function ProductFrios({ frios }: { frios: FriosProps }) {
 
     return (
         <View style={styles.container}>
 
             <View style={styles.containerImage}>
-                <Image style={styles.image} source={{ uri: queijo.imagem }} />
+                <Image style={styles.image} source={{ uri: frios.imagem }} />
             </View>
 
             <View style={styles.containerProduct}>
-                <Text style={styles.title}>{queijo.nome}</Text>
-                <Text style={styles.subtitle}>{queijo.tipo}</Text>
-                <Text style={styles.subtitle}>{queijo.marca}</Text>
-                <Text style={styles.subtitle}>Origem: {queijo.origem}</Text>
-                <Text style={styles.price}>R${(queijo.preco).toFixed(2)} Kg</Text>
+                <Text style={styles.title}>{frios.nome}</Text>
+                <Text style={styles.subtitle}>{frios.tipo}</Text>
+                <Text style={styles.subtitle}>{frios.marca}</Text>
+                <Text style={styles.subtitle}>Origem: {frios.origem}</Text>
+                <Text style={styles.price}>R${(frios.preco).toFixed(2)} Kg</Text>
                 <TouchableOpacity style={styles.btn}>
                     <Text style={styles.textBtn}
                         onPress={() => router.push({
-                            pathname: '/detailsQueijos/[id]',
+                            pathname: '/detailsFrios/[id]',
                             params: {
-                                id: queijo.id,
-                                nome: queijo.nome,
-                                tipo: queijo.tipo,
-                                marca: queijo.marca,
-                                descricao: queijo.descricao,
-                                imagem: queijo.imagem,
-                                origem: queijo.origem,
-                                preco: queijo.preco,
+                                id: frios.id,
+                                nome: frios.nome,
+                                tipo: frios.tipo,
+                                marca: frios.marca,
+                                descricao: frios.descricao,
+                                imagem: frios.imagem,
+                                origem: frios.origem,
+                                preco: frios.preco,
 
                             }
                         })}

@@ -1,38 +1,38 @@
 import React from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { VinhoProps } from '../flatItemsVinhos/index'
+import { EspumanteProps } from '../flatItemsEspumantes/index'
 import { router } from 'expo-router'
 import { FontAwesome5 } from '@expo/vector-icons';
 
-export default function ProductVinhos({ vinho }: { vinho: VinhoProps }) {
+export default function ProductEspumantes({ espumante }: { espumante: EspumanteProps }) {
 
     return (
         <View style={styles.container}>
 
             <View style={styles.containerImage}>
-                <Image style={styles.image} source={{ uri: vinho.imagem }} />
+                <Image style={styles.image} source={{ uri: espumante.imagem }} />
             </View>
 
             <View style={styles.containerProduct}>
-                <Text style={styles.title}>{vinho.nome}</Text>
-                <Text style={styles.subtitle}>{vinho.tipoUva}</Text>
-                <Text style={styles.subtitle}>{vinho.marca}</Text>
-                <Text style={styles.subtitle}>Origem: {vinho.paisOrigem}</Text>
-                <Text style={styles.price}>R${(vinho.preco).toFixed(2)}</Text>
+                <Text style={styles.title}>{espumante.nome}</Text>
+                <Text style={styles.subtitle}>{espumante.tipoUva}</Text>
+                <Text style={styles.subtitle}>{espumante.marca}</Text>
+                <Text style={styles.subtitle}>Origem: {espumante.paisOrigem}</Text>
+                <Text style={styles.price}>R${(espumante.preco).toFixed(2)}</Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '95%', padding: 10 }}>
                     <TouchableOpacity style={styles.btn}>
                         <Text style={styles.textBtn}
                             onPress={() => router.push({
-                                pathname: '/detailsVinhos/[id]',
+                                pathname: '/detailsEspumantes/[id]',
                                 params: {
-                                    id: vinho.id,
-                                    nome: vinho.nome,
-                                    tipo: vinho.tipoUva,
-                                    marca: vinho.marca,
-                                    descricao: vinho.descricao,
-                                    imagem: vinho.imagem,
-                                    origem: vinho.paisOrigem,
-                                    preco: vinho.preco,
+                                    id: espumante.id,
+                                    nome: espumante.nome,
+                                    tipo: espumante.tipoUva,
+                                    marca: espumante.marca,
+                                    descricao: espumante.descricao,
+                                    imagem: espumante.imagem,
+                                    origem: espumante.paisOrigem,
+                                    preco: espumante.preco,
 
                                 }
                             })}

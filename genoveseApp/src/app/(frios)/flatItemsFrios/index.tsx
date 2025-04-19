@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { FlatList, View, StyleSheet } from 'react-native'
-import ProductQueijos from '../ProductQueijos'
+import ProductFrios from '../productFrios'
 
-export interface QueijoProps {
+export interface FriosProps {
     id: string,
     nome: string,
     tipo: string,
@@ -13,24 +13,24 @@ export interface QueijoProps {
     imagem: string,
 }
 
-export default function FlatItemsQueijos() {
-    const [queijos, setQueijos] = useState<QueijoProps[]>([])
+export default function FlatItemsFrios() {
+    const [frios, setFrios] = useState<FriosProps[]>([])
 
     useEffect(() => {
-        async function getQueijos() {
-            const response = await fetch("http://192.168.0.170:3000/queijos")
+        async function getFrios() {
+            const response = await fetch("http://192.168.0.170:3000/frios")
             const data = await response.json()
-            setQueijos(data);
+            setFrios(data);
         }
 
-        getQueijos();
+        getFrios();
     }, []);
 
     return (
         <View style={styles.container}>
             <FlatList
-                data={queijos}
-                renderItem={({ item }) => <ProductQueijos queijo={item} />}
+                data={frios}
+                renderItem={({ item }) => <ProductFrios frios={item} />}
                 contentContainerStyle={styles.listContent}
                 showsHorizontalScrollIndicator={false}
             />

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { FlatList, View, StyleSheet, TextInput} from 'react-native';
-import ProductVinhos from '../productVinhos';
+import ProductEspumantes from '../productEspumantes';
 
-export interface VinhoProps {
+export interface EspumanteProps {
     id: string;
     nome: string;
     marca: string;
@@ -14,23 +14,23 @@ export interface VinhoProps {
 }
 
 export default function FlatItemsVinhos() {
-    const [vinhos, setVinhos] = useState<VinhoProps[]>([]);
+    const [espumantes, setEspumantes] = useState<EspumanteProps[]>([]);
 
     useEffect(() => {
-        async function getVinhos() {
-            const response = await fetch("http://192.168.0.170:3000/vinhos");
+        async function getEspumantes() {
+            const response = await fetch("http://192.168.0.170:3000/espumantes");
             const data = await response.json();
-            setVinhos(data);
+            setEspumantes(data);
         }
 
-        getVinhos();
+        getEspumantes();
     }, []);
 
     return (
         <View style={styles.container}>                       
             <FlatList
-                data={vinhos}
-                renderItem={({ item }) => <ProductVinhos vinho={item} />}
+                data={espumantes}
+                renderItem={({ item }) => <ProductEspumantes espumante={item} />}
                 keyExtractor={(item) => item.id}
                 contentContainerStyle={styles.listContent}
                 showsHorizontalScrollIndicator={false}
