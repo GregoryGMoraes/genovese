@@ -18,7 +18,7 @@ export default function FlatItemsChocolates() {
 
     useEffect(() => {
         async function getChocolates() {
-            const response = await fetch("http://192.168.0.170:3000/chocolates")
+            const response = await fetch("http://10.1.142.229:3000/chocolates")
             const data = await response.json()
             setChocolates(data);
         }

@@ -18,7 +18,7 @@ export default function FlatItemsFrios() {
 
     useEffect(() => {
         async function getFrios() {
-            const response = await fetch("http://192.168.0.170:3000/frios")
+            const response = await fetch("http://10.1.142.229:3000/frios")
             const data = await response.json()
             setFrios(data);
         }

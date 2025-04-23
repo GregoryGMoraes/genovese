@@ -36,7 +36,7 @@ export default function ProductVinhos({ vinho }: { vinho: VinhoProps }) {
 
                                 }
                             })}
-                        >Ver Detalhes</Text>
+                        >Detalhes</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={{ width: '30%', height: 40, margin: 5, backgroundColor: "#560022", alignItems: 'center', borderRadius: 10 }}>
                         <Text style={styles.textBtn}><FontAwesome5 name='cart-plus' size={20}/></Text>

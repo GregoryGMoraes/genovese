@@ -21,7 +21,7 @@ export default function Layout() {
                     </View>
                 )
             }} />
-            <Stack.Screen name="(carinho)/index" options={{
+            <Stack.Screen name="/(carrinho)/index" options={{
                 headerTitleAlign: 'center',
                 headerTitle: 'Carrinho',
                 headerStyle: { backgroundColor: '#560022' },

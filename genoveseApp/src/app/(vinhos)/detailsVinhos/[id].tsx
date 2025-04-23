@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 
 export default function DetailsVinhos() {
     const { id, nome, tipo, marca, imagem, descricao, paisOrigem, preco } = useLocalSearchParams();
     return (
-        <>
+        <ScrollView style={{ flex: 1, backgroundColor: '#fff' }} contentContainerStyle={{ flexGrow: 1 }}>
             <View style={styles.container}>
                 <Image style={styles.image} source={{ uri: Array.isArray(imagem) ? imagem[0] : imagem }} />
             </View>
@@ -17,7 +17,7 @@ export default function DetailsVinhos() {
                 <Text style={styles.description}>Descrição: {descricao}</Text>
                 <Text style={styles.price}>R${Number(preco).toFixed(2)}</Text>
             </View>
-        </>
+        </ScrollView>
     );
 }
 

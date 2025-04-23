@@ -17,7 +17,7 @@ export default function FlatItemsPescados() {
 
     useEffect(() => {
         async function getPescados() {
-            const response = await fetch("http://192.168.0.170:3000/pescados")
+            const response = await fetch("http://10.1.142.229:3000/pescados")
             const data = await response.json()
             setPescados(data);
         }

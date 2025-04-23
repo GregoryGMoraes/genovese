@@ -18,7 +18,7 @@ export default function FlatItemsDestilados() {
 
     useEffect(() => {
         async function getDestilados() {
-            const response = await fetch("http://192.168.0.170:3000/destilados")
+            const response = await fetch("http://10.1.142.229:3000/destilados")
             const data = await response.json()
             setDestilados(data);
         }

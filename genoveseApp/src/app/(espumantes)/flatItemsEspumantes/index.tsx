@@ -18,7 +18,7 @@ export default function FlatItemsVinhos() {
 
     useEffect(() => {
         async function getEspumantes() {
-            const response = await fetch("http://192.168.0.170:3000/espumantes");
+            const response = await fetch("http://10.1.142.229:3000/espumantes");
             const data = await response.json();
             setEspumantes(data);
         }
