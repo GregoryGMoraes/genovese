@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { FlatList, View, StyleSheet } from 'react-native'
 import ProductChocolates from '../productChocolates'
+import { BASE_URL } from '../../db/conectaDb';
 
 export interface ChocolateProps {
     id: string,
@@ -18,7 +19,7 @@ export default function FlatItemsChocolates() {
 
     useEffect(() => {
         async function getChocolates() {
-            const response = await fetch("http://10.1.142.229:3000/chocolates")
+            const response = await fetch(`${BASE_URL}/chocolates`)
             const data = await response.json()
             setChocolates(data);
         }

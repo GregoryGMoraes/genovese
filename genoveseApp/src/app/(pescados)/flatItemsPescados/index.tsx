@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { FlatList, View, StyleSheet } from 'react-native'
 import ProductPescados from '../productPescados'
+import { BASE_URL } from '../../db/conectaDb';
 
 export interface PescadoProps {
     id: string,
@@ -17,7 +18,7 @@ export default function FlatItemsPescados() {
 
     useEffect(() => {
         async function getPescados() {
-            const response = await fetch("http://10.1.142.229:3000/pescados")
+            const response = await fetch(`${BASE_URL}/pescados`)
             const data = await response.json()
             setPescados(data);
         }

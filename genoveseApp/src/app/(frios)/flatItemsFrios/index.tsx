@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { FlatList, View, StyleSheet } from 'react-native'
 import ProductFrios from '../productFrios'
+import { BASE_URL } from '../../db/conectaDb';
 
 export interface FriosProps {
     id: string,
@@ -18,7 +19,7 @@ export default function FlatItemsFrios() {
 
     useEffect(() => {
         async function getFrios() {
-            const response = await fetch("http://10.1.142.229:3000/frios")
+            const response = await fetch(`${BASE_URL}/frios`)
             const data = await response.json()
             setFrios(data);
         }

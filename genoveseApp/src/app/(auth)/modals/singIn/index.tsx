@@ -1,54 +1,93 @@
 import React, { useState } from 'react';
-import { View, Text, Alert, TextInput, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import { router } from 'expo-router';
+import Modal from 'react-native-modal';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 
 export default function SingInModal() {
+
+    // Declaração dos estados para o e-mail, senha, visibilidade da modal, carregamento e mensagem de erro
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-   // const [loading, setLoading] = useState(false);
+    const [isModalVisible, setModalVisible] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(''); 
 
-    const handleLogin = () => {
+    // Fecha a modal e volta para a tela anterior
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+        if (isModalVisible) {
+            router.back();
+        }
+    };
+    
+   
+    // Verifica se o e-mail e a senha estão corretos
+    // Se estiverem corretos, fecha a modal e volta para a tela anterior
+    const handleLogin = async () => {
+        setIsLoading(true); // Inicia o carregamento
+        setErrorMessage(''); // Limpa a mensagem de erro
+       
+        // Simulação de um login com e-mail e senha fixos
         const emailValido = 'test@test.com';
         const passwordValido = '12345';
 
-        //setLoading(true);
-        if (email === emailValido && password === passwordValido) {
-            Alert.alert("Login bem sucedido", "Você está logado com sucesso!");
-            console.log("Login bem sucedido", "Você está logado com sucesso!");
-            router.push('/(home)');
-            setEmail('');
-            setPassword('');
-        }
-        else {
-            Alert.alert("Login falhou", "E-mail ou senha inválidos!");
-            console.log("Login falhou", "E-mail ou senha inválidos!");
-           // setLoading(false);
-            return;
-        }
-    }
-
+        // Simula login com carregamento
+        setTimeout(() => {
+            if (email === emailValido && password === passwordValido) {
+                console.log('Login bem sucedido', 'Você está logado com sucesso!');
+                router.back();
+                setEmail('');
+                setPassword('');
+            } else {
+                setErrorMessage('E-mail ou senha inválidos!'); // Mensagem de erro
+                console.log('Login falhou', 'E-mail ou senha inválidos!');
+            }
+            setIsLoading(false); //Temina o carregamento
+        }, 1000); // Simula um atraso de 1 segundos
+    };
 
     return (
         <View style={styles.container}>
-            <View style={styles.modalContainer}>
-                <TouchableOpacity style={styles.backButton} onPress={() => router.push('/(home)')}>
-                    <Text style={{ padding: 5 }}><FontAwesome5 name="arrow-left" size={18} color="#550026" /></Text>
+            <Modal isVisible={isModalVisible} swipeDirection={'down'} style={styles.modalContainer}>
+                <TouchableOpacity style={styles.backButton} onPress={toggleModal}>
+                    <Text style={{ padding: 5 }}>
+                        <FontAwesome5 name="arrow-left" size={18} color="#550026" />
+                    </Text>
                 </TouchableOpacity>
                 <Image
                     style={styles.logo}
-                    source={require("@/assets/images/logo.jpg")}
+                    source={require('@/assets/images/logo.jpg')}
                 />
                 <Text style={styles.title}>Seja Bem-Vindo ao App</Text>
-                <TextInput style={styles.input} value={email} onChangeText={setEmail} placeholder="Digite seu e-mail" placeholderTextColor="#666" />
-                <TextInput secureTextEntry style={styles.input} value={password} onChangeText={setPassword} placeholder="Digite sua senha" placeholderTextColor="#666" />
+                <TextInput
+                    style={styles.input}
+                    value={email}
+                    onChangeText={setEmail}
+                    placeholder="Digite seu e-mail"
+                    placeholderTextColor="#666"
+                />
+                <TextInput
+                    secureTextEntry
+                    style={styles.input}
+                    value={password}
+                    onChangeText={setPassword}
+                    placeholder="Digite sua senha"
+                    placeholderTextColor="#666"
+                />
 
-                <TouchableOpacity style={styles.viewBtn} onPress={handleLogin}>
-                    <Text style={styles.textBtn}>{'Entrar'}</Text>
+                { errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
 
+
+                <TouchableOpacity style={styles.viewBtn} onPress={handleLogin} disabled={isLoading}>
+                    {isLoading ? (
+                        <ActivityIndicator size="small" color="#fff" /> // Exibe o indicador de carregamento
+                    ) : (
+                        <Text style={styles.textBtn}>Entrar</Text> // Exibe o texto "Entrar" quando não está carregando
+                    )}
                 </TouchableOpacity>
-            </View>
+            </Modal>
         </View>
     );
 }
@@ -123,6 +162,14 @@ const styles = StyleSheet.create({
         top: 10,
         left: 10,
     },
+
+    errorText: {
+        color: 'red',
+        fontSize: 14,
+        marginBottom: 10,
+        textAlign: 'center',
+    },
+    
     viewBtn: {
         width: "100%",
         height: 40,
