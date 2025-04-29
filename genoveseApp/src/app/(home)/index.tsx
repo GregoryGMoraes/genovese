@@ -5,7 +5,7 @@ import { router } from 'expo-router';
 
 export default function Home() {
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
 
             <View style={styles.logoContainer}>
                 <Image

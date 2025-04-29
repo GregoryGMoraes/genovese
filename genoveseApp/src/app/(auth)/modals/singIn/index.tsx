@@ -3,6 +3,7 @@ import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet, ActivityInd
 import { router } from 'expo-router';
 import Modal from 'react-native-modal';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useAuth } from '../../context/authContext'; // Importa o contexto de autenticação
 
 
 export default function SingInModal() {
@@ -10,9 +11,10 @@ export default function SingInModal() {
     // Declaração dos estados para o e-mail, senha, visibilidade da modal, carregamento e mensagem de erro
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { login } = useAuth();
     const [isModalVisible, setModalVisible] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState(''); 
+    const [errorMessage, setErrorMessage] = useState('');
 
     // Fecha a modal e volta para a tela anterior
     const toggleModal = () => {
@@ -21,26 +23,29 @@ export default function SingInModal() {
             router.back();
         }
     };
-    
-   
+
+
     // Verifica se o e-mail e a senha estão corretos
     // Se estiverem corretos, fecha a modal e volta para a tela anterior
     const handleLogin = async () => {
         setIsLoading(true); // Inicia o carregamento
         setErrorMessage(''); // Limpa a mensagem de erro
-       
-        // Simulação de um login com e-mail e senha fixos
-        const emailValido = 'test@test.com';
-        const passwordValido = '12345';
+
 
         // Simula login com carregamento
         setTimeout(() => {
-            if (email === emailValido && password === passwordValido) {
+            if (email === 'test@test.com' && password === '12345') {
+                const userData = {
+                    id: '1',
+                    email
+                };
                 console.log('Login bem sucedido', 'Você está logado com sucesso!');
-                router.back();
+                login(userData);
                 setEmail('');
                 setPassword('');
-            } else {
+                router.back();
+            }
+            else {
                 setErrorMessage('E-mail ou senha inválidos!'); // Mensagem de erro
                 console.log('Login falhou', 'E-mail ou senha inválidos!');
             }
@@ -77,7 +82,7 @@ export default function SingInModal() {
                     placeholderTextColor="#666"
                 />
 
-                { errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
+                {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
 
 
                 <TouchableOpacity style={styles.viewBtn} onPress={handleLogin} disabled={isLoading}>
@@ -169,7 +174,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         textAlign: 'center',
     },
-    
+
     viewBtn: {
         width: "100%",
         height: 40,

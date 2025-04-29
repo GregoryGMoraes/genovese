@@ -1,10 +1,8 @@
-import { Image, ScrollView } from "react-native";
-import { TouchableOpacity } from "react-native";
-import { View, Text, StyleSheet } from "react-native";
+import { useState } from "react";
+import {View, Text, StyleSheet, Image, TouchableOpacity} from "react-native";
 
 
 export default function Carrinho() {
-
 
     return (
         <View style={styles.container}>
