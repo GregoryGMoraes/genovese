@@ -37,6 +37,7 @@ export default function SingInModal() {
             if (email === 'test@test.com' && password === '12345') {
                 const userData = {
                     id: '1',
+                    name: 'Test',
                     email
                 };
                 console.log('Login bem sucedido', 'Você está logado com sucesso!');
@@ -55,17 +56,21 @@ export default function SingInModal() {
 
     return (
         <View style={styles.container}>
+
+            {/* Modal de Login */}
             <Modal isVisible={isModalVisible} swipeDirection={'down'} style={styles.modalContainer}>
                 <TouchableOpacity style={styles.backButton} onPress={toggleModal}>
                     <Text style={{ padding: 5 }}>
                         <FontAwesome5 name="arrow-left" size={18} color="#550026" />
                     </Text>
                 </TouchableOpacity>
+            
                 <Image
                     style={styles.logo}
                     source={require('@/assets/images/logo.jpg')}
                 />
                 <Text style={styles.title}>Seja Bem-Vindo ao App</Text>
+                {/* Campo de E-mail */}
                 <TextInput
                     style={styles.input}
                     value={email}
@@ -73,6 +78,7 @@ export default function SingInModal() {
                     placeholder="Digite seu e-mail"
                     placeholderTextColor="#666"
                 />
+                {/* Campo de Senha */}
                 <TextInput
                     secureTextEntry
                     style={styles.input}
@@ -81,7 +87,7 @@ export default function SingInModal() {
                     placeholder="Digite sua senha"
                     placeholderTextColor="#666"
                 />
-
+                {/* Mensangem de erro caso algum dos campos seja inválio */}
                 {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
 
 

@@ -1,35 +1,45 @@
-import { useState } from "react";
-import {View, Text, StyleSheet, Image, TouchableOpacity} from "react-native";
+import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { useCarrinho } from './context/carrinhoContext';
+import { FontAwesome5 } from "@expo/vector-icons";
 
 
 export default function Carrinho() {
+    const { carrinho, addAoCarrinho, removeDoCarrinho } = useCarrinho();
 
     return (
+
         <View style={styles.container}>
 
-            <View style={styles.carrinhoContainer}>
-                <View style={{ flexDirection: 'row', 
-                    justifyContent: 'space-around', 
-                    height: 100,
-                    alignItems: 'center',
-                    borderLeftColor: '#fff',
-                    borderRightColor: '#fff',
-                    borderTopColor: '#fff',
-                    borderBottomColor: '#D3D3D3',
-                    borderWidth: 1,
-                    }}>
-                    <Image style={{ width: 80, height: 80 }} source={require('@/assets/images/logo.jpg')} />
-                    <Text>Nome</Text>
-                    <Text>Marca</Text>
-                    <Text>R$00.00</Text>
-                </View>
-            </View>
+            <FlatList
+                data={carrinho}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+                    <View style={styles.carrinhoContainer}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <Image source={{ uri: item.imagem }} style={{ width: 80, height: 80 }} />
+                            <Text style={styles.text}>{item.nome}</Text>
+                            <Text style={styles.text}>R${item.preco.toFixed(2)}</Text>
+                            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 10 }}>
+                                <TouchableOpacity onPress={() => removeDoCarrinho(item.id)}>
+                                    <FontAwesome5 name='minus' size={20} color='#550026' />
+                                </TouchableOpacity>
+                                <Text style={styles.text}>{item.quantidade}</Text>
+                                <TouchableOpacity onPress={() => addAoCarrinho(item)}>
+                                    <FontAwesome5 name='plus' size={18} color='#550026' />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
+                )} />
+
             <TouchableOpacity style={styles.btn}>
                 <Text style={styles.textBtn}>
                     Enviar Pedido
                 </Text>
             </TouchableOpacity>
+
         </View>
+
     );
 }
 
@@ -42,16 +52,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
 
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: '#560022',
+    text: {
+        fontSize: 16,
         marginBottom: 10,
+        padding: 10,
     },
 
     carrinhoContainer: {
         width: '100%',
-        height: 500,
+        height: 100,
         backgroundColor: '#fff',
         borderRadius: 10,
         padding: 10,
@@ -65,7 +74,7 @@ const styles = StyleSheet.create({
 
 
     btn: {
-        width: '70%',
+        width: '90%',
         height: 40,
         margin: 5,
         backgroundColor: "#560022",

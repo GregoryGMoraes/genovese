@@ -2,8 +2,25 @@ import React from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { PescadoProps } from '../flatItemsPescados'
 import { router } from 'expo-router'
+import { useCarrinho } from '../../(carrinho)/context/carrinhoContext';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 export default function ProductPescados({ pescado }: { pescado: PescadoProps }) {
+    const { addAoCarrinho } = useCarrinho();
+
+    const handleAddAoCarrinho = () => {
+        const item = {
+            id: pescado.id,
+            nome: pescado.nome,
+            imagem: pescado.imagem,
+            marca: pescado.origem,
+            preco: pescado.preco,
+            quantidade: 1,
+        };
+        addAoCarrinho(item);
+        <Text style={{ color: 'green' }}>Item adicionado ao carrinho!'</Text>
+        console.log('Item adicionado ao carrinho:', item);
+    };
 
     return (
         <View style={styles.container}>
@@ -17,25 +34,29 @@ export default function ProductPescados({ pescado }: { pescado: PescadoProps }) 
                 <Text style={styles.subtitle}>{pescado.tipo}</Text>
                 <Text style={styles.subtitle}>Origem: {pescado.origem}</Text>
                 <Text style={styles.price}>R${(pescado.preco).toFixed(2)}</Text>
-                <TouchableOpacity style={styles.btn}>
-                    <Text style={styles.textBtn}
-                        onPress={() => router.push({
-                            pathname: '/detailsPescados/[id]',
-                            params: {
-                                id: pescado.id,
-                                nome: pescado.nome,
-                                tipo: pescado.tipo,
-                                origem: pescado.origem,
-                                imagem: pescado.imagem,
-                                descricao: pescado.descricao,
-                                preco: pescado.preco,
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '95%', padding: 10 }}>
+                    <TouchableOpacity style={styles.btn}>
+                        <Text style={styles.textBtn}
+                            onPress={() => router.push({
+                                pathname: '/detailsPescados/[id]',
+                                params: {
+                                    id: pescado.id,
+                                    nome: pescado.nome,
+                                    marca: pescado.origem,
+                                    descricao: pescado.descricao,
+                                    imagem: pescado.imagem,
+                                    origem: pescado.origem,
+                                    preco: pescado.preco,
 
-                            }
-                        })}
-                    >Ver Detalhes</Text>
-                </TouchableOpacity>
+                                }
+                            })}
+                        >Detalhes</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ width: '30%', height: 40, margin: 5, backgroundColor: "#560022", alignItems: 'center', borderRadius: 10 }}>
+                        <Text style={styles.textBtn} onPress={handleAddAoCarrinho} ><FontAwesome5 name='cart-plus' size={20} /></Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-
         </View>
     );
 }
@@ -92,21 +113,21 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
 
-    btn: { 
-        width: '95%', 
-        height: 40, 
-        margin: 5, 
-        backgroundColor: "#560022", 
-        alignItems: 'center', 
-        borderRadius: 10 
+    btn: {
+        width: '70%',
+        height: 40,
+        margin: 5,
+        backgroundColor: "#560022",
+        alignItems: 'center',
+        borderRadius: 10
     },
 
     textBtn: {
-        color: '#fff', 
-        fontWeight: 'bold', 
-        fontSize: 18, 
-        alignItems: 'center', 
-        padding: 10 
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 18,
+        alignItems: 'center',
+        padding: 10
     }
 
 });

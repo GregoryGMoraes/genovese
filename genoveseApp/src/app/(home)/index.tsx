@@ -16,7 +16,7 @@ export default function Home() {
                 <TouchableOpacity style={styles.category} onPress={() => router.push('/flatItemsVinhos')}>
                     <View style={styles.imageContainer}>
                         <Image style={styles.categoryImage} source={{ uri: "https://images.unsplash.com/photo-1672690025434-a15f3ea587f8?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }} />
-                        <Text style={styles.overlayText}>Vinhos Tintos</Text>
+                        <Text style={styles.overlayText}>Vinhos</Text>
                     </View>
                 </TouchableOpacity>
 

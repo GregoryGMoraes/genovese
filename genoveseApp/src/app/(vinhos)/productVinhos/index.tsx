@@ -3,8 +3,25 @@ import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { VinhoProps } from '../flatItemsVinhos/index'
 import { router } from 'expo-router'
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useCarrinho } from '../../(carrinho)/context/carrinhoContext';
+
 
 export default function ProductVinhos({ vinho }: { vinho: VinhoProps }) {
+    const { addAoCarrinho } = useCarrinho();
+
+    const handleAddAoCarrinho = () => {
+        const item = {
+            id: vinho.id,
+            nome: vinho.nome,
+            imagem: vinho.imagem,
+            marca: vinho.marca,
+            preco: vinho.preco,
+            quantidade: 1,
+        };
+        addAoCarrinho(item);
+        <Text style={{ color: 'green' }}>Item adicionado ao carrinho!'</Text>
+        console.log('Item adicionado ao carrinho:', item);
+    };
 
     return (
         <View style={styles.container}>
@@ -39,7 +56,7 @@ export default function ProductVinhos({ vinho }: { vinho: VinhoProps }) {
                         >Detalhes</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={{ width: '30%', height: 40, margin: 5, backgroundColor: "#560022", alignItems: 'center', borderRadius: 10 }}>
-                        <Text style={styles.textBtn}><FontAwesome5 name='cart-plus' size={20}/></Text>
+                        <Text style={styles.textBtn} onPress={handleAddAoCarrinho} ><FontAwesome5 name='cart-plus' size={20} /></Text>
                     </TouchableOpacity>
                 </View>
             </View>

@@ -3,9 +3,24 @@ import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { EspumanteProps } from '../flatItemsEspumantes/index'
 import { router } from 'expo-router'
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useCarrinho } from '../../(carrinho)/context/carrinhoContext';
 
 export default function ProductEspumantes({ espumante }: { espumante: EspumanteProps }) {
+    const { addAoCarrinho } = useCarrinho();
 
+    const handleAddAoCarrinho = () => {
+        const item = {
+            id: espumante.id,
+            nome: espumante.nome,
+            imagem: espumante.imagem,
+            marca: espumante.paisOrigem,
+            preco: espumante.preco,
+            quantidade: 1,
+        };
+        addAoCarrinho(item);
+        <Text style={{ color: 'green' }}>Item adicionado ao carrinho!'</Text>
+        console.log('Item adicionado ao carrinho:', item);
+    };
     return (
         <View style={styles.container}>
 
@@ -36,10 +51,13 @@ export default function ProductEspumantes({ espumante }: { espumante: EspumanteP
 
                                 }
                             })}
-                        >Ver Detalhes</Text>
+                        >Detalhes</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={{ width: '30%', height: 40, margin: 5, backgroundColor: "#560022", alignItems: 'center', borderRadius: 10 }}>
-                        <Text style={styles.textBtn}><FontAwesome5 name='cart-plus' size={20}/></Text>
+                        <Text style={styles.textBtn}><FontAwesome5 name='cart-plus' size={20} /></Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ width: '30%', height: 40, margin: 5, backgroundColor: "#560022", alignItems: 'center', borderRadius: 10 }}>
+                        <Text style={styles.textBtn} onPress={handleAddAoCarrinho} ><FontAwesome5 name='cart-plus' size={20} /></Text>
                     </TouchableOpacity>
                 </View>
             </View>

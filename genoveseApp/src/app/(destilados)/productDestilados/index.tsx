@@ -2,9 +2,25 @@ import React from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { DestiladosProps } from '../flatItemsDestilados/index'
 import { router } from 'expo-router'
+import { useCarrinho } from '../../(carrinho)/context/carrinhoContext';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 export default function ProductDestilados({ destilado }: { destilado: DestiladosProps }) {
+    const { addAoCarrinho } = useCarrinho();
 
+    const handleAddAoCarrinho = () => {
+        const item = {
+            id: destilado.id,
+            nome: destilado.nome,
+            imagem: destilado.imagem,
+            marca: destilado.origem,
+            preco: destilado.preco,
+            quantidade: 1,
+        };
+        addAoCarrinho(item);
+        <Text style={{ color: 'green' }}>Item adicionado ao carrinho!'</Text>
+        console.log('Item adicionado ao carrinho:', item);
+    };
     return (
         <View style={styles.container}>
 
@@ -18,27 +34,32 @@ export default function ProductDestilados({ destilado }: { destilado: Destilados
                 <Text style={styles.subtitle}>{destilado.marca}</Text>
                 <Text style={styles.subtitle}>Origem: {destilado.origem}</Text>
                 <Text style={styles.price}>R${(destilado.preco).toFixed(2)}</Text>
-                <TouchableOpacity style={styles.btn}>
-                    <Text style={styles.textBtn}
-                        onPress={() => router.push({
-                            pathname: '/detailsDestilados/[id]',
-                            params: {
-                                id: destilado.id,
-                                nome: destilado.nome,
-                                tipo: destilado.tipo,
-                                marca: destilado.marca,
-                                origem: destilado.origem,
-                                imagem: destilado.imagem,
-                                descricao: destilado.descricao,
-                                preco: destilado.preco,
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '95%', padding: 10 }}>
+                    <TouchableOpacity style={styles.btn}>
+                        <Text style={styles.textBtn}
+                            onPress={() => router.push({
+                                pathname: '/detailsDestilados/[id]',
+                                params: {
+                                    id: destilado.id,
+                                    nome: destilado.nome,
+                                    tipo: destilado.tipo,
+                                    marca: destilado.marca,
+                                    origem: destilado.origem,
+                                    imagem: destilado.imagem,
+                                    descricao: destilado.descricao,
+                                    preco: destilado.preco,
 
-                            }
-                        })}
-                    >Ver Detalhes</Text>
-                </TouchableOpacity>
+                                }
+                            })}
+                        >Detalhes</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ width: '30%', height: 40, margin: 5, backgroundColor: "#560022", alignItems: 'center', borderRadius: 10 }}>
+                        <Text style={styles.textBtn} onPress={handleAddAoCarrinho} ><FontAwesome5 name='cart-plus' size={20} /></Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-
         </View>
+
     );
 }
 
@@ -94,21 +115,21 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
 
-    btn: { 
-        width: '95%', 
-        height: 40, 
-        margin: 5, 
-        backgroundColor: "#560022", 
-        alignItems: 'center', 
-        borderRadius: 10 
+    btn: {
+        width: '70%',
+        height: 40,
+        margin: 5,
+        backgroundColor: "#560022",
+        alignItems: 'center',
+        borderRadius: 10
     },
 
     textBtn: {
-        color: '#fff', 
-        fontWeight: 'bold', 
-        fontSize: 18, 
-        alignItems: 'center', 
-        padding: 10 
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 18,
+        alignItems: 'center',
+        padding: 10
     }
 
 });
