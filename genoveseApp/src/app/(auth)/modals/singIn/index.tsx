@@ -5,7 +5,6 @@ import Modal from 'react-native-modal';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useAuth } from '../../context/authContext'; // Importa o contexto de autenticação
 
-
 export default function SingInModal() {
 
     // Declaração dos estados para o e-mail, senha, visibilidade da modal, carregamento e mensagem de erro
@@ -30,8 +29,7 @@ export default function SingInModal() {
     const handleLogin = async () => {
         setIsLoading(true); // Inicia o carregamento
         setErrorMessage(''); // Limpa a mensagem de erro
-
-
+       
         // Simula login com carregamento
         setTimeout(() => {
             if (email === 'test@test.com' && password === '12345') {

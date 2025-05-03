@@ -33,6 +33,7 @@
     "expo-symbols": "~0.2.2",
     "expo-system-ui": "~4.0.8",
     "expo-web-browser": "~14.0.2",
+    "firebase": "^11.6.1",
     "json-server": "^1.0.0-beta.3",
     "phosphor-react-native": "^2.3.1",
     "react": "18.3.1",

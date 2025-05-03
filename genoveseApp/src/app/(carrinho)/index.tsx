@@ -6,6 +6,10 @@ import { FontAwesome5 } from "@expo/vector-icons";
 export default function Carrinho() {
     const { carrinho, addAoCarrinho, removeDoCarrinho } = useCarrinho();
 
+    const totalCarrinho = () => {
+        return carrinho.reduce((total, item) => total + item.preco * item.quantidade, 0)
+    };
+
     return (
 
         <View style={styles.container}>
@@ -23,7 +27,7 @@ export default function Carrinho() {
                                 <TouchableOpacity onPress={() => removeDoCarrinho(item.id)}>
                                     <FontAwesome5 name='minus' size={20} color='#550026' />
                                 </TouchableOpacity>
-                                <Text style={styles.text}>{item.quantidade}</Text>
+                                <Text style={{fontSize: 20, marginLeft: 10, marginRight: 10}}>{item.quantidade}</Text>
                                 <TouchableOpacity onPress={() => addAoCarrinho(item)}>
                                     <FontAwesome5 name='plus' size={18} color='#550026' />
                                 </TouchableOpacity>
@@ -32,6 +36,10 @@ export default function Carrinho() {
                     </View>
                 )} />
 
+            <View style={{flexDirection: 'row', padding: 5}}>
+                <Text style={{ fontWeight: 'bold', color: '#550026', fontSize: 18 }}>Total: </Text>
+                <Text style={{ fontWeight: 'bold', color: '#550026', fontSize: 18 }}>R${totalCarrinho().toFixed(2)}</Text>
+            </View>
             <TouchableOpacity style={styles.btn}>
                 <Text style={styles.textBtn}>
                     Enviar Pedido

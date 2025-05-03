@@ -27,20 +27,25 @@ export const CarrinhoProvider: React.FC<{ children: React.ReactNode }> = ({ chil
                 // Atualiza a quantidade se o item já estiver no carrinho
                 return prevCarrinho.map((carrinhoItem) =>
                     carrinhoItem.id === item.id
-                        ? { ...carrinhoItem, quantidade: carrinhoItem.quantidade + item.quantidade }
+                        ? { ...carrinhoItem, quantidade: carrinhoItem.quantidade + 1 }
                         : carrinhoItem
                 );
             }
             // Adiciona o novo item ao carrinho
-            return [...prevCarrinho, item];
+            return [...prevCarrinho, { ...item, quantidade: 1 }];
         });
     };
 
     const removeDoCarrinho = (id: string) => {
-        setCarrinho((prevCarrinho) => prevCarrinho.filter((item) => item.id !== id));
+        setCarrinho((prevCarrinho) => {
+            return prevCarrinho.map((item) =>
+                item.id === id ? { ...item, quantidade: item.quantidade - 1 } : item)
+
+                .filter((item) => item.quantidade > 0);
+        })
     };
 
-   
+
 
     return (
         <CarrinhoContext.Provider value={{ carrinho, addAoCarrinho, removeDoCarrinho }}>
