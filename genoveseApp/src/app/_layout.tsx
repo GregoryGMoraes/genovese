@@ -2,7 +2,7 @@ import { FontAwesome5 } from '@expo/vector-icons'
 import { router, Stack } from 'expo-router'
 import { SafeAreaView, Text, StatusBar, TouchableOpacity, View } from 'react-native'
 import { AuthProvider, useAuth } from './(auth)/context/authContext'
-import { CarrinhoProvider } from './(carrinho)/context/carrinhoContext'
+import { CarrinhoProvider, useCarrinho } from './(carrinho)/context/carrinhoContext'
 
 export default function Layout() {
     return (
@@ -28,7 +28,7 @@ export default function Layout() {
 
                         <Stack.Screen name="(auth)/modals/singIn/index" options={{ presentation: 'modal', headerShown: false }} />
 
-                        <Stack.Screen name="/(carrinho)/index" options={{
+                        <Stack.Screen name="(carrinho)/index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Carrinho',
                             headerStyle: { backgroundColor: '#560022' },
@@ -174,21 +174,21 @@ export default function Layout() {
 }
 
 function HeaderRight() {
-    const { user, isLoggedIn, logout } = useAuth(); // Acessa o contexto de autenticação
+    const { user, isLoggedIn, logout } = useAuth();
+    const { getTotalCarrinho } = useCarrinho();
+    const totalItemsCarrinho = getTotalCarrinho();
 
     const handleLogout = () => {
-        logout(); // Chama a função de logout do contexto
-        router.push('/'); // Redireciona para a tela inicial
+        logout();
+        router.push('/');
     }
+
     return (
-        // Renderiza o componente de cabeçalho direito com informações do usuário e ícones de navegação
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginRight: 10 }}>
-            {/* Se o usuário estiver logado, exibe o e-mail do usuário */}
             {isLoggedIn && user ? (
                 <>
-                    {/* <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 16 }}>{user.name}</Text> */}
                     <TouchableOpacity onPress={handleLogout}>
-                        <FontAwesome5 name="sign-out-alt" size={20} color="#fff" /> {/* Ícone de logout */}
+                        <FontAwesome5 name="sign-out-alt" size={20} color="#fff" />
                     </TouchableOpacity>
                 </>
             ) : (
@@ -196,8 +196,14 @@ function HeaderRight() {
                     <FontAwesome5 name="user-alt" size={20} color="#fff" />
                 </TouchableOpacity>
             )}
+
             <TouchableOpacity onPress={() => router.push('/(carrinho)')}>
                 <FontAwesome5 name="shopping-basket" size={20} color="#fff" />
+                {totalItemsCarrinho > 0 && (
+                    <View style={{ position: 'absolute', right: -10, top: -10, backgroundColor: '#fff', borderRadius: 10, padding: 5 }}>
+                        <Text style={{ color: '#560022', fontWeight: 'bold' }}>{totalItemsCarrinho}</Text>
+                    </View>
+                )}
             </TouchableOpacity>
 
         </View>

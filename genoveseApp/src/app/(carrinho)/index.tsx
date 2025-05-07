@@ -1,4 +1,4 @@
-import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity, Linking } from "react-native";
 import { useCarrinho } from './context/carrinhoContext';
 import { FontAwesome5 } from "@expo/vector-icons";
 
@@ -6,9 +6,41 @@ import { FontAwesome5 } from "@expo/vector-icons";
 export default function Carrinho() {
     const { carrinho, addAoCarrinho, removeDoCarrinho } = useCarrinho();
 
+   
+    if (carrinho.length === 0) {
+        return (
+            <View style={styles.emptyContainer}>
+                <Image source={require('../../../assets/images/cesta.png')} style={styles.emptyImage} />
+                <Text style={styles.emptyText}>Carrinho vazio</Text>
+            </View>
+        );
+    }
+
     const totalCarrinho = () => {
         return carrinho.reduce((total, item) => total + item.preco * item.quantidade, 0)
     };
+
+    const enviarPedido = () => {
+        if (carrinho.length === 0) {
+            console.log("Carrinho vazio", "Adicione itens ao carrinho antes de enviar o pedido.");
+            return;
+        }
+
+        const pedido = carrinho
+            .map((item) => `- ${item.nome} - ${item.quantidade}: R$${(item.preco * item.quantidade).toFixed(2)}`)
+            .join("\n");
+
+        const total = `Total: R$${totalCarrinho().toFixed(2)}`;
+        const mensagem = `Oi, gostaria de fazer o seguinte pedido:\n\n${pedido}\n\n${total}`;
+
+        const numeroWhatsApp = "555381531860"; // Substitua pelo número do WhatsApp (com código do país)
+        const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+
+        Linking.openURL(url).catch(() => {
+            console.log("Erro", "Não foi possível abrir o WhatsApp.");
+        });
+    };
+
 
     return (
 
@@ -27,7 +59,7 @@ export default function Carrinho() {
                                 <TouchableOpacity onPress={() => removeDoCarrinho(item.id)}>
                                     <FontAwesome5 name='minus' size={20} color='#550026' />
                                 </TouchableOpacity>
-                                <Text style={{fontSize: 20, marginLeft: 10, marginRight: 10}}>{item.quantidade}</Text>
+                                <Text style={{ fontSize: 20, marginLeft: 10, marginRight: 10 }}>{item.quantidade}</Text>
                                 <TouchableOpacity onPress={() => addAoCarrinho(item)}>
                                     <FontAwesome5 name='plus' size={18} color='#550026' />
                                 </TouchableOpacity>
@@ -36,14 +68,17 @@ export default function Carrinho() {
                     </View>
                 )} />
 
-            <View style={{flexDirection: 'row', padding: 5}}>
+            <View style={{ flexDirection: 'row', padding: 5 }}>
                 <Text style={{ fontWeight: 'bold', color: '#550026', fontSize: 18 }}>Total: </Text>
                 <Text style={{ fontWeight: 'bold', color: '#550026', fontSize: 18 }}>R${totalCarrinho().toFixed(2)}</Text>
             </View>
-            <TouchableOpacity style={styles.btn}>
-                <Text style={styles.textBtn}>
-                    Enviar Pedido
-                </Text>
+            <TouchableOpacity style={styles.btn} onPress={enviarPedido}>
+                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={styles.textBtn}>
+                        Enviar Pedido
+                    </Text>
+                    <FontAwesome5 name='whatsapp' size={22} color='#fff' style={{ marginRight: 10 }} />
+                </View>
             </TouchableOpacity>
 
         </View>
@@ -98,6 +133,21 @@ const styles = StyleSheet.create({
         padding: 10
     },
 
-
+    emptyContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+    },
+    emptyImage: {
+        width: 500,
+        height: 500,
+        resizeMode: 'contain',
+    },
+    emptyText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#560022',
+    }
 
 })

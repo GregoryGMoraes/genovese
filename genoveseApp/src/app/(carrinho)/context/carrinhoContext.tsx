@@ -1,4 +1,6 @@
 import { createContext, useContext, useState } from "react";
+import { useAuth } from "../../(auth)/context/authContext";
+import { router } from "expo-router";
 
 interface CarrinhoItem {
     id: string;
@@ -13,14 +15,21 @@ interface CarrinhoContextType {
     carrinho: CarrinhoItem[];
     addAoCarrinho: (item: CarrinhoItem) => void;
     removeDoCarrinho: (id: string) => void;
+    getTotalCarrinho: () => number;
 }
 
 const CarrinhoContext = createContext<CarrinhoContextType | undefined>(undefined);
 
 export const CarrinhoProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [carrinho, setCarrinho] = useState<CarrinhoItem[]>([]);
+    const { isLoggedIn } = useAuth();
 
     const addAoCarrinho = (item: CarrinhoItem) => {
+        if (!isLoggedIn) {
+            router.push('../(auth)/modals/singIn');
+            return;
+        }
+
         setCarrinho((prevCarrinho) => {
             const existingItem = prevCarrinho.find((carrinhoItem) => carrinhoItem.id === item.id);
             if (existingItem) {
@@ -45,10 +54,14 @@ export const CarrinhoProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         })
     };
 
+    const getTotalCarrinho = () => {    
+        return carrinho.reduce((total, item) => total + item.quantidade, 0);
+    }
+
 
 
     return (
-        <CarrinhoContext.Provider value={{ carrinho, addAoCarrinho, removeDoCarrinho }}>
+        <CarrinhoContext.Provider value={{ carrinho, addAoCarrinho, removeDoCarrinho, getTotalCarrinho }}>
             {children}
         </CarrinhoContext.Provider>
     );
