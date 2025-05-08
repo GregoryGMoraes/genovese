@@ -13,7 +13,7 @@ export default function Home() {
                 />
             </View>
             <View style={styles.categoriesContainer}>
-                <TouchableOpacity style={styles.category} onPress={() => router.push('/flatItemsVinhos')}>
+                <TouchableOpacity style={styles.category} onPress={() => router.push('/flatItemsWine')}>
                     <View style={styles.imageContainer}>
                         <Image style={styles.categoryImage} source={{ uri: "https://images.unsplash.com/photo-1672690025434-a15f3ea587f8?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }} />
                         <Text style={styles.overlayText}>Vinhos</Text>
@@ -27,7 +27,7 @@ export default function Home() {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.category} onPress={() => router.push('/flatItemsPescados')}>
+                <TouchableOpacity style={styles.category} onPress={() => router.push('/flatItemsFish')}>
                     <View style={styles.imageContainer}>
                         <Image style={styles.categoryImage} source={{ uri: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmVmZWklQzMlQTclQzMlQTNvfGVufDB8fDB8fHww" }} />
                         <Text style={styles.overlayText}>Pescados</Text>

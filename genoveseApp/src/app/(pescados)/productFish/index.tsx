@@ -1,23 +1,23 @@
 import React from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { PescadoProps } from '../flatItemsPescados'
+import { FishProps } from '../flatItemsFish'
 import { router } from 'expo-router'
-import { useCarrinho } from '../../(carrinho)/context/carrinhoContext';
+import { useCart } from '../../(carrinho)/context/carrinhoContext';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-export default function ProductPescados({ pescado }: { pescado: PescadoProps }) {
-    const { addAoCarrinho } = useCarrinho();
+export default function ProductFish({ fish }: { fish: FishProps }) {
+    const { addToCart } = useCart();
 
-    const handleAddAoCarrinho = () => {
+    const handleAddToCart = () => {
         const item = {
-            id: pescado.id,
-            nome: pescado.nome,
-            imagem: pescado.imagem,
-            marca: pescado.origem,
-            preco: pescado.preco,
-            quantidade: 1,
+            id: fish.id,
+            name: fish.name,
+            image: fish.image,
+            brand: fish.origin,
+            price: fish.price,
+            quant: 1,
         };
-        addAoCarrinho(item);
+        addToCart(item);
         <Text style={{ color: 'green' }}>Item adicionado ao carrinho!'</Text>
         console.log('Item adicionado ao carrinho:', item);
     };
@@ -26,34 +26,36 @@ export default function ProductPescados({ pescado }: { pescado: PescadoProps }) 
         <View style={styles.container}>
 
             <View style={styles.containerImage}>
-                <Image style={styles.image} source={{ uri: pescado.imagem }} />
+                <Image style={styles.image} source={{ uri: fish.image }} />
             </View>
 
             <View style={styles.containerProduct}>
-                <Text style={styles.title}>{pescado.nome}</Text>
-                <Text style={styles.subtitle}>{pescado.tipo}</Text>
-                <Text style={styles.subtitle}>Origem: {pescado.origem}</Text>
-                <Text style={styles.price}>R${(pescado.preco).toFixed(2)}</Text>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '95%', padding: 10 }}>
-                    <TouchableOpacity style={styles.btn}>
+                <Text style={styles.title}>{fish.name}</Text>
+                <Text style={styles.subtitle}>{fish.type}</Text>
+                <Text style={styles.subtitle}>{fish.brand}</Text>
+                <Text style={styles.subtitle}>Origem: {fish.origin}</Text>
+                <Text style={styles.price}>R${(fish.price).toFixed(2)}</Text>
+                <View style={styles.btnContainer}>
+                    <TouchableOpacity style={styles.btnDetails}>
                         <Text style={styles.textBtn}
                             onPress={() => router.push({
-                                pathname: '/detailsPescados/[id]',
+                                pathname: '/fishDetails/[id]',
                                 params: {
-                                    id: pescado.id,
-                                    nome: pescado.nome,
-                                    marca: pescado.origem,
-                                    descricao: pescado.descricao,
-                                    imagem: pescado.imagem,
-                                    origem: pescado.origem,
-                                    preco: pescado.preco,
+                                    id: fish.id,
+                                    name: fish.name,
+                                    type: fish.type,
+                                    brand: fish.brand,
+                                    description: fish.description,
+                                    image: fish.image,
+                                    origin: fish.origin,
+                                    price: fish.price,
 
                                 }
                             })}
                         >Detalhes</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ width: '30%', height: 40, margin: 5, backgroundColor: "#560022", alignItems: 'center', borderRadius: 10 }}>
-                        <Text style={styles.textBtn} onPress={handleAddAoCarrinho} ><FontAwesome5 name='cart-plus' size={20} /></Text>
+                    <TouchableOpacity style={styles.btnAddCart}>
+                        <Text style={styles.textBtn} onPress={handleAddToCart} ><FontAwesome5 name='cart-plus' size={20} /></Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -112,9 +114,24 @@ const styles = StyleSheet.create({
         color: '#560022',
         marginTop: 10,
     },
+    btnContainer:{
+        flexDirection: 'row', 
+        justifyContent: 'space-between', 
+        width: '95%', 
+        padding: 10
+    },
 
-    btn: {
+    btnDetails: {
         width: '70%',
+        height: 40,
+        margin: 5,
+        backgroundColor: "#560022",
+        alignItems: 'center',
+        borderRadius: 10
+    },
+
+    btnAddCart: {
+        width: '30%',
         height: 40,
         margin: 5,
         backgroundColor: "#560022",

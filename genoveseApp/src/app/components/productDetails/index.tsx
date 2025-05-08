@@ -1,26 +1,44 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
 
-export default function DetailsPescados() {
-    const { id, nome, tipo, origem, imagem, descricao, preco } = useLocalSearchParams();
+interface ProductDetailsProps {
+    name: string;
+    type?: string;
+    origin?: string;
+    image: string;
+    description?: string;
+    price: number;
+}
+
+export default function ProductDetails({
+    name,
+    type,
+    origin,
+    image,
+    description,
+    price,
+}: ProductDetailsProps) {
     return (
-        <ScrollView style={{ flex: 1, backgroundColor: '#fff' }} contentContainerStyle={{ flexGrow: 1 }}>
+        <ScrollView style={styles.scrollContainer} contentContainerStyle={{ flexGrow: 1 }}>
             <View style={styles.container}>
-                 <Image style={styles.image} source={{ uri: Array.isArray(imagem) ? imagem[0] : imagem }}/>
+                <Image style={styles.image} source={{ uri: image }} />
             </View>
             <View style={styles.infoContainer}>
-                <Text style={styles.title}>{nome}</Text>
-                <Text style={styles.subtitle}>Tipo: {tipo}</Text>
-                <Text style={styles.subtitle}>País/Origem: {origem}</Text>
-                <Text style={styles.description}>Descrição: {descricao}</Text>
-                <Text style={styles.price}>R${Number(preco).toFixed(2)}</Text>
+                <Text style={styles.title}>{name}</Text>
+                {type && <Text style={styles.subtitle}>Tipo: {type}</Text>}
+                {origin && <Text style={styles.subtitle}>País/Origem: {origin}</Text>}
+                {description && <Text style={styles.description}>Descrição: {description}</Text>}
+                <Text style={styles.price}>R${price.toFixed(2)}</Text>
             </View>
         </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
+    scrollContainer: {
+        flex: 1,
+        backgroundColor: '#fff',
+    },
     container: {
         flexGrow: 1,
         backgroundColor: '#fff',

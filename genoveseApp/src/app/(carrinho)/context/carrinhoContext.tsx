@@ -2,73 +2,72 @@ import { createContext, useContext, useState } from "react";
 import { useAuth } from "../../(auth)/context/authContext";
 import { router } from "expo-router";
 
-interface CarrinhoItem {
+interface CartItem {
     id: string;
-    nome: string;
-    imagem: string;
-    marca: string;
-    preco: number;
-    quantidade: number;
+    name: string;
+    image: string;
+    brand: string;
+    price: number;
+    quant: number;
 }
 
-interface CarrinhoContextType {
-    carrinho: CarrinhoItem[];
-    addAoCarrinho: (item: CarrinhoItem) => void;
-    removeDoCarrinho: (id: string) => void;
-    getTotalCarrinho: () => number;
+interface CartContextType {
+    cart: CartItem[];
+    addToCart: (item: CartItem) => void;
+    removeToCart: (id: string) => void;
+    getTotalCart: () => number;
 }
 
-const CarrinhoContext = createContext<CarrinhoContextType | undefined>(undefined);
+const ContextCart = createContext<CartContextType | undefined>(undefined);
 
-export const CarrinhoProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [carrinho, setCarrinho] = useState<CarrinhoItem[]>([]);
+export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const [cart, setCart] = useState<CartItem[]>([]);
     const { isLoggedIn } = useAuth();
 
-    const addAoCarrinho = (item: CarrinhoItem) => {
+    const addToCart = (item: CartItem) => {
         if (!isLoggedIn) {
             router.push('../(auth)/modals/singIn');
             return;
         }
 
-        setCarrinho((prevCarrinho) => {
-            const existingItem = prevCarrinho.find((carrinhoItem) => carrinhoItem.id === item.id);
+        setCart((prevCart) => {
+            const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
             if (existingItem) {
-                // Atualiza a quantidade se o item já estiver no carrinho
-                return prevCarrinho.map((carrinhoItem) =>
-                    carrinhoItem.id === item.id
-                        ? { ...carrinhoItem, quantidade: carrinhoItem.quantidade + 1 }
-                        : carrinhoItem
+                return prevCart.map((cartItem) =>
+                    cartItem.id === item.id
+                        ? { ...cartItem, quant: cartItem.quant + 1 }
+                        : cartItem
                 );
             }
-            // Adiciona o novo item ao carrinho
-            return [...prevCarrinho, { ...item, quantidade: 1 }];
+
+            return [...prevCart, { ...item, quant: 1 }];
         });
     };
 
-    const removeDoCarrinho = (id: string) => {
-        setCarrinho((prevCarrinho) => {
-            return prevCarrinho.map((item) =>
-                item.id === id ? { ...item, quantidade: item.quantidade - 1 } : item)
+    const removeToCart = (id: string) => {
+        setCart((prevCart) => {
+            return prevCart.map((item) =>
+                item.id === id ? { ...item, quant: item.quant - 1 } : item)
 
-                .filter((item) => item.quantidade > 0);
+                .filter((item) => item.quant > 0);
         })
     };
 
-    const getTotalCarrinho = () => {    
-        return carrinho.reduce((total, item) => total + item.quantidade, 0);
+    const getTotalCart = () => {
+        return cart.reduce((total, item) => total + item.quant, 0);
     }
 
 
 
     return (
-        <CarrinhoContext.Provider value={{ carrinho, addAoCarrinho, removeDoCarrinho, getTotalCarrinho }}>
+        <ContextCart.Provider value={{ cart, addToCart, removeToCart, getTotalCart }}>
             {children}
-        </CarrinhoContext.Provider>
+        </ContextCart.Provider>
     );
 }
 
-export const useCarrinho = () => {
-    const context = useContext(CarrinhoContext);
+export const useCart = () => {
+    const context = useContext(ContextCart);
     if (!context) {
         throw new Error("useCarrinho está sendo usado fora do CarrinhoProvider");
     }

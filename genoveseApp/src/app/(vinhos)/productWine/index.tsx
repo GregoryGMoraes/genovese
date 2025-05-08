@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { VinhoProps } from '../flatItemsVinhos/index'
+import { WineProps } from '../flatItemsWine/index'
 import { router } from 'expo-router'
 import { FontAwesome5 } from '@expo/vector-icons';
-import { useCarrinho } from '../../(carrinho)/context/carrinhoContext';
+import { useCart } from '../../(carrinho)/context/carrinhoContext';
 
 
-export default function ProductVinhos({ vinho }: { vinho: VinhoProps }) {
-    const { addAoCarrinho } = useCarrinho();
+export default function ProductWine({ wine }: { wine: WineProps }) {
+    const { addToCart } = useCart();
     const [icon, setIcon] = useState('cart-plus');
 
-    const handleAddAoCarrinho = () => {
+    const handleAddToCart = () => {
         const item = {
-            id: vinho.id,
-            nome: vinho.nome,
-            imagem: vinho.imagem,
-            marca: vinho.marca,
-            preco: vinho.preco,
-            quantidade: 1,
+            id: wine.id,
+            name: wine.name,
+            image: wine.image,
+            brand: wine.brand,
+            price: wine.price,
+            quant: 1,
         };
 
-        addAoCarrinho(item);
+        addToCart(item);
         setIcon('check');
 
         setTimeout(() => {
@@ -33,36 +33,36 @@ export default function ProductVinhos({ vinho }: { vinho: VinhoProps }) {
         <View style={styles.container}>
 
             <View style={styles.containerImage}>
-                <Image style={styles.image} source={{ uri: vinho.imagem }} />
+                <Image style={styles.image} source={{ uri: wine.image }} />
             </View>
 
             <View style={styles.containerProduct}>
-                <Text style={styles.title}>{vinho.nome}</Text>
-                <Text style={styles.subtitle}>{vinho.tipoUva}</Text>
-                <Text style={styles.subtitle}>{vinho.marca}</Text>
-                <Text style={styles.subtitle}>Origem: {vinho.paisOrigem}</Text>
-                <Text style={styles.price}>R${(vinho.preco).toFixed(2)}</Text>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '95%', padding: 10 }}>
-                    <TouchableOpacity style={styles.btn}>
+                <Text style={styles.title}>{wine.name}</Text>
+                <Text style={styles.subtitle}>{wine.type}</Text>
+                <Text style={styles.subtitle}>{wine.brand}</Text>
+                <Text style={styles.subtitle}>Origem: {wine.origin}</Text>
+                <Text style={styles.price}>R${(wine.price).toFixed(2)}</Text>
+                <View style={styles.btnContainer}>
+                    <TouchableOpacity style={styles.btnDetails}>
                         <Text style={styles.textBtn}
                             onPress={() => router.push({
-                                pathname: '/detailsVinhos/[id]',
+                                pathname: '/wineDetails/[id]',
                                 params: {
-                                    id: vinho.id,
-                                    nome: vinho.nome,
-                                    tipo: vinho.tipoUva,
-                                    marca: vinho.marca,
-                                    descricao: vinho.descricao,
-                                    imagem: vinho.imagem,
-                                    origem: vinho.paisOrigem,
-                                    preco: vinho.preco,
+                                    id: wine.id,
+                                    name: wine.name,
+                                    type: wine.type,
+                                    brand: wine.brand,
+                                    description: wine.description,
+                                    image: wine.image,
+                                    origin: wine.origin,
+                                    price: wine.price,
 
                                 }
                             })}
                         >Detalhes</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={handleAddAoCarrinho}
-                        style={{ width: '30%', height: 40, margin: 5, backgroundColor: "#560022", alignItems: 'center', borderRadius: 10 }}>
+                    <TouchableOpacity onPress={handleAddToCart}
+                        style={styles.btnAddCart}>
                         <Text style={styles.textBtn}>
                             <FontAwesome5 name={icon} size={20} />
                         </Text>
@@ -126,8 +126,24 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
 
-    btn: {
+    btnContainer:{
+        flexDirection: 'row', 
+        justifyContent: 'space-between', 
+        width: '95%', 
+        padding: 10
+    },
+
+    btnDetails: {
         width: '70%',
+        height: 40,
+        margin: 5,
+        backgroundColor: "#560022",
+        alignItems: 'center',
+        borderRadius: 10
+    },
+
+    btnAddCart: {
+        width: '30%',
         height: 40,
         margin: 5,
         backgroundColor: "#560022",

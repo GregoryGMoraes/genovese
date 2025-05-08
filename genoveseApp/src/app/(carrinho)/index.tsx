@@ -1,13 +1,13 @@
 import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity, Linking } from "react-native";
-import { useCarrinho } from './context/carrinhoContext';
+import { useCart } from './context/carrinhoContext';
 import { FontAwesome5 } from "@expo/vector-icons";
 
 
 export default function Carrinho() {
-    const { carrinho, addAoCarrinho, removeDoCarrinho } = useCarrinho();
+    const { cart, addToCart, removeToCart } = useCart();
 
    
-    if (carrinho.length === 0) {
+    if (cart.length === 0) {
         return (
             <View style={styles.emptyContainer}>
                 <Image source={require('../../../assets/images/cesta.png')} style={styles.emptyImage} />
@@ -16,25 +16,25 @@ export default function Carrinho() {
         );
     }
 
-    const totalCarrinho = () => {
-        return carrinho.reduce((total, item) => total + item.preco * item.quantidade, 0)
+    const totalCart = () => {
+        return cart.reduce((total, item) => total + item.price * item.quant, 0)
     };
 
-    const enviarPedido = () => {
-        if (carrinho.length === 0) {
+    const sendOrder = () => {
+        if (cart.length === 0) {
             console.log("Carrinho vazio", "Adicione itens ao carrinho antes de enviar o pedido.");
             return;
         }
 
-        const pedido = carrinho
-            .map((item) => `- ${item.nome} - ${item.quantidade}: R$${(item.preco * item.quantidade).toFixed(2)}`)
+        const order = cart
+            .map((item) => `- ${item.name} - ${item.quant}: R$${(item.price * item.quant).toFixed(2)}`)
             .join("\n");
 
-        const total = `Total: R$${totalCarrinho().toFixed(2)}`;
-        const mensagem = `Oi, gostaria de fazer o seguinte pedido:\n\n${pedido}\n\n${total}`;
+        const total = `Total: R$${totalCart().toFixed(2)}`;
+        const message = `Oi, gostaria de fazer o seguinte pedido:\n\n${order}\n\n${total}`;
 
-        const numeroWhatsApp = "555381531860"; // Substitua pelo número do WhatsApp (com código do país)
-        const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+        const numberWhatsApp = "555381531860";
+        const url = `https://wa.me/${numberWhatsApp}?text=${encodeURIComponent(message)}`;
 
         Linking.openURL(url).catch(() => {
             console.log("Erro", "Não foi possível abrir o WhatsApp.");
@@ -47,20 +47,20 @@ export default function Carrinho() {
         <View style={styles.container}>
 
             <FlatList
-                data={carrinho}
+                data={cart}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                     <View style={styles.carrinhoContainer}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <Image source={{ uri: item.imagem }} style={{ width: 80, height: 80 }} />
-                            <Text style={styles.text}>{item.nome}</Text>
-                            <Text style={styles.text}>R${item.preco.toFixed(2)}</Text>
+                            <Image source={{ uri: item.image }} style={{ width: 80, height: 80 }} />
+                            <Text style={styles.text}>{item.name}</Text>
+                            <Text style={styles.text}>R${item.price.toFixed(2)}</Text>
                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 10 }}>
-                                <TouchableOpacity onPress={() => removeDoCarrinho(item.id)}>
+                                <TouchableOpacity onPress={() => removeToCart(item.id)}>
                                     <FontAwesome5 name='minus' size={20} color='#550026' />
                                 </TouchableOpacity>
-                                <Text style={{ fontSize: 20, marginLeft: 10, marginRight: 10 }}>{item.quantidade}</Text>
-                                <TouchableOpacity onPress={() => addAoCarrinho(item)}>
+                                <Text style={{ fontSize: 20, marginLeft: 10, marginRight: 10 }}>{item.quant}</Text>
+                                <TouchableOpacity onPress={() => addToCart(item)}>
                                     <FontAwesome5 name='plus' size={18} color='#550026' />
                                 </TouchableOpacity>
                             </View>
@@ -70,9 +70,9 @@ export default function Carrinho() {
 
             <View style={{ flexDirection: 'row', padding: 5 }}>
                 <Text style={{ fontWeight: 'bold', color: '#550026', fontSize: 18 }}>Total: </Text>
-                <Text style={{ fontWeight: 'bold', color: '#550026', fontSize: 18 }}>R${totalCarrinho().toFixed(2)}</Text>
+                <Text style={{ fontWeight: 'bold', color: '#550026', fontSize: 18 }}>R${totalCart().toFixed(2)}</Text>
             </View>
-            <TouchableOpacity style={styles.btn} onPress={enviarPedido}>
+            <TouchableOpacity style={styles.btn} onPress={sendOrder}>
                 <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={styles.textBtn}>
                         Enviar Pedido

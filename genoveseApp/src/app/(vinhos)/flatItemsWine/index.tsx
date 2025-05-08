@@ -1,37 +1,37 @@
 import { useState, useEffect } from 'react';
-import { FlatList, View, StyleSheet, TextInput} from 'react-native';
-import ProductVinhos from '../productVinhos';
+import { FlatList, View, StyleSheet } from 'react-native';
 import { BASE_URL } from '../../db/conectaDb';
+import ProductWine from '../productWine';
 
-export interface VinhoProps {
+export interface WineProps {
     id: string;
-    nome: string;
-    marca: string;
-    descricao: string;
-    preco: number;
-    tipoUva: string;
-    paisOrigem: string;
-    imagem: string;
+    name: string;
+    brand: string;
+    description: string;
+    price: number;
+    type: string;
+    origin: string;
+    image: string;
 }
 
-export default function FlatItemsVinhos() {
-    const [vinhos, setVinhos] = useState<VinhoProps[]>([]);
+export default function FlatItemWine() {
+    const [wine, setWine] = useState<WineProps[]>([]);
 
     useEffect(() => {
-        async function getVinhos() {
+        async function getWine() {
             const response = await fetch(`${BASE_URL}/vinhos`);
             const data = await response.json();
-            setVinhos(data);
+            setWine(data);
         }
 
-        getVinhos();
+        getWine();
     }, []);
 
     return (
-        <View style={styles.container}>                       
+        <View style={styles.container}>
             <FlatList
-                data={vinhos}
-                renderItem={({ item }) => <ProductVinhos vinho={item} />}
+                data={wine}
+                renderItem={({ item }) => <ProductWine wine={item} />}
                 keyExtractor={(item) => item.id}
                 contentContainerStyle={styles.listContent}
                 showsHorizontalScrollIndicator={false}

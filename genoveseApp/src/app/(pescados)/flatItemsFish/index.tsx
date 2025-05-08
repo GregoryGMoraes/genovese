@@ -1,36 +1,37 @@
 import { useState, useEffect } from 'react'
 import { FlatList, View, StyleSheet } from 'react-native'
-import ProductPescados from '../productPescados'
+import ProductFish from '../productFish'
 import { BASE_URL } from '../../db/conectaDb';
 
-export interface PescadoProps {
+export interface FishProps {
     id: string,
-    nome: string,
-    tipo: string,
-    descricao: string,
-    preco: number,
-    origem: string,
-    imagem: string,
+    name: string,
+    type: string,
+    brand: string,
+    description: string,
+    price: number,
+    origin: string,
+    image: string,
 }
 
-export default function FlatItemsPescados() {
-    const [pescados, setPescados] = useState<PescadoProps[]>([])
+export default function FlatItemsFish() {
+    const [fish, setFish] = useState<FishProps[]>([])
 
     useEffect(() => {
-        async function getPescados() {
+        async function getFish() {
             const response = await fetch(`${BASE_URL}/pescados`)
             const data = await response.json()
-            setPescados(data);
+            setFish(data);
         }
 
-        getPescados();
+        getFish();
     }, []);
 
     return (
         <View style={styles.container}>
             <FlatList
-                data={pescados}
-                renderItem={({ item }) => <ProductPescados pescado={item} />}
+                data={fish}
+                renderItem={({ item }) => <ProductFish fish={item} />}
                 contentContainerStyle={styles.listContent}
                 showsHorizontalScrollIndicator={false}
             />

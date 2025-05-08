@@ -3,11 +3,10 @@ import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet, ActivityInd
 import { router } from 'expo-router';
 import Modal from 'react-native-modal';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { useAuth } from '../../context/authContext'; // Importa o contexto de autenticação
+import { useAuth } from '../../context/authContext';
 
 export default function SingInModal() {
 
-    // Declaração dos estados para o e-mail, senha, visibilidade da modal, carregamento e mensagem de erro
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { login } = useAuth();
@@ -15,7 +14,6 @@ export default function SingInModal() {
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
-    // Fecha a modal e volta para a tela anterior
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
         if (isModalVisible) {
@@ -24,13 +22,11 @@ export default function SingInModal() {
     };
 
 
-    // Verifica se o e-mail e a senha estão corretos
-    // Se estiverem corretos, fecha a modal e volta para a tela anterior
+
     const handleLogin = async () => {
-        setIsLoading(true); // Inicia o carregamento
-        setErrorMessage(''); // Limpa a mensagem de erro
-       
-        // Simula login com carregamento
+        setIsLoading(true);
+        setErrorMessage('');
+
         setTimeout(() => {
             if (email === 'test@test.com' && password === '12345') {
                 const userData = {
@@ -45,30 +41,28 @@ export default function SingInModal() {
                 router.back();
             }
             else {
-                setErrorMessage('E-mail ou senha inválidos!'); // Mensagem de erro
+                setErrorMessage('E-mail ou senha inválidos!');
                 console.log('Login falhou', 'E-mail ou senha inválidos!');
             }
-            setIsLoading(false); //Temina o carregamento
-        }, 1000); // Simula um atraso de 1 segundos
+            setIsLoading(false);
+        }, 1000);
     };
 
     return (
         <View style={styles.container}>
 
-            {/* Modal de Login */}
             <Modal isVisible={isModalVisible} swipeDirection={'down'} style={styles.modalContainer}>
                 <TouchableOpacity style={styles.backButton} onPress={toggleModal}>
                     <Text style={{ padding: 5 }}>
                         <FontAwesome5 name="arrow-left" size={18} color="#550026" />
                     </Text>
                 </TouchableOpacity>
-            
+
                 <Image
                     style={styles.logo}
                     source={require('@/assets/images/logo.jpg')}
                 />
                 <Text style={styles.title}>Seja Bem-Vindo ao App</Text>
-                {/* Campo de E-mail */}
                 <TextInput
                     style={styles.input}
                     value={email}
@@ -76,7 +70,6 @@ export default function SingInModal() {
                     placeholder="Digite seu e-mail"
                     placeholderTextColor="#666"
                 />
-                {/* Campo de Senha */}
                 <TextInput
                     secureTextEntry
                     style={styles.input}
@@ -85,15 +78,14 @@ export default function SingInModal() {
                     placeholder="Digite sua senha"
                     placeholderTextColor="#666"
                 />
-                {/* Mensangem de erro caso algum dos campos seja inválio */}
                 {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
 
 
                 <TouchableOpacity style={styles.viewBtn} onPress={handleLogin} disabled={isLoading}>
                     {isLoading ? (
-                        <ActivityIndicator size="small" color="#fff" /> // Exibe o indicador de carregamento
+                        <ActivityIndicator size="small" color="#fff" />
                     ) : (
-                        <Text style={styles.textBtn}>Entrar</Text> // Exibe o texto "Entrar" quando não está carregando
+                        <Text style={styles.textBtn}>Entrar</Text>
                     )}
                 </TouchableOpacity>
             </Modal>

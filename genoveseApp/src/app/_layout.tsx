@@ -1,17 +1,13 @@
-import { FontAwesome5 } from '@expo/vector-icons'
-import { router, Stack } from 'expo-router'
-import { SafeAreaView, Text, StatusBar, TouchableOpacity, View } from 'react-native'
-import { AuthProvider, useAuth } from './(auth)/context/authContext'
-import { CarrinhoProvider, useCarrinho } from './(carrinho)/context/carrinhoContext'
+import { Stack } from 'expo-router'
+import { SafeAreaView, StatusBar } from 'react-native'
+import { AuthProvider } from './(auth)/context/authContext'
+import { CartProvider } from './(carrinho)/context/carrinhoContext'
+import  HeaderRight from './components/headerRight';
 
 export default function Layout() {
     return (
-
-        // O AuthProvider envolve toda a aplicação, permitindo o acesso ao contexto de autenticação
-        // em qualquer parte do aplicativo. Isso é útil para gerenciar o estado de autenticação
-        // e fornecer informações sobre o usuário logado ou não.
         <AuthProvider>
-            <CarrinhoProvider>
+            <CartProvider>
                 <StatusBar backgroundColor="#560022" barStyle="light-content" />
                 <SafeAreaView style={{ flex: 1 }}>
 
@@ -48,7 +44,7 @@ export default function Layout() {
                             )
                         }} />
 
-                        <Stack.Screen name="(vinhos)/flatItemsVinhos/index" options={{
+                        <Stack.Screen name="(vinhos)/flatItemsWine/index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Vinhos',
                             headerStyle: { backgroundColor: '#560022' },
@@ -58,7 +54,7 @@ export default function Layout() {
                             )
                         }} />
 
-                        <Stack.Screen name="(vinhos)/detailsVinhos/[id]" options={{
+                        <Stack.Screen name="(vinhos)/wineDetails/[id]" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Detalhes',
                             headerStyle: { backgroundColor: '#560022' },
@@ -88,7 +84,7 @@ export default function Layout() {
                             )
                         }} />
 
-                        <Stack.Screen name="(pescados)/flatItemsPescados/index" options={{
+                        <Stack.Screen name="(pescados)/flatItemsFish/index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Pescados',
                             headerStyle: { backgroundColor: '#560022' },
@@ -97,7 +93,7 @@ export default function Layout() {
                             )
                         }} />
 
-                        <Stack.Screen name="(pescados)/detailsPescados/[id]" options={{
+                        <Stack.Screen name="(pescados)/fishDetails/[id]" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Detalhes',
                             headerStyle: { backgroundColor: '#560022' },
@@ -168,44 +164,27 @@ export default function Layout() {
 
                     </Stack>
                 </SafeAreaView>
-            </CarrinhoProvider>
+            </CartProvider>
         </AuthProvider>
     )
 }
 
-function HeaderRight() {
-    const { user, isLoggedIn, logout } = useAuth();
-    const { getTotalCarrinho } = useCarrinho();
-    const totalItemsCarrinho = getTotalCarrinho();
+// Adicionar o gitmoji no projeto para melhorar a experiência do usuário e deixar o projeto mais bonito
 
-    const handleLogout = () => {
-        logout();
-        router.push('/');
-    }
+// Ajustar o botão de logout para que quando dentro do carrinho, ele não redirecione para a tela inicial.
+   // Pois está ficando dentro do carrinho e não está voltando para a tela inicial.
 
-    return (
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginRight: 10 }}>
-            {isLoggedIn && user ? (
-                <>
-                    <TouchableOpacity onPress={handleLogout}>
-                        <FontAwesome5 name="sign-out-alt" size={20} color="#fff" />
-                    </TouchableOpacity>
-                </>
-            ) : (
-                <TouchableOpacity onPress={() => router.push('/(auth)/modals/singIn')}>
-                    <FontAwesome5 name="user-alt" size={20} color="#fff" />
-                </TouchableOpacity>
-            )}
+// Padronizar os estilos de cada tela, para que fiquem todos iguais e com a mesma paleta de cores
+    // Colocar todos os estilos dentro do stylesheet
+    // Criar um arquivo de estilos global para o projeto, para que não fique repetindo os mesmos estilos em todas as telas
+   
+// Modificar o nomes dos arquivos para padronizar o projeto e deixar mais limpo o código
+    // Criar uma pasta components e colocar o HeaderRight dentro dela3
+    // Criar uma pasta screens e colocar as stacks dentro dela
+    // Nomes dos arquivos todos em inglês
 
-            <TouchableOpacity onPress={() => router.push('/(carrinho)')}>
-                <FontAwesome5 name="shopping-basket" size={20} color="#fff" />
-                {totalItemsCarrinho > 0 && (
-                    <View style={{ position: 'absolute', right: -10, top: -10, backgroundColor: '#fff', borderRadius: 10, padding: 5 }}>
-                        <Text style={{ color: '#560022', fontWeight: 'bold' }}>{totalItemsCarrinho}</Text>
-                    </View>
-                )}
-            </TouchableOpacity>
+// Mudar os nomes no db.json deixar o nome das classes e atributos em inglês 
 
-        </View>
-    );
-}
+// Pesquizar 
+    // Formas de melhorar a experiência do usuário
+    // Como fazer transições de telas mais suaves
