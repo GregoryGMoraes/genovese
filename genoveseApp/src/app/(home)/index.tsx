@@ -20,7 +20,7 @@ export default function Home() {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.category} onPress={() => router.push('/flatItemsEspumantes')}>
+                <TouchableOpacity style={styles.category} onPress={() => router.push('/flatItemsSparkling')}>
                     <View style={styles.imageContainer}>
                         <Image style={styles.categoryImage} source={{ uri: "https://images.unsplash.com/photo-1584471138950-a12e2e969878?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTY4fHxjaGFtcGFnbmUlMjBiYW5uZXJ8ZW58MHx8MHx8fDA%3D" }} />
                         <Text style={styles.overlayText}>Espumantes</Text>
@@ -34,7 +34,7 @@ export default function Home() {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.category} onPress={() => router.push('/flatItemsChocolates')}>
+                <TouchableOpacity style={styles.category} onPress={() => router.push('/flatItemsChocolate')}>
 
                     <View style={styles.imageContainer}>
                         <Image style={styles.categoryImage} source={{ uri: "https://images.unsplash.com/photo-1542843137-8791a6904d14?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fGNob2NvbGF0ZXN8ZW58MHx8MHx8fDA%3D" }} />

@@ -1,38 +1,38 @@
 import { useState, useEffect } from 'react'
 import { FlatList, View, StyleSheet } from 'react-native'
-import ProductChocolates from '../productChocolates'
+import ProductChocolate from '../productChocolate'
 import { BASE_URL } from '../../db/conectaDb';
 
 export interface ChocolateProps {
     id: string,
-    nome: string,
-    marca: string,
-    descricao: string,
-    preco: number,
-    tipo: string,
-    origem: string,
-    imagem: string,
+    name: string,
+    brand: string,
+    description: string,
+    price: number,
+    type: string,
+    origin: string,
+    image: string,
 }
 
-export default function FlatItemsChocolates() {
-    const [chocolates, setChocolates] = useState<ChocolateProps[]>([])
+export default function FlatItemsChocolate() {
+    const [chocolate, setChocolate] = useState<ChocolateProps[]>([])
 
     useEffect(() => {
-        async function getChocolates() {
+        async function getChocolate() {
             const response = await fetch(`${BASE_URL}/chocolates`)
             const data = await response.json()
-            setChocolates(data);
+            setChocolate(data);
         }
 
-        getChocolates();
+        getChocolate();
     }, []);
 
     return (
         <View style={styles.container}>
 
             <FlatList
-                data={chocolates}
-                renderItem={({ item }) => <ProductChocolates chocolate={item} />}
+                data={chocolate}
+                renderItem={({ item }) => <ProductChocolate chocolate={item} />}
                 contentContainerStyle={styles.listContent}
                 showsHorizontalScrollIndicator={false}
             />

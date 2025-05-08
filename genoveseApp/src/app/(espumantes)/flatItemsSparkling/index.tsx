@@ -1,37 +1,37 @@
 import { useState, useEffect } from 'react';
 import { FlatList, View, StyleSheet, TextInput} from 'react-native';
-import ProductEspumantes from '../productEspumantes';
+import ProductSparkling from '../productSparkling';
 import { BASE_URL } from '../../db/conectaDb';
 
-export interface EspumanteProps {
+export interface SparklingProps {
     id: string;
-    nome: string;
-    marca: string;
-    descricao: string;
-    preco: number;
-    tipoUva: string;
-    paisOrigem: string;
-    imagem: string;
+    name: string;
+    type: string;
+    brand: string;
+    description: string;
+    price: number;
+    origin: string;
+    image: string;
 }
 
 export default function FlatItemsVinhos() {
-    const [espumantes, setEspumantes] = useState<EspumanteProps[]>([]);
+    const [sparkling, setSparkling] = useState<SparklingProps[]>([]);
 
     useEffect(() => {
-        async function getEspumantes() {
+        async function getSparkling() {
             const response = await fetch(`${BASE_URL}/espumantes`);
             const data = await response.json();
-            setEspumantes(data);
+            setSparkling(data);
         }
 
-        getEspumantes();
+        getSparkling();
     }, []);
 
     return (
         <View style={styles.container}>                       
             <FlatList
-                data={espumantes}
-                renderItem={({ item }) => <ProductEspumantes espumante={item} />}
+                data={sparkling}
+                renderItem={({ item }) => <ProductSparkling sparkling={item} />}
                 keyExtractor={(item) => item.id}
                 contentContainerStyle={styles.listContent}
                 showsHorizontalScrollIndicator={false}

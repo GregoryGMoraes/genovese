@@ -64,7 +64,7 @@ export default function Layout() {
                             )
                         }} />
 
-                        <Stack.Screen name="(espumantes)/flatItemsEspumantes/index" options={{
+                        <Stack.Screen name="(espumantes)/flatItemsSparkling/index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Espumantess',
                             headerStyle: { backgroundColor: '#560022' },
@@ -74,7 +74,7 @@ export default function Layout() {
                             )
                         }} />
 
-                        <Stack.Screen name="(espumantes)/detailsEspumantes/[id]" options={{
+                        <Stack.Screen name="(espumantes)/sparklingDetails/[id]" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Detalhes',
                             headerStyle: { backgroundColor: '#560022' },
@@ -103,7 +103,7 @@ export default function Layout() {
                             )
                         }} />
 
-                        <Stack.Screen name="(chocolates)/flatItemsChocolates/index" options={{
+                        <Stack.Screen name="(chocolates)/flatItemsChocolate/index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Chocolates',
                             headerStyle: { backgroundColor: '#560022' },
@@ -113,7 +113,7 @@ export default function Layout() {
                             )
                         }} />
 
-                        <Stack.Screen name="(chocolates)/detailsChocolates/[id]" options={{
+                        <Stack.Screen name="(chocolates)/chocolateDetails/[id]" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Detalhes',
                             headerStyle: { backgroundColor: '#560022' },

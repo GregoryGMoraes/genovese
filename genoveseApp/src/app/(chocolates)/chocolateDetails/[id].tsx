@@ -2,21 +2,21 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 
-export default function DetailsChocolates() {
-    const { id, nome, tipo, marca, imagem, origem, descricao, preco } = useLocalSearchParams();
+export default function ChocolateDetails() {
+    const { id, name, type, brand, image, origin, description, price } = useLocalSearchParams();
     return (
         <ScrollView style={{ flex: 1, backgroundColor: '#fff' }} contentContainerStyle={{ flexGrow: 1 }}>
             <View style={styles.container}>
-            <Image style={styles.image} source={{ uri: Array.isArray(imagem) ? imagem[0] : imagem }}/>
+            <Image style={styles.image} source={{ uri: Array.isArray(image) ? image[0] : image }}/>
             </View>
 
             <View style={styles.infoContainer}>
-                <Text style={styles.title}> {nome}</Text>
-                <Text style={styles.subtitle}>Tipo: {tipo}</Text>
-                <Text style={styles.subtitle}>Marca: {marca}</Text>
-                <Text style={styles.subtitle}>País/Origem: {origem}</Text>
-                <Text style={styles.description}>Descrição: {descricao}</Text>
-                <Text style={styles.price}>R${Number(preco).toFixed(2)}</Text>
+                <Text style={styles.title}> {name}</Text>
+                <Text style={styles.subtitle}>Tipo: {type}</Text>
+                <Text style={styles.subtitle}>Marca: {brand}</Text>
+                <Text style={styles.subtitle}>País/Origem: {origin}</Text>
+                <Text style={styles.description}>Descrição: {description}</Text>
+                <Text style={styles.price}>R${Number(price).toFixed(2)}</Text>
             </View>
         </ScrollView>
     );
