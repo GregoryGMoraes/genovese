@@ -1,15 +1,48 @@
-<div align=center>
-<h1> Genovese Vinhos </h1>
-</div>
-
 ##### Discente : Grégory Gonçalves Moraes
-##### Orientador : Wagner
+##### Orientador : Wagner Loch
 
-<div align=center>
-<h1>Motivação/Justificativa</h1> 
-</div>
-<p>O trabalho tem como objetivo desenvolver um cardápio de produtos para um comércio de alimentos com foco em vinhos, oferecendo uma seleção cuidadosa de vinhos de diferentes países, regiões e características para atender aos diferentes perfis de consumidores.</p> 
-<p>O objetivo é que o comércio possa evoluir, ampliando sua presença no mercado assim oferecendo aos consumidores uma experiência satisfatória. O trabalho também explora as principais estratégias de marketing e vendas que podem ser adotadas para garantir o sucesso nesse mercado altamente competitivo.</p>
+# 📱 Genovese
+
+Este repositório contém o desenvolvimento de um sistema composto por um aplicativo mobile (React Native), criado como Trabalho da cadeira de Frameworks para o curso de Análise e desenvolvimento de sistemas na Faculdade de Tecnologia Senac Pelotas-RS.
+
+## Motivação
+O trabalho tem como objetivo desenvolver um cardápio de produtos para um comércio de alimentos com foco em vinhos, para atender uma demanda existente
+do cliente.
+
+## 🎯 Objetivo do Projeto
+
+> O objetivo deste projeto é ampliar sua presença no mercado assim oferecendo aos consumidores uma experiência satisfatória e facilitar pedido de produtos pelo whatsapp de comércio de alimentos.
+
+---
+
+## 🧰 Tecnologias Utilizadas
+
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.dev/)
+- [Node JS](https://nodejs.org/pt)
 
 
-<p>Foi criado um db.json para teste para iniciar no promt de comando digite o comando npx json-server db.json</p>
+
+
+## 🚀 Como Executar o Projeto
+
+### ✅ Pré-requisitos
+
+- Node.js instalado
+- Expo CLI (para o app genoveseApp)
+- Navegador moderno (para a versão web)
+
+### 📱 Mobile
+
+```bash
+cd genoveseApp
+npm install
+npx expo start
+```
+
+Para rodar o db.json para testes execute o comando
+
+```bash
+cd genoveseApp
+npx json-server db.json
+```
