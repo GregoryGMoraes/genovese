@@ -14,7 +14,7 @@ export default function ProductSparkling({ sparkling }: { sparkling: SparklingPr
             name: sparkling.name,
             image: sparkling.image,
             type: sparkling.type,
-            brand: sparkling.origin,
+            brand: sparkling.brand,
             price: sparkling.price,
             quant: 1,
         };

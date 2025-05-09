@@ -42,7 +42,7 @@ export default function Home() {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.category} onPress={() => router.push('/flatItemsFrios')}>
+                <TouchableOpacity style={styles.category} onPress={() => router.push('/flatItemsCold')}>
                     <View style={styles.imageContainer}>
                         <Image style={styles.categoryImage} source={{ uri: "https://images.unsplash.com/photo-1697754069724-2e7379fa811b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGVtYnV0aWRvcyUyMGUlMjBxdWVpam9zJTIwYmFubmVyfGVufDB8fDB8fHww" }} />
                         <Text style={styles.overlayText}>
@@ -50,7 +50,7 @@ export default function Home() {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.category} onPress={() => router.push('/flatItemsDestilados')}>
+                <TouchableOpacity style={styles.category} onPress={() => router.push('/flatItemsDistilled')}>
                     <View style={styles.imageContainer}>
                         <Image style={styles.categoryImage} source={{ uri: "https://images.unsplash.com/photo-1609330578888-d7d34c3f8718?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }} />
                         <Text style={styles.overlayText}>Destilados</Text>

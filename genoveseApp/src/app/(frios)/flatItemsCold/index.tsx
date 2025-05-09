@@ -1,37 +1,37 @@
 import { useState, useEffect } from 'react'
 import { FlatList, View, StyleSheet } from 'react-native'
-import ProductFrios from '../productFrios'
+import ProductCold from '../productCold'
 import { BASE_URL } from '../../db/conectaDb';
 
-export interface FriosProps {
+export interface ColdProps {
     id: string,
-    nome: string,
-    tipo: string,
-    marca: string,
-    descricao: string,
-    preco: number,
-    origem: string,
-    imagem: string,
+    name: string,
+    type: string,
+    brand: string,
+    description: string,
+    price: number,
+    origin: string,
+    image: string,
 }
 
 export default function FlatItemsFrios() {
-    const [frios, setFrios] = useState<FriosProps[]>([])
+    const [cold, setCold] = useState<ColdProps[]>([])
 
     useEffect(() => {
-        async function getFrios() {
+        async function getCold() {
             const response = await fetch(`${BASE_URL}/frios`)
             const data = await response.json()
-            setFrios(data);
+            setCold(data);
         }
 
-        getFrios();
+        getCold();
     }, []);
 
     return (
         <View style={styles.container}>
             <FlatList
-                data={frios}
-                renderItem={({ item }) => <ProductFrios frios={item} />}
+                data={cold}
+                renderItem={({ item }) => <ProductCold cold={item} />}
                 contentContainerStyle={styles.listContent}
                 showsHorizontalScrollIndicator={false}
             />

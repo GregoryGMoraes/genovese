@@ -123,7 +123,7 @@ export default function Layout() {
                             )
                         }} />
 
-                        <Stack.Screen name="(frios)/flatItemsFrios/index" options={{
+                        <Stack.Screen name="(frios)/flatItemsCold/index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Queijos',
                             headerStyle: { backgroundColor: '#560022' },
@@ -133,7 +133,7 @@ export default function Layout() {
                             )
                         }} />
 
-                        <Stack.Screen name="(frios)/detailsFrios/[id]" options={{
+                        <Stack.Screen name="(frios)/coldDetails/[id]" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Detalhes',
                             headerStyle: { backgroundColor: '#560022' },
@@ -142,7 +142,7 @@ export default function Layout() {
                             )
                         }} />
 
-                        <Stack.Screen name="(destilados)/flatItemsDestilados/index" options={{
+                        <Stack.Screen name="(destilados)/flatItemsDistilled/index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Destilados',
                             headerStyle: { backgroundColor: '#560022' },
@@ -152,7 +152,7 @@ export default function Layout() {
                             )
                         }} />
 
-                        <Stack.Screen name="(destilados)/detailsDestilados/[id]" options={{
+                        <Stack.Screen name="(destilados)/distilledDetails/[id]" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Detalhes',
                             headerStyle: { backgroundColor: '#560022' },
@@ -175,14 +175,13 @@ export default function Layout() {
    // Pois está ficando dentro do carrinho e não está voltando para a tela inicial.
 
 // Padronizar os estilos de cada tela, para que fiquem todos iguais e com a mesma paleta de cores
-    // Colocar todos os estilos dentro do stylesheet
+    // Colocar todos os estilos dentro do stylesheet 
     // Criar um arquivo de estilos global para o projeto, para que não fique repetindo os mesmos estilos em todas as telas
    
 // Modificar o nomes dos arquivos para padronizar o projeto e deixar mais limpo o código
-    // Criar uma pasta components e colocar o HeaderRight dentro dela3
+    // Criar uma pasta components e colocar o HeaderRight dentro dela3  OK
     // Criar uma pasta screens e colocar as stacks dentro dela
-    // Nomes dos arquivos todos em inglês
-
+    // Nomes dos arquivos todos em inglês {fish, wine, chocolate, sparkling, cold e distilled } OK
 // Mudar os nomes no db.json deixar o nome das classes e atributos em inglês 
 
 // Pesquizar 

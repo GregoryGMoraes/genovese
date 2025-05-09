@@ -1,37 +1,37 @@
 import { useState, useEffect } from 'react'
 import { FlatList, View, StyleSheet } from 'react-native'
-import ProductDestilados from '../productDestilados'
+import ProductDistilled from '../productDistilled'
 import { BASE_URL } from '../../db/conectaDb';
 
-export interface DestiladosProps {
+export interface DistilledProps {
     id: string,
-    nome: string,
-    marca: string,
-    descricao: string,
-    preco: number,
-    tipo: string,
-    origem: string,
-    imagem: string,
+    name: string,
+    brand: string,
+    description: string,
+    price: number,
+    type: string,
+    origin: string,
+    image: string,
 }
 
-export default function FlatItemsDestilados() {
-    const [destilados, setDestilados] = useState<DestiladosProps[]>([])
+export default function FlatItemsDistilled() {
+    const [distilled, setDistilled] = useState<DistilledProps[]>([])
 
     useEffect(() => {
-        async function getDestilados() {
+        async function getDistilled() {
             const response = await fetch(`${BASE_URL}/destilados`)
             const data = await response.json()
-            setDestilados(data);
+            setDistilled(data);
         }
 
-        getDestilados();
+        getDistilled();
     }, []);
 
     return (
         <View style={styles.container}>
             <FlatList
-                data={destilados}
-                renderItem={({ item }) => <ProductDestilados destilado={item} />}
+                data={distilled}
+                renderItem={({ item }) => <ProductDistilled distilled={item} />}
                 contentContainerStyle={styles.listContent}
                 showsHorizontalScrollIndicator={false}
             />

@@ -1,23 +1,23 @@
 import React from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { FriosProps } from '../flatItemsFrios/index'
+import { ColdProps } from '../flatItemsCold/index'
 import { router } from 'expo-router'
-import { useCarrinho } from '../../(carrinho)/context/carrinhoContext';
+import { useCart } from '../../(carrinho)/context/carrinhoContext';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-export default function ProductFrios({ frios }: { frios: FriosProps }) {
- const { addAoCarrinho } = useCarrinho();
+export default function ProductCold({ cold }: { cold: ColdProps }) {
+ const { addToCart } = useCart();
 
-    const handleAddAoCarrinho = () => {
+    const handleAddToCart = () => {
         const item = {
-            id: frios.id,
-            nome: frios.nome,
-            imagem: frios.imagem,
-            marca: frios.origem,
-            preco: frios.preco,
-            quantidade: 1,
+            id: cold.id,
+            name: cold.name,
+            image: cold.image,
+            brand: cold.brand,
+            price: cold.price,
+            quant: 1,
         };
-        addAoCarrinho(item);
+        addToCart(item);
         <Text style={{ color: 'green' }}>Item adicionado ao carrinho!'</Text>
         console.log('Item adicionado ao carrinho:', item);
     };
@@ -26,29 +26,29 @@ export default function ProductFrios({ frios }: { frios: FriosProps }) {
         <View style={styles.container}>
 
             <View style={styles.containerImage}>
-                <Image style={styles.image} source={{ uri: frios.imagem }} />
+                <Image style={styles.image} source={{ uri: cold.image }} />
             </View>
 
             <View style={styles.containerProduct}>
-                <Text style={styles.title}>{frios.nome}</Text>
-                <Text style={styles.subtitle}>{frios.tipo}</Text>
-                <Text style={styles.subtitle}>{frios.marca}</Text>
-                <Text style={styles.subtitle}>Origem: {frios.origem}</Text>
-                <Text style={styles.price}>R${(frios.preco).toFixed(2)} Kg</Text>
+                <Text style={styles.title}>{cold.name}</Text>
+                <Text style={styles.subtitle}>{cold.type}</Text>
+                <Text style={styles.subtitle}>{cold.brand}</Text>
+                <Text style={styles.subtitle}>Origem: {cold.origin}</Text>
+                <Text style={styles.price}>R${(cold.price).toFixed(2)} Kg</Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '95%', padding: 10 }}>
                     <TouchableOpacity style={styles.btn}>
                         <Text style={styles.textBtn}
                             onPress={() => router.push({
-                                pathname: '/detailsFrios/[id]',
+                                pathname: '/coldDetails/[id]',
                                 params: {
-                                    id: frios.id,
-                                    nome: frios.nome,
-                                    tipo: frios.tipo,
-                                    marca: frios.marca,
-                                    descricao: frios.descricao,
-                                    imagem: frios.imagem,
-                                    origem: frios.origem,
-                                    preco: frios.preco,
+                                    id: cold.id,
+                                    name: cold.name,
+                                    type: cold.type,
+                                    brand: cold.brand,
+                                    description: cold.description,
+                                    image: cold.image,
+                                    origin: cold.origin,
+                                    price: cold.price,
 
                                 }
                             })}
@@ -56,7 +56,7 @@ export default function ProductFrios({ frios }: { frios: FriosProps }) {
                     </TouchableOpacity>
 
                     <TouchableOpacity style={{ width: '30%', height: 40, margin: 5, backgroundColor: "#560022", alignItems: 'center', borderRadius: 10 }}>
-                        <Text style={styles.textBtn} onPress={handleAddAoCarrinho} ><FontAwesome5 name='cart-plus' size={20} /></Text>
+                        <Text style={styles.textBtn} onPress={handleAddToCart} ><FontAwesome5 name='cart-plus' size={20} /></Text>
                     </TouchableOpacity>
                 </View>
             </View>
