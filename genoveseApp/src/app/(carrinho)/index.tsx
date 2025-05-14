@@ -6,7 +6,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 export default function Carrinho() {
     const { cart, addToCart, removeToCart } = useCart();
 
-   
+
     if (cart.length === 0) {
         return (
             <View style={styles.emptyContainer}>
@@ -51,11 +51,11 @@ export default function Carrinho() {
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                     <View style={styles.carrinhoContainer}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <Image source={{ uri: item.image }} style={{ width: 80, height: 80 }} />
+                        <View style={styles.cardContainer}>
+                            <Image source={{ uri: item.image }} style={styles.cardImage} />
                             <Text style={styles.text}>{item.name}</Text>
                             <Text style={styles.text}>R${item.price.toFixed(2)}</Text>
-                            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 10 }}>
+                            <View style={styles.btnCard}>
                                 <TouchableOpacity onPress={() => removeToCart(item.id)}>
                                     <FontAwesome5 name='minus' size={20} color='#550026' />
                                 </TouchableOpacity>
@@ -68,16 +68,15 @@ export default function Carrinho() {
                     </View>
                 )} />
 
-            <View style={{ flexDirection: 'row', padding: 5 }}>
-                <Text style={{ fontWeight: 'bold', color: '#550026', fontSize: 18 }}>Total: </Text>
-                <Text style={{ fontWeight: 'bold', color: '#550026', fontSize: 18 }}>R${totalCart().toFixed(2)}</Text>
+            <View style={styles.totalContainer}>
+                <Text style={styles.textTotal}>Total: R${totalCart().toFixed(2)}</Text>
             </View>
-            <TouchableOpacity style={styles.btn} onPress={sendOrder}>
-                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+            <TouchableOpacity style={styles.btnSendOrder} onPress={sendOrder}>
+                <View style={styles.sendOrderContainer}>
                     <Text style={styles.textBtn}>
                         Enviar Pedido
                     </Text>
-                    <FontAwesome5 name='whatsapp' size={22} color='#fff' style={{ marginRight: 10 }} />
+                    <FontAwesome5 name='whatsapp' size={22} color='#fff' />
                 </View>
             </TouchableOpacity>
 
@@ -115,14 +114,50 @@ const styles = StyleSheet.create({
         elevation: 2
     },
 
+    cardContainer: {
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center',
+    },
 
-    btn: {
+    cardImage: {
+        width: 80,
+        height: 80,
+        borderRadius: 10, 
+        resizeMode: 'contain',
+    },
+
+    totalContainer : {
+        flexDirection: 'row', 
+        padding: 5
+    },
+
+    textTotal: {
+        fontWeight: 'bold',
+        color: '#550026',
+        fontSize: 18
+    },
+
+    sendOrderContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    btnSendOrder: {
         width: '90%',
         height: 40,
         margin: 5,
         backgroundColor: "#560022",
         alignItems: 'center',
         borderRadius: 10
+    },
+
+    btnCard: {
+        flexDirection: 'row', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        padding: 10 
     },
 
     textBtn: {

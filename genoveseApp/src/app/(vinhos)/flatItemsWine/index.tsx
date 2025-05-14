@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { FlatList, View, StyleSheet } from 'react-native';
 import { BASE_URL } from '../../db/conectaDb';
 import ProductWine from '../productWine';
+import SearchBar from '../../components/searchBar';
 
 export interface WineProps {
     id: string;
@@ -16,6 +17,7 @@ export interface WineProps {
 
 export default function FlatItemWine() {
     const [wine, setWine] = useState<WineProps[]>([]);
+    const [search, setSearch] = useState<string>('');
 
     useEffect(() => {
         async function getWine() {
@@ -27,10 +29,21 @@ export default function FlatItemWine() {
         getWine();
     }, []);
 
+    const filteredWine = wine.filter((item) => {    
+        const searchLower = search.toLowerCase();
+        return (
+            item.name.toLowerCase().includes(searchLower) ||
+            item.brand.toLowerCase().includes(searchLower) ||
+            item.type.toLowerCase().includes(searchLower) ||
+            item.origin.toLowerCase().includes(searchLower)
+            );
+    });
+
     return (
         <View style={styles.container}>
+            <SearchBar onChangeText={setSearch} value={search} placeholder="Pesquisar"  />
             <FlatList
-                data={wine}
+                data={filteredWine}
                 renderItem={({ item }) => <ProductWine wine={item} />}
                 keyExtractor={(item) => item.id}
                 contentContainerStyle={styles.listContent}

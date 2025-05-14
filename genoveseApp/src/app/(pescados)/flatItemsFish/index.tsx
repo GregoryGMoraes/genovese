@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { FlatList, View, StyleSheet } from 'react-native'
 import ProductFish from '../productFish'
 import { BASE_URL } from '../../db/conectaDb';
+import SearchBar from '../../components/searchBar';
 
 export interface FishProps {
     id: string,
@@ -16,6 +17,7 @@ export interface FishProps {
 
 export default function FlatItemsFish() {
     const [fish, setFish] = useState<FishProps[]>([])
+    const [search, setSearch] = useState<string>('')
 
     useEffect(() => {
         async function getFish() {
@@ -27,10 +29,22 @@ export default function FlatItemsFish() {
         getFish();
     }, []);
 
+    const filteredFish = fish.filter((item) => {
+        const searchLower = search.toLowerCase();
+        return (
+            item.name.toLowerCase().includes(searchLower) ||
+            item.brand.toLowerCase().includes(searchLower) ||
+            item.type.toLowerCase().includes(searchLower) ||
+            item.origin.toLowerCase().includes(searchLower)
+        );
+    }
+    );
+
     return (
         <View style={styles.container}>
+            <SearchBar onChangeText={setSearch} value={search} placeholder="Pesquisar" />
             <FlatList
-                data={fish}
+                data={filteredFish}
                 renderItem={({ item }) => <ProductFish fish={item} />}
                 contentContainerStyle={styles.listContent}
                 showsHorizontalScrollIndicator={false}

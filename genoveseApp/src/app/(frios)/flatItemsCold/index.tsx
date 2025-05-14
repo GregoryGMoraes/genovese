@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { FlatList, View, StyleSheet } from 'react-native'
 import ProductCold from '../productCold'
 import { BASE_URL } from '../../db/conectaDb';
+import SearchBar from '../../components/searchBar';
 
 export interface ColdProps {
     id: string,
@@ -16,6 +17,7 @@ export interface ColdProps {
 
 export default function FlatItemsFrios() {
     const [cold, setCold] = useState<ColdProps[]>([])
+    const [search, setSearch] = useState<string>('')
 
     useEffect(() => {
         async function getCold() {
@@ -27,10 +29,22 @@ export default function FlatItemsFrios() {
         getCold();
     }, []);
 
+    const filteredCold = cold.filter((item) => {
+        const searchLower = search.toLowerCase();
+        return (
+            item.name.toLowerCase().includes(searchLower) ||
+            item.brand.toLowerCase().includes(searchLower) ||
+            item.type.toLowerCase().includes(searchLower) ||
+            item.origin.toLowerCase().includes(searchLower)
+        );
+    }
+    );
+
     return (
         <View style={styles.container}>
+            <SearchBar onChangeText={setSearch} value={search} placeholder="Pesquisar" />
             <FlatList
-                data={cold}
+                data={filteredCold}
                 renderItem={({ item }) => <ProductCold cold={item} />}
                 contentContainerStyle={styles.listContent}
                 showsHorizontalScrollIndicator={false}

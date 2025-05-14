@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { FlatList, View, StyleSheet, TextInput} from 'react-native';
 import ProductSparkling from '../productSparkling';
 import { BASE_URL } from '../../db/conectaDb';
+import SearchBar from '../../components/searchBar';
 
 export interface SparklingProps {
     id: string;
@@ -16,6 +17,7 @@ export interface SparklingProps {
 
 export default function FlatItemsVinhos() {
     const [sparkling, setSparkling] = useState<SparklingProps[]>([]);
+    const [search, setSearch] = useState<string>('');
 
     useEffect(() => {
         async function getSparkling() {
@@ -27,10 +29,21 @@ export default function FlatItemsVinhos() {
         getSparkling();
     }, []);
 
+    const filteredSparkling = sparkling.filter((item) => {
+        const searchLower = search.toLowerCase();
+        return (
+            item.name.toLowerCase().includes(searchLower) ||
+            item.brand.toLowerCase().includes(searchLower) ||
+            item.type.toLowerCase().includes(searchLower) ||
+            item.origin.toLowerCase().includes(searchLower)
+        );
+    });
+
     return (
-        <View style={styles.container}>                       
+        <View style={styles.container}>   
+        <SearchBar onChangeText={setSearch} value={search} placeholder="Pesquisar" />                    
             <FlatList
-                data={sparkling}
+                data={filteredSparkling}
                 renderItem={({ item }) => <ProductSparkling sparkling={item} />}
                 keyExtractor={(item) => item.id}
                 contentContainerStyle={styles.listContent}

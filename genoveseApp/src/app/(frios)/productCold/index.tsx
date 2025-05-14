@@ -35,8 +35,8 @@ export default function ProductCold({ cold }: { cold: ColdProps }) {
                 <Text style={styles.subtitle}>{cold.brand}</Text>
                 <Text style={styles.subtitle}>Origem: {cold.origin}</Text>
                 <Text style={styles.price}>R${(cold.price).toFixed(2)} Kg</Text>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '95%', padding: 10 }}>
-                    <TouchableOpacity style={styles.btn}>
+                <View style={styles.btnContainer}>
+                    <TouchableOpacity style={styles.btnDetails}>
                         <Text style={styles.textBtn}
                             onPress={() => router.push({
                                 pathname: '/coldDetails/[id]',
@@ -55,7 +55,7 @@ export default function ProductCold({ cold }: { cold: ColdProps }) {
                         >Detalhes</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={{ width: '30%', height: 40, margin: 5, backgroundColor: "#560022", alignItems: 'center', borderRadius: 10 }}>
+                    <TouchableOpacity style={styles.btnAddCart}>
                         <Text style={styles.textBtn} onPress={handleAddToCart} ><FontAwesome5 name='cart-plus' size={20} /></Text>
                     </TouchableOpacity>
                 </View>
@@ -116,8 +116,24 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
 
-    btn: {
+    btnContainer:{
+        flexDirection: 'row', 
+        justifyContent: 'space-between', 
+        width: '95%', 
+        padding: 10
+    },
+
+    btnDetails: {
         width: '70%',
+        height: 40,
+        margin: 5,
+        backgroundColor: "#560022",
+        alignItems: 'center',
+        borderRadius: 10
+    },
+
+    btnAddCart: {
+        width: '30%',
         height: 40,
         margin: 5,
         backgroundColor: "#560022",

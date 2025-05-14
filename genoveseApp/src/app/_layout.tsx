@@ -175,15 +175,13 @@ export default function Layout() {
    // Pois está ficando dentro do carrinho e não está voltando para a tela inicial.
 
 // Padronizar os estilos de cada tela, para que fiquem todos iguais e com a mesma paleta de cores
-    // Colocar todos os estilos dentro do stylesheet 
     // Criar um arquivo de estilos global para o projeto, para que não fique repetindo os mesmos estilos em todas as telas
    
-// Modificar o nomes dos arquivos para padronizar o projeto e deixar mais limpo o código
-    // Criar uma pasta components e colocar o HeaderRight dentro dela3  OK
-    // Criar uma pasta screens e colocar as stacks dentro dela
-    // Nomes dos arquivos todos em inglês {fish, wine, chocolate, sparkling, cold e distilled } OK
-// Mudar os nomes no db.json deixar o nome das classes e atributos em inglês 
+// Adicionar uma barrra de pequise no components para que o usuário possa pesquisar os produtos
+       
 
 // Pesquizar 
     // Formas de melhorar a experiência do usuário
     // Como fazer transições de telas mais suaves
+
+// Async storage para pesisar os dados do usuário     
