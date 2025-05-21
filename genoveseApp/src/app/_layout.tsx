@@ -178,10 +178,7 @@ export default function Layout() {
     // Criar um arquivo de estilos global para o projeto, para que não fique repetindo os mesmos estilos em todas as telas
    
 // Adicionar uma barrra de pequise no components para que o usuário possa pesquisar os produtos
-       
-
-// Pesquizar 
-    // Formas de melhorar a experiência do usuário
-    // Como fazer transições de telas mais suaves
 
 // Async storage para pesisar os dados do usuário     
+
+// Gerar APK do projeto para android e IOS 

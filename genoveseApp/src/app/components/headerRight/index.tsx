@@ -12,7 +12,7 @@ export default function HeaderRight() {
 
     const handleLogout = () => {
         logout();
-        router.push('/');
+        router.replace('/');
     }
 
     const handleCartPress = () => {

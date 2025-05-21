@@ -22,7 +22,6 @@ export default function SingInModal() {
     };
 
 
-
     const handleLogin = async () => {
         setIsLoading(true);
         setErrorMessage('');
