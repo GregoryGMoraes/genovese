@@ -1,9 +1,8 @@
-import { router } from 'expo-router';
-import React, { createContext, useContext, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 interface User {
     id: string;
-    name: string;
     email: string;
 }
 
@@ -18,6 +17,22 @@ export const AuthContext = createContext<AuthContextProps | undefined>(undefined
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
+
+     useEffect(() => {
+        AsyncStorage.getItem('usuario').then(data => {
+            if (data) setUser(JSON.parse(data));
+        });
+    }, []);
+
+    useEffect(() => {
+        if (user) {
+            AsyncStorage.setItem('usuario', JSON.stringify(user));
+            console.log('Usuário logado:', user);
+        } else {
+            AsyncStorage.removeItem('usuario');
+            console.log('Usuário deslogado');
+        }
+    }, [user]);
 
     const login = (userData: User) => {
         setUser(userData);

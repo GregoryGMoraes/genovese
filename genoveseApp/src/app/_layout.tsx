@@ -1,7 +1,7 @@
 import { Stack } from 'expo-router'
 import { SafeAreaView, StatusBar } from 'react-native'
-import { AuthProvider } from './(auth)/context/authContext'
-import { CartProvider } from './(carrinho)/context/carrinhoContext'
+import { AuthProvider } from '../context/authContext'
+import { CartProvider } from '../context/carrinhoContext'
 import  HeaderRight from './components/headerRight';
 
 export default function Layout() {

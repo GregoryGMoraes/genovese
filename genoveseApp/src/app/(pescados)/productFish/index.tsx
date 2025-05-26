@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { FishProps } from '../flatItemsFish'
 import { router } from 'expo-router'
-import { useCart } from '../../(carrinho)/context/carrinhoContext';
+import { useCart } from '../../../context/carrinhoContext';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 export default function ProductFish({ fish }: { fish: FishProps }) {

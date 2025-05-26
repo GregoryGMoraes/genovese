@@ -1,8 +1,8 @@
 import { FontAwesome5 } from '@expo/vector-icons'
 import { router } from 'expo-router'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { useAuth } from '../../(auth)/context/authContext'
-import { useCart } from '../../(carrinho)/context/carrinhoContext'
+import { useAuth } from '../../../context/authContext'
+import { useCart } from '../../../context/carrinhoContext'
 
 
 export default function HeaderRight() {
@@ -25,14 +25,14 @@ export default function HeaderRight() {
 
     return (
         <View style={styles.container}>
-            {isLoggedIn && user ? (
+            { user ? (
                 <>
                     <TouchableOpacity onPress={handleLogout}>
                         <FontAwesome5 name="sign-out-alt" size={20} color="#fff" />
                     </TouchableOpacity>
                 </>
             ) : (
-                <TouchableOpacity onPress={() => router.push('/(auth)/modals/singIn')}>
+                <TouchableOpacity onPress={() => router.push('../(auth)/modals/singIn')}>
                     <FontAwesome5 name="user-alt" size={20} color="#fff" />
                 </TouchableOpacity>
             )}
@@ -56,7 +56,8 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     gap: 10, 
     marginRight: 10
-  },
+
+},
 
   totalItemsContainer: {
     position: 'absolute', 

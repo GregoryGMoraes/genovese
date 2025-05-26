@@ -3,7 +3,7 @@ import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet, ActivityInd
 import { router } from 'expo-router';
 import Modal from 'react-native-modal';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { useAuth } from '../../context/authContext';
+import { useAuth } from '../../../../context/authContext';
 
 export default function SingInModal() {
 
@@ -13,6 +13,7 @@ export default function SingInModal() {
     const [isModalVisible, setModalVisible] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [isSignup, setIsSignup] = useState(false);
 
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
@@ -20,7 +21,6 @@ export default function SingInModal() {
             router.back();
         }
     };
-
 
     const handleLogin = async () => {
         setIsLoading(true);
@@ -30,7 +30,6 @@ export default function SingInModal() {
             if (email === 'test@test.com' && password === '12345') {
                 const userData = {
                     id: '1',
-                    name: 'Test',
                     email
                 };
                 console.log('Login bem sucedido', 'Você está logado com sucesso!');
@@ -44,6 +43,19 @@ export default function SingInModal() {
                 console.log('Login falhou', 'E-mail ou senha inválidos!');
             }
             setIsLoading(false);
+        }, 1000);
+    };
+
+    const handleCadastro = async () => {
+        setIsLoading(true);
+        setErrorMessage('');
+        // Aqui você pode usar o Supabase ou outro backend para criar o usuário
+        setTimeout(() => {
+            // Simulação de sucesso
+            setErrorMessage('');
+            setIsSignup(false);
+            setIsLoading(false);
+            console.log('Conta criada com sucesso! Faça login.');
         }, 1000);
     };
 
@@ -61,7 +73,7 @@ export default function SingInModal() {
                     style={styles.logo}
                     source={require('@/assets/images/logo.jpg')}
                 />
-                <Text style={styles.title}>Seja Bem-Vindo ao App</Text>
+                <Text style={styles.title}>{isSignup ? 'Criar conta' : 'Seja Bem-Vindo ao App'}</Text>
                 <TextInput
                     style={styles.input}
                     value={email}
@@ -80,12 +92,22 @@ export default function SingInModal() {
                 {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
 
 
-                <TouchableOpacity style={styles.viewBtn} onPress={handleLogin} disabled={isLoading}>
+                <TouchableOpacity
+                    style={styles.viewBtn}
+                    onPress={isSignup ? handleCadastro : handleLogin}
+                    disabled={isLoading}
+                >
                     {isLoading ? (
                         <ActivityIndicator size="small" color="#fff" />
                     ) : (
-                        <Text style={styles.textBtn}>Entrar</Text>
+                        <Text style={styles.textBtn}>{isSignup ? 'Cadastrar' : 'Entrar'}</Text>
                     )}
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => setIsSignup(!isSignup)} style={{ marginTop: 15 }}>
+                    <Text style={{ color: '#560022', fontWeight: 'bold' }}>
+                        {isSignup ? 'Já tem conta? Entrar' : 'Não tem conta? Cadastre-se'}
+                    </Text>
                 </TouchableOpacity>
             </Modal>
         </View>

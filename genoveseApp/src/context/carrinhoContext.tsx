@@ -1,5 +1,6 @@
-import { createContext, useContext, useState } from "react";
-import { useAuth } from "../../(auth)/context/authContext";
+import { createContext, useContext, useState, useEffect } from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useAuth } from "../context/authContext";
 import { router } from "expo-router";
 
 interface CartItem {
@@ -24,6 +25,18 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [cart, setCart] = useState<CartItem[]>([]);
     const { isLoggedIn } = useAuth();
 
+     useEffect(() => {
+        AsyncStorage.getItem('carrinho').then(data => {
+            if (data) setCart(JSON.parse(data));
+        });
+    }, []);
+
+    useEffect(() => {
+        AsyncStorage.setItem('carrinho', JSON.stringify(cart));
+        console.log('Carrinho atualizado:', cart);
+    }, [cart]);
+    
+    
     const addToCart = (item: CartItem) => {
         if (!isLoggedIn) {
             router.push('../(auth)/modals/singIn');

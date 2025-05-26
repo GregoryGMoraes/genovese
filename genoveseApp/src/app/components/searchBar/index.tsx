@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     },
     input: {
         flex: 1,
-        height: 30,
+        height: 40,
         fontSize: 16,
         color: '#333',
         paddingRight: 35,
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     icon: {
         position: 'absolute',
         right: 20,
-        top: '50%',
+        top: '70%',
         transform: [{ translateY: -10 }],
         zIndex: 1,
         opacity: 0.8,

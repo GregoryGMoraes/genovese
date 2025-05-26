@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { FlatList, View, StyleSheet } from 'react-native'
 import ProductDistilled from '../productDistilled'
-import { BASE_URL } from '../../db/conectaDb';
+import { BASE_URL } from '../../../utils/conectaDb';
 import SearchBar from '../../components/searchBar';
 
 export interface DistilledProps {

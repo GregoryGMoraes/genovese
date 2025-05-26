@@ -3,7 +3,7 @@ import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { WineProps } from '../flatItemsWine/index'
 import { router } from 'expo-router'
 import { FontAwesome5 } from '@expo/vector-icons';
-import { useCart } from '../../(carrinho)/context/carrinhoContext';
+import { useCart } from '../../../context/carrinhoContext';
 
 
 export default function ProductWine({ wine }: { wine: WineProps }) {

@@ -1,5 +1,5 @@
 import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity, Linking } from "react-native";
-import { useCart } from './context/carrinhoContext';
+import { useCart } from '../../context/carrinhoContext';
 import { FontAwesome5 } from "@expo/vector-icons";
 
 
@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding: 20,
+        gap: 10,
         backgroundColor: '#fff',
     },
 
