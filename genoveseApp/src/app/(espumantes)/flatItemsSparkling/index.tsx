@@ -1,41 +1,46 @@
 import { useState, useEffect } from 'react';
 import { FlatList, View, StyleSheet, TextInput} from 'react-native';
 import ProductSparkling from '../productSparkling';
-import { BASE_URL } from '../../../utils/conectaDb';
+//import { BASE_URL } from '../../../utils/conectaDb';
 import SearchBar from '../../components/searchBar';
+import { supabase } from '@/src/utils/supabaseClient';
 
-export interface SparklingProps {
+export interface ProdutoProps {
     id: string;
     name: string;
-    type: string;
     brand: string;
     description: string;
     price: number;
+    category: string;
+    type: string;
     origin: string;
     image: string;
 }
 
+
 export default function FlatItemsVinhos() {
-    const [sparkling, setSparkling] = useState<SparklingProps[]>([]);
+    const [sparkling, setSparkling] = useState<ProdutoProps[]>([]);
     const [search, setSearch] = useState<string>('');
 
     useEffect(() => {
-        async function getSparkling() {
-            const response = await fetch(`${BASE_URL}/espumantes`);
-            const data = await response.json();
-            setSparkling(data);
-        }
+           async function getSparkling() {
+               const { data, error } = await supabase
+                   .from('produtos')
+                   .select('*');
+               setSparkling(data || []);
+           }
+           getSparkling();
+       }, []);
 
-        getSparkling();
-    }, []);
-
-    const filteredSparkling = sparkling.filter((item) => {
+   const filteredSparkling = sparkling.filter((item) => {
         const searchLower = search.toLowerCase();
         return (
-            item.name.toLowerCase().includes(searchLower) ||
-            item.brand.toLowerCase().includes(searchLower) ||
-            item.type.toLowerCase().includes(searchLower) ||
-            item.origin.toLowerCase().includes(searchLower)
+            item.category === 'Espumante' && (
+                item.name.toLowerCase().includes(searchLower) ||
+                item.brand.toLowerCase().includes(searchLower) ||
+                item.type.toLowerCase().includes(searchLower) ||
+                item.origin.toLowerCase().includes(searchLower)
+            )
         );
     });
 

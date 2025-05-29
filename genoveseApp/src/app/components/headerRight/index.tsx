@@ -25,6 +25,7 @@ export default function HeaderRight() {
 
     return (
         <View style={styles.container}>
+
             { user ? (
                 <>
                     <TouchableOpacity onPress={handleLogout}>
@@ -36,7 +37,6 @@ export default function HeaderRight() {
                     <FontAwesome5 name="user-alt" size={20} color="#fff" />
                 </TouchableOpacity>
             )}
-
             <TouchableOpacity onPress={handleCartPress}>
                 <FontAwesome5 name="shopping-basket" size={20} color="#fff" />
                 {totalItemsCart > 0 && (
@@ -53,9 +53,10 @@ export default function HeaderRight() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row', 
-    alignItems: 'center', 
+    alignItems: 'center',
+    paddingRight: 16, 
     gap: 10, 
-    marginRight: 10
+    marginRight: 30
 
 },
 

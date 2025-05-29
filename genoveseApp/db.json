@@ -157,7 +157,7 @@
     {
       "id": 601,
       "name": "Lombo Bacalhau Salgado",
-      "type": "Peixe salgado",
+      "type": "Ghadus Morhua",
       "brand": "Reymar",
       "description": "Bacalhau salgado tradicional, ideal para pratos portugueses como a bacalhoada.",
       "price": 299.00,
@@ -167,7 +167,7 @@
     {
       "id": 602,
       "name": "Lombo Bacalhau Dessalgado",
-      "type": "Peixe dessalgado",
+      "type": "Ghadus Morhua",
       "brand": "Reymar",
       "description": "Bacalhau já dessalgado e pronto para o preparo.",
       "price": 279.00,

@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesome5 } from '@expo/vector-icons'
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 
 interface ProductDetailsProps {
@@ -25,8 +26,8 @@ export default function ProductDetails({
             </View>
             <View style={styles.infoContainer}>
                 <Text style={styles.title}>{name}</Text>
-                {type && <Text style={styles.subtitle}>Tipo: {type}</Text>}
-                {origin && <Text style={styles.subtitle}>País/Origem: {origin}</Text>}
+                {type && <Text style={styles.subtitle}> <FontAwesome5 name='wine-glass-alt' size={22}/> {type}</Text>}
+                {origin && <Text style={styles.subtitle}> <FontAwesome5 name='globe-americas' size={22}/> {origin}</Text>}
                 {description && <Text style={styles.description}>Descrição: {description}</Text>}
                 <Text style={styles.price}>R${price.toFixed(2)}</Text>
             </View>
@@ -69,20 +70,19 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     subtitle: {
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: '600',
-        color: '#333',
-        marginBottom: 5,
+        gap: 10,
+        margin: 5,
     },
     description: {
-        fontSize: 14,
-        color: '#666',
+        fontSize: 18,
         marginTop: 10,
         marginBottom: 10,
         lineHeight: 20,
     },
     price: {
-        fontSize: 18,
+        fontSize: 22,
         fontWeight: 'bold',
         color: '#560022',
         marginTop: 10,

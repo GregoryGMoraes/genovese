@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
     },
 
     cardContainer: {
+        width: '30%',
     flexDirection: 'row', 
     justifyContent: 'space-between', 
     alignItems: 'center',
@@ -149,9 +150,11 @@ const styles = StyleSheet.create({
         width: '90%',
         height: 40,
         margin: 5,
+        marginBottom: 25,
         backgroundColor: "#560022",
         alignItems: 'center',
         borderRadius: 10
+        
     },
 
     btnCard: {

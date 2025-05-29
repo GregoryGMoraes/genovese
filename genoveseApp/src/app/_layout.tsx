@@ -5,6 +5,7 @@ import { CartProvider } from '../context/carrinhoContext'
 import  HeaderRight from './components/headerRight';
 
 export default function Layout() {
+      
     return (
         <AuthProvider>
             <CartProvider>
@@ -27,7 +28,9 @@ export default function Layout() {
                         <Stack.Screen name="(carrinho)/index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Carrinho',
-                            headerStyle: { backgroundColor: '#560022' },
+                            headerStyle: { 
+                                backgroundColor: '#560022'
+                            },
                             headerTintColor: '#fff',
                             headerRight: () => (
                                 <HeaderRight />
@@ -37,7 +40,7 @@ export default function Layout() {
                         <Stack.Screen name="(home)/index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Genovese Vinhos',
-                            headerStyle: { backgroundColor: '#560022' },
+                            headerStyle: { backgroundColor: '#560022'},
                             headerTintColor: '#fff',
                             headerRight: () => (
                                 <HeaderRight />
