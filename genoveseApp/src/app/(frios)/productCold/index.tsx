@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { ColdProps } from '../flatItemsCold/index'
+import { ProdutoProps } from '../flatItemsCold/index'
 import { router } from 'expo-router'
 import { useCart } from '../../../context/carrinhoContext';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-export default function ProductCold({ cold }: { cold: ColdProps }) {
+export default function ProductCold({ cold }: { cold: ProdutoProps }) {
  const { addToCart } = useCart();
 
     const handleAddToCart = () => {

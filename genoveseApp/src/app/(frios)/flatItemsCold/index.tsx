@@ -1,29 +1,37 @@
 import { useState, useEffect } from 'react'
-import { FlatList, View, StyleSheet } from 'react-native'
-import ProductCold from '../productCold'
-import { BASE_URL } from '../../../utils/conectaDb';
+import { FlatList, View, StyleSheet, ActivityIndicator } from 'react-native'
+import ProdutoCold from '../productCold'
 import SearchBar from '../../components/searchBar';
+import { supabase } from '@/src/utils/supabaseClient';
 
-export interface ColdProps {
-    id: string,
-    name: string,
-    type: string,
-    brand: string,
-    description: string,
-    price: number,
-    origin: string,
-    image: string,
+export interface ProdutoProps {
+    id: string;
+    name: string;
+    brand: string;
+    description: string;
+    price: number;
+    category: string;
+    type: string;
+    origin: string;
+    image: string;
 }
 
 export default function FlatItemsFrios() {
-    const [cold, setCold] = useState<ColdProps[]>([])
+    const [cold, setCold] = useState<ProdutoProps[]>([])
     const [search, setSearch] = useState<string>('')
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function getCold() {
-            const response = await fetch(`${BASE_URL}/frios`)
-            const data = await response.json()
-            setCold(data);
+            setLoading(true);
+            const { data, error } = await supabase
+                .from('produtos')
+                .select('*');
+            setCold(data || []);
+            setLoading(false);
+            if (error) {
+                console.error('Erro ao buscar os frios:', error);
+            }
         }
 
         getCold();
@@ -32,10 +40,13 @@ export default function FlatItemsFrios() {
     const filteredCold = cold.filter((item) => {
         const searchLower = search.toLowerCase();
         return (
-            item.name.toLowerCase().includes(searchLower) ||
-            item.brand.toLowerCase().includes(searchLower) ||
-            item.type.toLowerCase().includes(searchLower) ||
-            item.origin.toLowerCase().includes(searchLower)
+            item.category === 'Frios' &&
+            (
+                item.name.toLowerCase().includes(searchLower) ||
+                item.brand.toLowerCase().includes(searchLower) ||
+                item.type.toLowerCase().includes(searchLower) ||
+                item.origin.toLowerCase().includes(searchLower)
+            )
         );
     }
     );
@@ -43,12 +54,16 @@ export default function FlatItemsFrios() {
     return (
         <View style={styles.container}>
             <SearchBar onChangeText={setSearch} value={search} placeholder="Pesquisar" />
-            <FlatList
-                data={filteredCold}
-                renderItem={({ item }) => <ProductCold cold={item} />}
-                contentContainerStyle={styles.listContent}
-                showsHorizontalScrollIndicator={false}
-            />
+            {loading ? (
+                <ActivityIndicator size="large" color="#560022" style={{ marginTop: 40 }} />
+            ) : (
+                <FlatList
+                    data={filteredCold}
+                    renderItem={({ item }) => <ProdutoCold cold={item} />}
+                    contentContainerStyle={styles.listContent}
+                    showsHorizontalScrollIndicator={false}
+                />
+            )}
         </View>
     )
 }

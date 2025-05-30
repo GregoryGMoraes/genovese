@@ -4,9 +4,10 @@ import { router } from 'expo-router';
 import Modal from 'react-native-modal';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useAuth } from '../../../../context/authContext';
+import { supabase } from '@/src/utils/supabaseClient';
 
 export default function SingInModal() {
-
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { login } = useAuth();
@@ -25,38 +26,50 @@ export default function SingInModal() {
     const handleLogin = async () => {
         setIsLoading(true);
         setErrorMessage('');
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password,
+        });
+        setIsLoading(false);
 
-        setTimeout(() => {
-            if (email === 'test@test.com' && password === '12345') {
-                const userData = {
-                    id: '1',
-                    email
-                };
-                console.log('Login bem sucedido', 'Você está logado com sucesso!');
-                login(userData);
-                setEmail('');
-                setPassword('');
-                router.back();
+        if (error) {
+            setErrorMessage('E-mail ou senha inválidos!');
+            console.log('Login falhou', error.message);
+        } else {
+            if (data.user && typeof data.user.email === 'string') {
+                login({ ...data.user, email: data.user.email as string });
+            } else {
+                setErrorMessage('E-mail não encontrado no usuário retornado.');
+                setIsLoading(false);
+                return;
             }
-            else {
-                setErrorMessage('E-mail ou senha inválidos!');
-                console.log('Login falhou', 'E-mail ou senha inválidos!');
-            }
-            setIsLoading(false);
-        }, 1000);
+            console.log('Login bem-sucedido', data);
+            setEmail('');
+            setPassword('');
+            router.back();
+        }
     };
 
     const handleCadastro = async () => {
         setIsLoading(true);
         setErrorMessage('');
-        // Aqui você pode usar o Supabase ou outro backend para criar o usuário
-        setTimeout(() => {
-            // Simulação de sucesso
+        const { data, error } = await supabase.auth.signUp({
+            email,
+            password,
+            options: {
+                data: { name }
+            }
+        });
+        setIsLoading(false);
+
+        if (error) {
+            setErrorMessage(error.message || 'Erro ao criar conta!');
+            console.log('Cadastro falhou', error.message);
+        } else {
             setErrorMessage('');
             setIsSignup(false);
-            setIsLoading(false);
-            console.log('Conta criada com sucesso! Faça login.');
-        }, 1000);
+            console.log('Conta criada com sucesso! Faça login.', data);
+        }
     };
 
     return (
@@ -65,7 +78,7 @@ export default function SingInModal() {
             <Modal isVisible={isModalVisible} swipeDirection={'down'} style={styles.modalContainer}>
                 <TouchableOpacity style={styles.backButton} onPress={toggleModal}>
                     <Text style={{ padding: 5 }}>
-                        <FontAwesome5 name="arrow-left" size={18} color="#550026" />
+                        <FontAwesome5 name="arrow-left" size={18} color="#666" />
                     </Text>
                 </TouchableOpacity>
 
@@ -73,22 +86,42 @@ export default function SingInModal() {
                     style={styles.logo}
                     source={require('@/assets/images/logo.jpg')}
                 />
-                <Text style={styles.title}>{isSignup ? 'Criar conta' : 'Seja Bem-Vindo ao App'}</Text>
-                <TextInput
-                    style={styles.input}
-                    value={email}
-                    onChangeText={setEmail}
-                    placeholder="Digite seu e-mail"
-                    placeholderTextColor="#666"
-                />
-                <TextInput
-                    secureTextEntry
-                    style={styles.input}
-                    value={password}
-                    onChangeText={setPassword}
-                    placeholder="Digite sua senha"
-                    placeholderTextColor="#666"
-                />
+                <Text style={styles.title}>{isSignup ? 'Crie sua conta' : 'Seja Bem-Vindo ao App'}</Text>
+                {isSignup && (
+                    <View style={styles.inputContainer}>
+                        <FontAwesome5 name="id-card" size={18} color="#550026" style={styles.icon} />
+                        <TextInput
+                            style={styles.input}
+                            value={name}
+                            onChangeText={setName}
+                            placeholder="Digite seu nome"
+                            placeholderTextColor="#666"
+                        />
+                    </View>
+                )}
+
+                <View style={styles.inputContainer}>
+                    <FontAwesome5 name="user-alt" size={18} color="#550026" style={styles.icon} />
+                    <TextInput
+                        style={styles.input}
+                        value={email}
+                        onChangeText={setEmail}
+                        placeholder="Digite seu e-mail"
+                        placeholderTextColor="#666"
+                    />
+                </View>
+
+                <View style={styles.inputContainer}>
+                    <FontAwesome5 name="lock" size={18} color="#550026" style={styles.icon} />
+                    <TextInput
+                        secureTextEntry
+                        style={styles.input}
+                        value={password}
+                        onChangeText={setPassword}
+                        placeholder="Digite sua senha"
+                        placeholderTextColor="#666"
+                    />
+                </View>
                 {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
 
 
@@ -142,8 +175,8 @@ const styles = StyleSheet.create({
     },
 
     logo: {
-        width: 100,
-        height: 100,
+        width: 200,
+        height: 200,
     },
     title: {
         fontSize: 18,
@@ -162,17 +195,27 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
 
-    input: {
-        width: "100%",
-        height: 40,
-        padding: 10,
+    inputContainer: {
+        width: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
         backgroundColor: "#fff",
         borderWidth: 1,
         borderColor: "#ddd",
         borderRadius: 8,
         marginBottom: 15,
+        paddingHorizontal: 10,
+    },
+    icon: {
+        marginRight: 8,
+    },
+    input: {
+        flex: 1,
+        height: 40,
         fontSize: 16,
         color: "#333",
+        backgroundColor: "transparent",
+        borderWidth: 0,
     },
 
     backButton: {

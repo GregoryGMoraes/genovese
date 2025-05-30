@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { FlatList, View, StyleSheet } from 'react-native'
+import { FlatList, View, StyleSheet, ActivityIndicator } from 'react-native'
 import ProductChocolate from '../productChocolate'
 import { supabase } from '@/src/utils/supabaseClient'
 import SearchBar from '../../components/searchBar';
@@ -20,13 +20,19 @@ export interface ProdutoProps {
 export default function FlatItemsChocolate() {
     const [chocolate, setChocolate] = useState<ProdutoProps[]>([])
     const [search, setSearch] = useState<string>('')
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function getChocolate() {
+            setLoading(true);
             const { data, error } = await supabase
                 .from('produtos')
                 .select('*');
             setChocolate(data || []);
+            setLoading(false);
+            if (error) {    
+                console.error('Erro ao buscar os chocolates:', error);
+            }
         }
         getChocolate();
     }, []);
@@ -46,12 +52,16 @@ export default function FlatItemsChocolate() {
     return (
         <View style={styles.container}>
             <SearchBar onChangeText={setSearch} value={search} placeholder="Pesquisar" />
+            {loading ? (
+                <ActivityIndicator size="large" color="#560022" style={{ marginTop: 40 }} />
+            ) : (
             <FlatList
                 data={filterdChocolate}
                 renderItem={({ item }) => <ProductChocolate chocolate={item} />}
                 contentContainerStyle={styles.listContent}
                 showsHorizontalScrollIndicator={false}
             />
+            )}
         </View>
     )
 }

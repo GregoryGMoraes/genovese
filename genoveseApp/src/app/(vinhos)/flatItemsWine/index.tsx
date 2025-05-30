@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FlatList, View, StyleSheet } from 'react-native';
-//import { BASE_URL } from '../../../utils/conectaDb';
+import { FlatList, View, StyleSheet, ActivityIndicator } from 'react-native';
 import ProductWine from '../productWine';
 import SearchBar from '../../components/searchBar';
 import { supabase } from '@/src/utils/supabaseClient';
@@ -20,13 +19,16 @@ export interface ProdutoProps {
 export default function FlatItemWine() {
     const [wine, setWine] = useState<ProdutoProps[]>([]);
     const [search, setSearch] = useState<string>('');
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function getWine() {
+            setLoading(true);
             const { data, error } = await supabase
                 .from('produtos')
                 .select('*');
             setWine(data || []);
+            setLoading(false);
         }
         getWine();
     }, []);
@@ -46,15 +48,17 @@ export default function FlatItemWine() {
     return (
         <View style={styles.container}>
             <SearchBar onChangeText={setSearch} value={search} placeholder="Pesquisar" />
-
-            <FlatList
-                data={filteredWine}
-                renderItem={({ item }) => <ProductWine wine={item} />}
-                keyExtractor={(item) => item.id}
-                contentContainerStyle={styles.listContent}
-                showsHorizontalScrollIndicator={false}
-            />
-
+            {loading ? (
+                <ActivityIndicator size="large" color="#560022" style={{ marginTop: 40 }} />
+            ) : (
+                <FlatList
+                    data={filteredWine}
+                    renderItem={({ item }) => <ProductWine wine={item} />}
+                    keyExtractor={(item) => item.id}
+                    contentContainerStyle={styles.listContent}
+                    showsHorizontalScrollIndicator={false}
+                />
+            )}
         </View>
     );
 }

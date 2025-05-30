@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FlatList, View, StyleSheet, TextInput} from 'react-native';
+import { FlatList, View, StyleSheet, TextInput, ActivityIndicator } from 'react-native';
 import ProductSparkling from '../productSparkling';
 //import { BASE_URL } from '../../../utils/conectaDb';
 import SearchBar from '../../components/searchBar';
@@ -21,18 +21,21 @@ export interface ProdutoProps {
 export default function FlatItemsVinhos() {
     const [sparkling, setSparkling] = useState<ProdutoProps[]>([]);
     const [search, setSearch] = useState<string>('');
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-           async function getSparkling() {
-               const { data, error } = await supabase
-                   .from('produtos')
-                   .select('*');
-               setSparkling(data || []);
-           }
-           getSparkling();
-       }, []);
+        async function getSparkling() {
+            setLoading(true);
+            const { data, error } = await supabase
+                .from('produtos')
+                .select('*');
+            setSparkling(data || []);
+            setLoading(false);
+        }
+        getSparkling();
+    }, []);
 
-   const filteredSparkling = sparkling.filter((item) => {
+    const filteredSparkling = sparkling.filter((item) => {
         const searchLower = search.toLowerCase();
         return (
             item.category === 'Espumante' && (
@@ -45,15 +48,19 @@ export default function FlatItemsVinhos() {
     });
 
     return (
-        <View style={styles.container}>   
-        <SearchBar onChangeText={setSearch} value={search} placeholder="Pesquisar" />                    
-            <FlatList
-                data={filteredSparkling}
-                renderItem={({ item }) => <ProductSparkling sparkling={item} />}
-                keyExtractor={(item) => item.id}
-                contentContainerStyle={styles.listContent}
-                showsHorizontalScrollIndicator={false}
-            />
+        <View style={styles.container}>
+            <SearchBar onChangeText={setSearch} value={search} placeholder="Pesquisar" />
+            {loading ? (
+                <ActivityIndicator size="large" color="#560022" style={{ marginTop: 40 }} />
+            ) : (
+                <FlatList
+                    data={filteredSparkling}
+                    renderItem={({ item }) => <ProductSparkling sparkling={item} />}
+                    keyExtractor={(item) => item.id}
+                    contentContainerStyle={styles.listContent}
+                    showsHorizontalScrollIndicator={false}
+                />
+            )}
         </View>
     );
 }
