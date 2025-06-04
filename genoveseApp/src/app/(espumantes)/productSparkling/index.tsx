@@ -71,32 +71,34 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#fff',
         borderRadius: 10,
-        padding: 10,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,
         elevation: 2,
         marginBottom: 10,
+        overflow: 'hidden',
     },
-
     containerImage: {
-        flex: 1
+        flex: 1.4,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#f5f5f5',
     },
-
     image: {
         width: '100%',
-        height: 200,
-        borderRadius: 10,
-        resizeMode: 'contain'
+        height: '100%',
+        resizeMode: 'cover'
     },
 
     containerProduct: {
-        gap: 2,
-        marginLeft: 5,
-        flex: 2,
-        alignItems: 'center'
+        flex: 1.6,
+        padding: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
     },
+
 
     title: {
         fontSize: 24,

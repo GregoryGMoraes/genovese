@@ -35,7 +35,6 @@ export default function ProductWine({ wine }: { wine: ProdutoProps }) {
             <View style={styles.containerImage}>
                 <Image style={styles.image} source={{ uri: wine.image }} />
             </View>
-
             <View style={styles.containerProduct}>
                 <Text style={styles.title}>{wine.name}</Text>
                 <Text style={styles.subtitle}>{wine.type}</Text>
@@ -80,38 +79,40 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#fff',
         borderRadius: 10,
-        padding: 10,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,
         elevation: 2,
         marginBottom: 10,
+        overflow: 'hidden',
     },
-
     containerImage: {
-        flex: 1
+        flex: 1.4,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#f5f5f5',
     },
-
     image: {
         width: '100%',
-        height: 200,
-        borderRadius: 10,
-        resizeMode: 'contain'
+        height: '100%',
+        resizeMode: 'cover'
     },
 
     containerProduct: {
-        gap: 2,
-        marginLeft: 5,
-        flex: 2,
-        alignItems: 'center'
+        flex: 1.6,
+        padding: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
     },
 
     title: {
-        fontSize: 24,
+        width: '100%',
+        fontSize: 20,
         fontWeight: 'bold',
-        color: '#560022',
         marginBottom: 10,
+        textAlign: 'center',
     },
     subtitle: {
         fontSize: 16,
@@ -122,21 +123,21 @@ const styles = StyleSheet.create({
     price: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#560022',
         marginTop: 10,
     },
 
-    btnContainer:{
-        flexDirection: 'row', 
-        justifyContent: 'space-between', 
-        width: '95%', 
-        padding: 10
+    btnContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        gap: 10,
+        padding: 5
     },
 
     btnDetails: {
         width: '70%',
         height: 40,
-        margin: 5,
         backgroundColor: "#560022",
         alignItems: 'center',
         borderRadius: 10
@@ -145,7 +146,6 @@ const styles = StyleSheet.create({
     btnAddCart: {
         width: '30%',
         height: 40,
-        margin: 5,
         backgroundColor: "#560022",
         alignItems: 'center',
         borderRadius: 10

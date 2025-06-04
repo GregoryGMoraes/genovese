@@ -21,13 +21,13 @@ export default function ProductDetails({
 }: ProductDetailsProps) {
     return (
         <ScrollView style={styles.scrollContainer} contentContainerStyle={{ flexGrow: 1 }}>
-            <View style={styles.container}>
-                <Image style={styles.image} source={{ uri: image }} />
-            </View>
+            <Image style={styles.image} source={{ uri: image }}/>
             <View style={styles.infoContainer}>
                 <Text style={styles.title}>{name}</Text>
-                {type && <Text style={styles.subtitle}> <FontAwesome5 name='wine-glass-alt' size={22}/> {type}</Text>}
-                {origin && <Text style={styles.subtitle}> <FontAwesome5 name='globe-americas' size={22}/> {origin}</Text>}
+                <View style={{ flexDirection: 'row'  , justifyContent: 'center', gap: 20, marginTop: 10 }}>
+                    {type && <Text style={styles.subtitle}> <FontAwesome5 name='wine-glass-alt' size={22} /> {type}</Text>}
+                    {origin && <Text style={styles.subtitle}> <FontAwesome5 name='globe-americas' size={22} /> {origin}</Text>}
+                </View>
                 {description && <Text style={styles.description}>Descrição: {description}</Text>}
                 <Text style={styles.price}>R${price.toFixed(2)}</Text>
             </View>
@@ -40,40 +40,32 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
     },
-    container: {
-        flexGrow: 1,
-        backgroundColor: '#fff',
-        padding: 15,
-        alignItems: 'center',
-    },
+
     image: {
         width: '100%',
-        height: 300,
-        borderRadius: 10,
-        resizeMode: 'contain',
-        marginBottom: 20,
+        height: 500,
+        marginBottom: -30,
+        overflow: 'hidden',
     },
     infoContainer: {
         width: '100%',
         backgroundColor: '#fff',
         padding: 15,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 2,
+        borderTopLeftRadius: 40,
+        borderTopRightRadius: 40,
     },
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#560022',
         marginBottom: 10,
+        textAlign: 'center',
     },
     subtitle: {
         fontSize: 18,
-        fontWeight: '600',
+        fontWeight: 'semibold',
         gap: 10,
-        margin: 5,
+        margin: 15,
+        marginLeft: 10,
     },
     description: {
         fontSize: 18,
@@ -84,7 +76,7 @@ const styles = StyleSheet.create({
     price: {
         fontSize: 22,
         fontWeight: 'bold',
-        color: '#560022',
         marginTop: 10,
+        textAlign: 'center',
     },
 });
