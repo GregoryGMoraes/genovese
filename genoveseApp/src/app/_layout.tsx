@@ -3,21 +3,22 @@ import { SafeAreaView, StatusBar } from 'react-native'
 import { AuthProvider } from '../context/authContext'
 import { CartProvider } from '../context/carrinhoContext'
 import  HeaderRight from './components/headerRight';
+import { COLORS } from '../constants/colors';
 
 export default function Layout() {
       
     return (
         <AuthProvider>
             <CartProvider>
-                <StatusBar backgroundColor="#560022" barStyle="light-content" />
+                <StatusBar backgroundColor={COLORS.primary} barStyle="light-content" />
                 <SafeAreaView style={{ flex: 1 }}>
 
                     <Stack>
                         <Stack.Screen name="index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Genovese Vinhos',
-                            headerStyle: { backgroundColor: '#560022' },
-                            headerTintColor: '#fff',
+                            headerStyle: { backgroundColor:COLORS.primary },
+                            headerTintColor: COLORS.secondary,
                             headerRight: () => (
                                 <HeaderRight />
                             )
@@ -28,10 +29,15 @@ export default function Layout() {
                         <Stack.Screen name="(carrinho)/index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Carrinho',
+<<<<<<< HEAD
                             headerStyle: { 
                                 backgroundColor: '#560022'
                             },
                             headerTintColor: '#fff',
+=======
+                            headerStyle: { backgroundColor: COLORS.primary },
+                            headerTintColor: COLORS.secondary,
+>>>>>>> constants
                             headerRight: () => (
                                 <HeaderRight />
                             )
@@ -40,8 +46,13 @@ export default function Layout() {
                         <Stack.Screen name="(home)/index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Genovese Vinhos',
+<<<<<<< HEAD
                             headerStyle: { backgroundColor: '#560022'},
                             headerTintColor: '#fff',
+=======
+                            headerStyle: { backgroundColor: COLORS.primary },
+                            headerTintColor: COLORS.secondary,
+>>>>>>> constants
                             headerRight: () => (
                                 <HeaderRight />
                             )
@@ -50,8 +61,8 @@ export default function Layout() {
                         <Stack.Screen name="(vinhos)/flatItemsWine/index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Vinhos',
-                            headerStyle: { backgroundColor: '#560022' },
-                            headerTintColor: '#fff',
+                            headerStyle: { backgroundColor: COLORS.primary },
+                            headerTintColor: COLORS.secondary,
                             headerRight: () => (
                                 <HeaderRight />
                             )
@@ -60,8 +71,8 @@ export default function Layout() {
                         <Stack.Screen name="(vinhos)/wineDetails/[id]" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Detalhes',
-                            headerStyle: { backgroundColor: '#560022' },
-                            headerTintColor: '#fff',
+                            headerStyle: { backgroundColor: COLORS.primary },
+                            headerTintColor: COLORS.secondary,
                             headerRight: () => (
                                 <HeaderRight />
                             )
@@ -69,9 +80,9 @@ export default function Layout() {
 
                         <Stack.Screen name="(espumantes)/flatItemsSparkling/index" options={{
                             headerTitleAlign: 'center',
-                            headerTitle: 'Espumantess',
-                            headerStyle: { backgroundColor: '#560022' },
-                            headerTintColor: '#fff',
+                            headerTitle: 'Espumantes',
+                            headerStyle: { backgroundColor: COLORS.primary },
+                            headerTintColor: COLORS.secondary,
                             headerRight: () => (
                                 <HeaderRight />
                             )
@@ -80,8 +91,8 @@ export default function Layout() {
                         <Stack.Screen name="(espumantes)/sparklingDetails/[id]" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Detalhes',
-                            headerStyle: { backgroundColor: '#560022' },
-                            headerTintColor: '#fff',
+                            headerStyle: { backgroundColor: COLORS.primary },
+                            headerTintColor: COLORS.secondary,
                             headerRight: () => (
                                 <HeaderRight />
                             )
@@ -90,8 +101,8 @@ export default function Layout() {
                         <Stack.Screen name="(pescados)/flatItemsFish/index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Pescados',
-                            headerStyle: { backgroundColor: '#560022' },
-                            headerTintColor: '#fff', headerRight: () => (
+                            headerStyle: { backgroundColor: COLORS.primary },
+                            headerTintColor: COLORS.secondary, headerRight: () => (
                                 <HeaderRight />
                             )
                         }} />
@@ -99,8 +110,8 @@ export default function Layout() {
                         <Stack.Screen name="(pescados)/fishDetails/[id]" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Detalhes',
-                            headerStyle: { backgroundColor: '#560022' },
-                            headerTintColor: '#fff',
+                            headerStyle: { backgroundColor: COLORS.primary },
+                            headerTintColor: COLORS.secondary,
                             headerRight: () => (
                                 <HeaderRight />
                             )
@@ -109,8 +120,8 @@ export default function Layout() {
                         <Stack.Screen name="(chocolates)/flatItemsChocolate/index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Chocolates',
-                            headerStyle: { backgroundColor: '#560022' },
-                            headerTintColor: '#fff',
+                            headerStyle: { backgroundColor: COLORS.primary },
+                            headerTintColor: COLORS.secondary,
                             headerRight: () => (
                                 <HeaderRight />
                             )
@@ -119,8 +130,8 @@ export default function Layout() {
                         <Stack.Screen name="(chocolates)/chocolateDetails/[id]" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Detalhes',
-                            headerStyle: { backgroundColor: '#560022' },
-                            headerTintColor: '#fff',
+                            headerStyle: { backgroundColor: COLORS.primary },
+                            headerTintColor: COLORS.secondary,
                             headerRight: () => (
                                 <HeaderRight />
                             )
@@ -129,8 +140,8 @@ export default function Layout() {
                         <Stack.Screen name="(frios)/flatItemsCold/index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Queijos',
-                            headerStyle: { backgroundColor: '#560022' },
-                            headerTintColor: '#fff',
+                            headerStyle: { backgroundColor: COLORS.primary },
+                            headerTintColor: COLORS.secondary,
                             headerRight: () => (
                                 <HeaderRight />
                             )
@@ -139,8 +150,8 @@ export default function Layout() {
                         <Stack.Screen name="(frios)/coldDetails/[id]" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Detalhes',
-                            headerStyle: { backgroundColor: '#560022' },
-                            headerTintColor: '#fff', headerRight: () => (
+                            headerStyle: { backgroundColor: COLORS.primary },
+                            headerTintColor: COLORS.secondary, headerRight: () => (
                                 <HeaderRight />
                             )
                         }} />
@@ -148,8 +159,8 @@ export default function Layout() {
                         <Stack.Screen name="(destilados)/flatItemsDistilled/index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Destilados',
-                            headerStyle: { backgroundColor: '#560022' },
-                            headerTintColor: '#fff',
+                            headerStyle: { backgroundColor: COLORS.primary },
+                            headerTintColor: COLORS.secondary,
                             headerRight: () => (
                                 <HeaderRight />
                             )
@@ -158,8 +169,8 @@ export default function Layout() {
                         <Stack.Screen name="(destilados)/distilledDetails/[id]" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Detalhes',
-                            headerStyle: { backgroundColor: '#560022' },
-                            headerTintColor: '#fff',
+                            headerStyle: { backgroundColor: COLORS.primary },
+                            headerTintColor: COLORS.secondary,
                             headerRight: () => (
                                 <HeaderRight />
                             )

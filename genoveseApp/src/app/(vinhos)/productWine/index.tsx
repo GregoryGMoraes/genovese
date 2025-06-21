@@ -4,8 +4,16 @@ import { ProdutoProps } from '../flatItemsWine/index'
 import { router } from 'expo-router'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useCart } from '../../../context/carrinhoContext';
+<<<<<<< HEAD
 
 
+=======
+import { COLORS } from '@/src/constants/colors';
+import { FONT_SIZES } from '@/src/constants/fontSize';
+
+
+
+>>>>>>> constants
 export default function ProductWine({ wine }: { wine: ProdutoProps }) {
     const { addToCart } = useCart();
     const [icon, setIcon] = useState('cart-plus');
@@ -63,7 +71,7 @@ export default function ProductWine({ wine }: { wine: ProdutoProps }) {
                     <TouchableOpacity onPress={handleAddToCart}
                         style={styles.btnAddCart}>
                         <Text style={styles.textBtn}>
-                            <FontAwesome5 name={icon} size={20} />
+                            <FontAwesome5 name={icon} size={18} />
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -77,9 +85,14 @@ export default function ProductWine({ wine }: { wine: ProdutoProps }) {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.background,
         borderRadius: 10,
+<<<<<<< HEAD
         shadowColor: '#000',
+=======
+        padding: 10,
+        shadowColor: COLORS.shadow,
+>>>>>>> constants
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,
@@ -108,21 +121,32 @@ const styles = StyleSheet.create({
     },
 
     title: {
+<<<<<<< HEAD
         width: '100%',
         fontSize: 20,
         fontWeight: 'bold',
+=======
+        textAlign: 'center',
+        fontSize: FONT_SIZES.title,
+        fontWeight: '600',
+>>>>>>> constants
         marginBottom: 10,
         textAlign: 'center',
     },
     subtitle: {
-        fontSize: 16,
+        fontSize: FONT_SIZES.subtitle,
         fontWeight: '600',
-        color: '#333',
+        color: COLORS.subtitle,
         marginBottom: 5,
     },
     price: {
+<<<<<<< HEAD
         fontSize: 18,
         fontWeight: 'bold',
+=======
+        fontSize: FONT_SIZES.price,
+        fontWeight: '700',
+>>>>>>> constants
         marginTop: 10,
     },
 
@@ -138,25 +162,35 @@ const styles = StyleSheet.create({
     btnDetails: {
         width: '70%',
         height: 40,
+<<<<<<< HEAD
         backgroundColor: "#560022",
+=======
+        margin: 5,
+        backgroundColor: COLORS.primary,
+>>>>>>> constants
         alignItems: 'center',
+        textAlign: 'center',
         borderRadius: 10
     },
 
     btnAddCart: {
         width: '30%',
         height: 40,
+<<<<<<< HEAD
         backgroundColor: "#560022",
+=======
+        margin: 5,
+        backgroundColor: COLORS.primary,
+>>>>>>> constants
         alignItems: 'center',
         borderRadius: 10
     },
 
     textBtn: {
-        color: '#fff',
-        fontWeight: 'bold',
-        fontSize: 18,
-        alignItems: 'center',
-        padding: 10
+        color: COLORS.secondary,
+        fontWeight: '500',
+        fontSize: FONT_SIZES.button,
+        padding: 8,
     }
 
 });

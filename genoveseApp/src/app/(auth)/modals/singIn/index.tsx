@@ -4,7 +4,10 @@ import { router } from 'expo-router';
 import Modal from 'react-native-modal';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useAuth } from '../../../../context/authContext';
+<<<<<<< HEAD
 import { supabase } from '@/src/utils/supabaseClient';
+=======
+>>>>>>> constants
 
 export default function SingInModal() {
     const [name, setName] = useState('');

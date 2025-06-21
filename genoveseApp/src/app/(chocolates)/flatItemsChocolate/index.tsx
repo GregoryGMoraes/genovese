@@ -3,6 +3,8 @@ import { FlatList, View, StyleSheet, ActivityIndicator } from 'react-native'
 import ProductChocolate from '../productChocolate'
 import { supabase } from '@/src/utils/supabaseClient'
 import SearchBar from '../../components/searchBar';
+import { COLORS } from '@/src/constants/colors';
+import { FONT_SIZES } from '@/src/constants/fontSize';
 
 export interface ProdutoProps {
     id: string;
@@ -42,7 +44,11 @@ export default function FlatItemsChocolate() {
         return (
             item.category === 'Chocolate' && (
                 item.name.toLowerCase().includes(searchLower) ||
+<<<<<<< HEAD
                 item.brand.toLowerCase().includes(searchLower) ||
+=======
+                // item.brand.toLowerCase().includes(searchLower) ||
+>>>>>>> constants
                 item.type.toLowerCase().includes(searchLower) ||
                 item.origin.toLowerCase().includes(searchLower)
             ));
@@ -53,7 +59,11 @@ export default function FlatItemsChocolate() {
         <View style={styles.container}>
             <SearchBar onChangeText={setSearch} value={search} placeholder="Pesquisar" />
             {loading ? (
+<<<<<<< HEAD
                 <ActivityIndicator size="large" color="#560022" style={{ marginTop: 40 }} />
+=======
+                <ActivityIndicator size="large" color={COLORS.primary} style={{ marginTop: 40 }} />
+>>>>>>> constants
             ) : (
             <FlatList
                 data={filterdChocolate}
@@ -69,10 +79,25 @@ export default function FlatItemsChocolate() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: COLORS.backgroundSecundary,
         padding: 10,
     },
     listContent: {
         gap: 15
     },
+
+    search: {
+        width: "100%",
+        height: 50,
+        padding: 10,
+        backgroundColor: COLORS.background,
+        borderWidth: 1,
+        borderColor: COLORS.border,
+        borderRadius: 8,
+        marginBottom: 15,
+        paddingLeft: 40,
+        fontSize: FONT_SIZES.medium,
+        color: COLORS.subtitle,
+    },
+
 });
