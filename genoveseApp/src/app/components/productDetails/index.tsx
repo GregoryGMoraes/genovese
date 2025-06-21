@@ -1,3 +1,5 @@
+import { COLORS } from '@/src/constants/colors';
+import { FONT_SIZES } from '@/src/constants/fontSize';
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 
@@ -27,7 +29,7 @@ export default function ProductDetails({
                 <Text style={styles.title}>{name}</Text>
                 {type && <Text style={styles.subtitle}>Tipo: {type}</Text>}
                 {origin && <Text style={styles.subtitle}>País/Origem: {origin}</Text>}
-                {description && <Text style={styles.description}>Descrição: {description}</Text>}
+                {description && <Text style={styles.description}>{description}</Text>}
                 <Text style={styles.price}>R${price.toFixed(2)}</Text>
             </View>
         </ScrollView>
@@ -37,11 +39,11 @@ export default function ProductDetails({
 const styles = StyleSheet.create({
     scrollContainer: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.background,
     },
     container: {
         flexGrow: 1,
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.background,
         padding: 15,
         alignItems: 'center',
     },
@@ -54,37 +56,40 @@ const styles = StyleSheet.create({
     },
     infoContainer: {
         width: '100%',
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.background,
         padding: 15,
-        shadowColor: '#000',
+        shadowColor: COLORS.shadow,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,
         elevation: 2,
     },
     title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: '#560022',
+        fontSize: FONT_SIZES.title,
+        fontWeight: '600',
+        textAlign: 'center',
         marginBottom: 10,
     },
     subtitle: {
-        fontSize: 16,
+        fontSize: FONT_SIZES.subtitle,
         fontWeight: '600',
-        color: '#333',
+        color: COLORS.subtitle,
         marginBottom: 5,
+        textAlign: 'center',
     },
     description: {
-        fontSize: 14,
-        color: '#666',
+        textAlign: 'center',
+        fontSize: FONT_SIZES.description,
+        color: COLORS.description,
         marginTop: 10,
         marginBottom: 10,
         lineHeight: 20,
+        paddingHorizontal: 20,
     },
     price: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#560022',
+        fontSize: FONT_SIZES.price,
+        fontWeight: '600',
         marginTop: 10,
+        textAlign: 'center',
     },
 });

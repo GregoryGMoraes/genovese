@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { ChocolateProps } from '../flatItemsChocolate/index'
+import { ProdutoProps } from '../flatItemsChocolate/index'
 import { router } from 'expo-router'
-import { useCart } from '../../(carrinho)/context/carrinhoContext';
+import { useCart } from '../../../context/carrinhoContext';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-export default function ProductChocolate({ chocolate }: { chocolate: ChocolateProps }) {
+export default function ProductChocolate({ chocolate }: { chocolate: ProdutoProps }) {
     const { addToCart } = useCart();
 
     const handleAddToCart = () => {

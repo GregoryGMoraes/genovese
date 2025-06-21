@@ -1,5 +1,5 @@
 import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity, Linking } from "react-native";
-import { useCart } from './context/carrinhoContext';
+import { useCart } from '../../context/carrinhoContext';
 import { FontAwesome5 } from "@expo/vector-icons";
 
 

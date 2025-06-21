@@ -1,8 +1,8 @@
 import { FontAwesome5 } from '@expo/vector-icons'
 import { router } from 'expo-router'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { useAuth } from '../../(auth)/context/authContext'
-import { useCart } from '../../(carrinho)/context/carrinhoContext'
+import { useAuth } from '../../../context/authContext'
+import { useCart } from '../../../context/carrinhoContext'
 
 
 export default function HeaderRight() {

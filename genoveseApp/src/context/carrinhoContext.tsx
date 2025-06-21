@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { useAuth } from "../../(auth)/context/authContext";
+import { useAuth } from "../context/authContext";
 import { router } from "expo-router";
 
 interface CartItem {

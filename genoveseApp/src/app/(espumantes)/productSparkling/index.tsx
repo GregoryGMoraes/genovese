@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { SparklingProps } from '../flatItemsSparkling/index'
+import { ProdutoProps } from '../flatItemsSparkling/index'
 import { router } from 'expo-router'
 import { FontAwesome5 } from '@expo/vector-icons';
-import { useCart } from '../../(carrinho)/context/carrinhoContext';
+import { useCart } from '../../../context/carrinhoContext';
+import { COLORS } from '@/src/constants/colors';
+import { FONT_SIZES } from '@/src/constants/fontSize';
 
-export default function ProductSparkling({ sparkling }: { sparkling: SparklingProps }) {
+export default function ProductSparkling({ sparkling }: { sparkling: ProdutoProps }) {
     const { addToCart } = useCart();
 
     const handleAddToCart = () => {
@@ -69,21 +71,22 @@ export default function ProductSparkling({ sparkling }: { sparkling: SparklingPr
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.background,
         borderRadius: 10,
-        padding: 10,
-        shadowColor: '#000',
+        shadowColor: COLORS.shadow,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,
         elevation: 2,
         marginBottom: 10,
+        overflow: 'hidden',
     },
-
     containerImage: {
-        flex: 1
+        flex: 1.4,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: COLORS.background,
     },
-
     image: {
         width: '100%',
         height: 200,
@@ -92,28 +95,28 @@ const styles = StyleSheet.create({
     },
 
     containerProduct: {
-        gap: 2,
-        marginLeft: 5,
-        flex: 2,
-        alignItems: 'center'
+        flex: 1.6,
+        padding: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: COLORS.background,
     },
 
+
     title: {
-        fontSize: 24,
+        fontSize: FONT_SIZES.title,
         fontWeight: 'bold',
-        color: '#560022',
         marginBottom: 10,
     },
     subtitle: {
-        fontSize: 16,
+        fontSize: FONT_SIZES.subtitle,
         fontWeight: '600',
-        color: '#333',
+        color: COLORS.subtitle,
         marginBottom: 5,
     },
     price: {
-        fontSize: 18,
+        fontSize: FONT_SIZES.price,
         fontWeight: 'bold',
-        color: '#560022',
         marginTop: 10,
     },
 
@@ -128,7 +131,7 @@ const styles = StyleSheet.create({
         width: '70%',
         height: 40,
         margin: 5,
-        backgroundColor: "#560022",
+        backgroundColor: COLORS.primary,
         alignItems: 'center',
         borderRadius: 10
     },
@@ -137,7 +140,7 @@ const styles = StyleSheet.create({
         width: '30%',
         height: 40,
         margin: 5,
-        backgroundColor: "#560022",
+        backgroundColor: COLORS.primary,
         alignItems: 'center',
         borderRadius: 10
     },
@@ -146,16 +149,16 @@ const styles = StyleSheet.create({
         width: '70%',
         height: 40,
         margin: 5,
-        backgroundColor: "#560022",
+        backgroundColor: COLORS.primary,
         alignItems: 'center',
         borderRadius: 10,
         justifyContent: 'center'
     },
 
     textBtn: {
-        color: '#fff',
+        color: COLORS.secondary,
         fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: FONT_SIZES.button,
         alignItems: 'center',
         padding: 10
     }

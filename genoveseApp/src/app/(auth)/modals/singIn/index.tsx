@@ -3,7 +3,7 @@ import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet, ActivityInd
 import { router } from 'expo-router';
 import Modal from 'react-native-modal';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { useAuth } from '../../context/authContext';
+import { useAuth } from '../../../../context/authContext';
 
 export default function SingInModal() {
 
