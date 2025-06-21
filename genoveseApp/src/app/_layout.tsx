@@ -29,15 +29,8 @@ export default function Layout() {
                         <Stack.Screen name="(carrinho)/index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Carrinho',
-<<<<<<< HEAD
-                            headerStyle: { 
-                                backgroundColor: '#560022'
-                            },
-                            headerTintColor: '#fff',
-=======
                             headerStyle: { backgroundColor: COLORS.primary },
                             headerTintColor: COLORS.secondary,
->>>>>>> constants
                             headerRight: () => (
                                 <HeaderRight />
                             )
@@ -46,13 +39,8 @@ export default function Layout() {
                         <Stack.Screen name="(home)/index" options={{
                             headerTitleAlign: 'center',
                             headerTitle: 'Genovese Vinhos',
-<<<<<<< HEAD
-                            headerStyle: { backgroundColor: '#560022'},
-                            headerTintColor: '#fff',
-=======
                             headerStyle: { backgroundColor: COLORS.primary },
                             headerTintColor: COLORS.secondary,
->>>>>>> constants
                             headerRight: () => (
                                 <HeaderRight />
                             )

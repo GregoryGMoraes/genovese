@@ -7,4 +7,5 @@ export const COLORS = {
   border: '#ddd',
   description: '#333',
   backgroundSecundary: '#f5f5f5',
+  placeholder: '#666',
 };

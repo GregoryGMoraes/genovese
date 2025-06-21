@@ -4,6 +4,8 @@ import { ProdutoProps } from '../flatItemsCold/index'
 import { router } from 'expo-router'
 import { useCart } from '../../../context/carrinhoContext';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { COLORS } from '@/src/constants/colors';
+import { FONT_SIZES } from '@/src/constants/fontSize';
 
 export default function ProductCold({ cold }: { cold: ProdutoProps }) {
  const { addToCart } = useCart();
@@ -67,86 +69,94 @@ export default function ProductCold({ cold }: { cold: ProdutoProps }) {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
-        backgroundColor: '#fff',
-        borderRadius: 10,
-        padding: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 2,
-        marginBottom: 10,
-    },
-
-    containerImage: {
-        flex: 1
-    },
-
-    image: {
-        width: '100%',
-        height: 200,
-        borderRadius: 10,
-        resizeMode: 'contain'
-    },
-
-    containerProduct: {
-        gap: 2,
-        marginLeft: 5,
-        flex: 2,
-        alignItems: 'center'
-    },
-
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: '#560022',
-        marginBottom: 10,
-    },
-    subtitle: {
-        fontSize: 16,
-        fontWeight: '600',
-        color: '#333',
-        marginBottom: 5,
-    },
-    price: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#560022',
-        marginTop: 10,
-    },
-
-    btnContainer:{
-        flexDirection: 'row', 
-        justifyContent: 'space-between', 
-        width: '95%', 
-        padding: 10
-    },
-
-    btnDetails: {
-        width: '70%',
-        height: 40,
-        margin: 5,
-        backgroundColor: "#560022",
-        alignItems: 'center',
-        borderRadius: 10
-    },
-
-    btnAddCart: {
-        width: '30%',
-        height: 40,
-        margin: 5,
-        backgroundColor: "#560022",
-        alignItems: 'center',
-        borderRadius: 10
-    },
-
-    textBtn: {
-        color: '#fff',
-        fontWeight: 'bold',
-        fontSize: 18,
-        alignItems: 'center',
-        padding: 10
-    }
-
+           flexDirection: 'row',
+           backgroundColor: COLORS.background,
+           borderRadius: 10,
+           padding: 10,
+           shadowColor: COLORS.shadow,
+           shadowOffset: { width: 0, height: 2 },
+           shadowOpacity: 0.1,
+           shadowRadius: 4,
+           elevation: 2,
+           marginBottom: 10,
+       },
+   
+       containerImage: {
+           flex: 1
+       },
+   
+       image: {
+           width: '100%',
+           height: 200,
+           borderRadius: 10,
+           resizeMode: 'contain'
+       },
+   
+       containerProduct: {
+           gap: 2,
+           marginLeft: 5,
+           flex: 2,
+           alignItems: 'center'
+       },
+   
+       title: {
+           fontSize: FONT_SIZES.title,
+           fontWeight: 'bold',
+           marginBottom: 10,
+       },
+       subtitle: {
+           fontSize: FONT_SIZES.subtitle,
+           fontWeight: '600',
+           color: COLORS.subtitle,
+           marginBottom: 5,
+       },
+       price: {
+           fontSize: FONT_SIZES.price,
+           fontWeight: 'bold',
+           marginTop: 10,
+       },
+   
+       btnContainer: {
+           flexDirection: 'row',
+           justifyContent: 'space-between',
+           width: '95%',
+           padding: 10
+       },
+   
+       btnDetails: {
+           width: '70%',
+           height: 40,
+           margin: 5,
+           backgroundColor: COLORS.primary,
+           alignItems: 'center',
+           borderRadius: 10
+       },
+   
+       btnAddCart: {
+           width: '30%',
+           height: 40,
+           margin: 5,
+           backgroundColor: COLORS.primary,
+           alignItems: 'center',
+           borderRadius: 10
+       },
+   
+       btn: {
+           width: '70%',
+           height: 40,
+           margin: 5,
+           backgroundColor: COLORS.primary,
+           alignItems: 'center',
+           borderRadius: 10,
+           justifyContent: 'center'
+       },
+   
+       textBtn: {
+           color: COLORS.secondary,
+           fontWeight: 'bold',
+           fontSize: 18,
+           alignItems: 'center',
+           padding: 10
+       }
+   
 });

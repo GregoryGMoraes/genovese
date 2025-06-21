@@ -4,11 +4,8 @@ import ProductDistilled from '../productDistilled'
 import SearchBar from '../../components/searchBar';
 import { supabase } from '@/src/utils/supabaseClient';
 import { ActivityIndicator } from 'react-native';
-<<<<<<< HEAD
-=======
 import { COLORS } from '@/src/constants/colors';
 import { FONT_SIZES } from '@/src/constants/fontSize';
->>>>>>> constants
 
 export interface ProdutoProps {
     id: string;
@@ -49,11 +46,7 @@ export default function FlatItemsDistilled() {
             item.category === 'Destilado' &&
             (
                 item.name.toLowerCase().includes(searchLower) ||
-<<<<<<< HEAD
-                item.brand.toLowerCase().includes(searchLower) ||
-=======
-                // item.brand.toLowerCase().includes(searchLower) ||
->>>>>>> constants
+//                item.brand.toLowerCase().includes(searchLower) ||
                 item.type.toLowerCase().includes(searchLower) ||
                 item.origin.toLowerCase().includes(searchLower)
             )
@@ -64,11 +57,7 @@ export default function FlatItemsDistilled() {
         <View style={styles.container}>
             <SearchBar onChangeText={setSearch} value={search} placeholder="Pesquisar" />
             {loading ? (
-<<<<<<< HEAD
-                <ActivityIndicator size="large" color="#560022" style={{ marginTop: 40 }} />
-=======
                 <ActivityIndicator size="large" color={COLORS.primary} style={{ marginTop: 40 }} />
->>>>>>> constants
             ) : (
                 <FlatList
                     data={filteredDistilled}

@@ -4,16 +4,9 @@ import { ProdutoProps } from '../flatItemsWine/index'
 import { router } from 'expo-router'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useCart } from '../../../context/carrinhoContext';
-<<<<<<< HEAD
-
-
-=======
 import { COLORS } from '@/src/constants/colors';
 import { FONT_SIZES } from '@/src/constants/fontSize';
 
-
-
->>>>>>> constants
 export default function ProductWine({ wine }: { wine: ProdutoProps }) {
     const { addToCart } = useCart();
     const [icon, setIcon] = useState('cart-plus');
@@ -84,113 +77,94 @@ export default function ProductWine({ wine }: { wine: ProdutoProps }) {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
-        backgroundColor: COLORS.background,
-        borderRadius: 10,
-<<<<<<< HEAD
-        shadowColor: '#000',
-=======
-        padding: 10,
-        shadowColor: COLORS.shadow,
->>>>>>> constants
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 2,
-        marginBottom: 10,
-        overflow: 'hidden',
-    },
-    containerImage: {
-        flex: 1.4,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#f5f5f5',
-    },
-    image: {
-        width: '100%',
-        height: '100%',
-        resizeMode: 'cover'
-    },
-
-    containerProduct: {
-        flex: 1.6,
-        padding: 15,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-    },
-
-    title: {
-<<<<<<< HEAD
-        width: '100%',
-        fontSize: 20,
-        fontWeight: 'bold',
-=======
-        textAlign: 'center',
-        fontSize: FONT_SIZES.title,
-        fontWeight: '600',
->>>>>>> constants
-        marginBottom: 10,
-        textAlign: 'center',
-    },
-    subtitle: {
-        fontSize: FONT_SIZES.subtitle,
-        fontWeight: '600',
-        color: COLORS.subtitle,
-        marginBottom: 5,
-    },
-    price: {
-<<<<<<< HEAD
-        fontSize: 18,
-        fontWeight: 'bold',
-=======
-        fontSize: FONT_SIZES.price,
-        fontWeight: '700',
->>>>>>> constants
-        marginTop: 10,
-    },
-
-    btnContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        gap: 10,
-        padding: 5
-    },
-
-    btnDetails: {
-        width: '70%',
-        height: 40,
-<<<<<<< HEAD
-        backgroundColor: "#560022",
-=======
-        margin: 5,
-        backgroundColor: COLORS.primary,
->>>>>>> constants
-        alignItems: 'center',
-        textAlign: 'center',
-        borderRadius: 10
-    },
-
-    btnAddCart: {
-        width: '30%',
-        height: 40,
-<<<<<<< HEAD
-        backgroundColor: "#560022",
-=======
-        margin: 5,
-        backgroundColor: COLORS.primary,
->>>>>>> constants
-        alignItems: 'center',
-        borderRadius: 10
-    },
-
-    textBtn: {
-        color: COLORS.secondary,
-        fontWeight: '500',
-        fontSize: FONT_SIZES.button,
-        padding: 8,
-    }
-
+           flexDirection: 'row',
+           backgroundColor: COLORS.background,
+           borderRadius: 10,
+           padding: 10,
+           shadowColor: COLORS.shadow,
+           shadowOffset: { width: 0, height: 2 },
+           shadowOpacity: 0.1,
+           shadowRadius: 4,
+           elevation: 2,
+           marginBottom: 10,
+       },
+   
+       containerImage: {
+           flex: 1
+       },
+   
+       image: {
+           width: '100%',
+           height: 200,
+           borderRadius: 10,
+           resizeMode: 'contain'
+       },
+   
+       containerProduct: {
+           gap: 2,
+           marginLeft: 5,
+           flex: 2,
+           alignItems: 'center'
+       },
+   
+       title: {
+           fontSize: FONT_SIZES.title,
+           fontWeight: 'bold',
+           marginBottom: 10,
+       },
+       subtitle: {
+           fontSize: FONT_SIZES.subtitle,
+           fontWeight: '600',
+           color: COLORS.subtitle,
+           marginBottom: 5,
+       },
+       price: {
+           fontSize: FONT_SIZES.price,
+           fontWeight: 'bold',
+           marginTop: 10,
+       },
+   
+       btnContainer: {
+           flexDirection: 'row',
+           justifyContent: 'space-between',
+           width: '95%',
+           padding: 10
+       },
+   
+       btnDetails: {
+           width: '70%',
+           height: 40,
+           margin: 5,
+           backgroundColor: COLORS.primary,
+           alignItems: 'center',
+           borderRadius: 10
+       },
+   
+       btnAddCart: {
+           width: '30%',
+           height: 40,
+           margin: 5,
+           backgroundColor: COLORS.primary,
+           alignItems: 'center',
+           borderRadius: 10
+       },
+   
+       btn: {
+           width: '70%',
+           height: 40,
+           margin: 5,
+           backgroundColor: COLORS.primary,
+           alignItems: 'center',
+           borderRadius: 10,
+           justifyContent: 'center'
+       },
+   
+       textBtn: {
+           color: COLORS.secondary,
+           fontWeight: 'bold',
+           fontSize: 18,
+           alignItems: 'center',
+           padding: 10
+       }
+   
 });

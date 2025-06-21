@@ -101,7 +101,6 @@ const styles = StyleSheet.create({
     title: {
         fontSize: FONT_SIZES.title,
         fontWeight: 'bold',
-        color: COLORS.primary,
         marginBottom: 10,
     },
     subtitle: {
@@ -113,9 +112,9 @@ const styles = StyleSheet.create({
     price: {
         fontSize: FONT_SIZES.price,
         fontWeight: 'bold',
-        color: COLORS.primary,
         marginTop: 10,
     },
+
     btnContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -141,10 +140,20 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
 
+    btn: {
+        width: '70%',
+        height: 40,
+        margin: 5,
+        backgroundColor: COLORS.primary,
+        alignItems: 'center',
+        borderRadius: 10,
+        justifyContent: 'center'
+    },
+
     textBtn: {
         color: COLORS.secondary,
         fontWeight: 'bold',
-        fontSize: FONT_SIZES.button,
+        fontSize: 18,
         alignItems: 'center',
         padding: 10
     }

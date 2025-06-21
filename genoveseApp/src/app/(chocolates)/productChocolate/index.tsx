@@ -4,6 +4,8 @@ import { ProdutoProps } from '../flatItemsChocolate/index'
 import { router } from 'expo-router'
 import { useCart } from '../../../context/carrinhoContext';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { COLORS } from '@/src/constants/colors';
+import { FONT_SIZES } from '@/src/constants/fontSize';
 
 export default function ProductChocolate({ chocolate }: { chocolate: ProdutoProps }) {
     const { addToCart } = useCart();
@@ -67,10 +69,10 @@ export default function ProductChocolate({ chocolate }: { chocolate: ProdutoProp
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.background,
         borderRadius: 10,
         padding: 10,
-        shadowColor: '#000',
+        shadowColor: COLORS.shadow,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,
@@ -97,21 +99,19 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 24,
+        fontSize: FONT_SIZES.title,
         fontWeight: 'bold',
-        color: '#560022',
         marginBottom: 10,
     },
     subtitle: {
-        fontSize: 16,
+        fontSize: FONT_SIZES.subtitle,
         fontWeight: '600',
-        color: '#333',
+        color: COLORS.subtitle,
         marginBottom: 5,
     },
     price: {
-        fontSize: 18,
+        fontSize: FONT_SIZES.price,
         fontWeight: 'bold',
-        color: '#560022',
         marginTop: 10,
     },
 
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
         width: '70%',
         height: 40,
         margin: 5,
-        backgroundColor: "#560022",
+        backgroundColor: COLORS.primary,
         alignItems: 'center',
         borderRadius: 10
     },
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
         width: '30%',
         height: 40,
         margin: 5,
-        backgroundColor: "#560022",
+        backgroundColor: COLORS.primary,
         alignItems: 'center',
         borderRadius: 10
     },
@@ -144,14 +144,14 @@ const styles = StyleSheet.create({
         width: '70%',
         height: 40,
         margin: 5,
-        backgroundColor: "#560022",
+        backgroundColor: COLORS.primary,
         alignItems: 'center',
         borderRadius: 10,
         justifyContent: 'center'
     },
 
     textBtn: {
-        color: '#fff',
+        color: COLORS.secondary,
         fontWeight: 'bold',
         fontSize: 18,
         alignItems: 'center',

@@ -4,10 +4,9 @@ import { router } from 'expo-router';
 import Modal from 'react-native-modal';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useAuth } from '../../../../context/authContext';
-<<<<<<< HEAD
 import { supabase } from '@/src/utils/supabaseClient';
-=======
->>>>>>> constants
+import { COLORS } from '@/src/constants/colors';
+import { FONT_SIZES } from '@/src/constants/fontSize';
 
 export default function SingInModal() {
     const [name, setName] = useState('');
@@ -81,7 +80,7 @@ export default function SingInModal() {
             <Modal isVisible={isModalVisible} swipeDirection={'down'} style={styles.modalContainer}>
                 <TouchableOpacity style={styles.backButton} onPress={toggleModal}>
                     <Text style={{ padding: 5 }}>
-                        <FontAwesome5 name="arrow-left" size={18} color="#666" />
+                        <FontAwesome5 name="arrow-left" size={18} color={COLORS.placeholder} />
                     </Text>
                 </TouchableOpacity>
 
@@ -92,37 +91,37 @@ export default function SingInModal() {
                 <Text style={styles.title}>{isSignup ? 'Crie sua conta' : 'Seja Bem-Vindo ao App'}</Text>
                 {isSignup && (
                     <View style={styles.inputContainer}>
-                        <FontAwesome5 name="id-card" size={18} color="#550026" style={styles.icon} />
+                        <FontAwesome5 name="id-card" size={18} color={COLORS.primary} style={styles.icon} />
                         <TextInput
                             style={styles.input}
                             value={name}
                             onChangeText={setName}
                             placeholder="Digite seu nome"
-                            placeholderTextColor="#666"
+                            placeholderTextColor={COLORS.placeholder}
                         />
                     </View>
                 )}
 
                 <View style={styles.inputContainer}>
-                    <FontAwesome5 name="user-alt" size={18} color="#550026" style={styles.icon} />
+                    <FontAwesome5 name="user-alt" size={18} color={COLORS.primary} style={styles.icon} />
                     <TextInput
                         style={styles.input}
                         value={email}
                         onChangeText={setEmail}
                         placeholder="Digite seu e-mail"
-                        placeholderTextColor="#666"
+                        placeholderTextColor={COLORS.placeholder}
                     />
                 </View>
 
                 <View style={styles.inputContainer}>
-                    <FontAwesome5 name="lock" size={18} color="#550026" style={styles.icon} />
+                    <FontAwesome5 name="lock" size={18} color={COLORS.primary} style={styles.icon} />
                     <TextInput
                         secureTextEntry
                         style={styles.input}
                         value={password}
                         onChangeText={setPassword}
                         placeholder="Digite sua senha"
-                        placeholderTextColor="#666"
+                        placeholderTextColor={COLORS.placeholder}
                     />
                 </View>
                 {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
@@ -134,14 +133,14 @@ export default function SingInModal() {
                     disabled={isLoading}
                 >
                     {isLoading ? (
-                        <ActivityIndicator size="small" color="#fff" />
+                        <ActivityIndicator size="small" color={COLORS.background} />
                     ) : (
                         <Text style={styles.textBtn}>{isSignup ? 'Cadastrar' : 'Entrar'}</Text>
                     )}
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => setIsSignup(!isSignup)} style={{ marginTop: 15 }}>
-                    <Text style={{ color: '#560022', fontWeight: 'bold' }}>
+                    <Text style={{ color: COLORS.primary, fontWeight: 'bold' }}>
                         {isSignup ? 'Já tem conta? Entrar' : 'Não tem conta? Cadastre-se'}
                     </Text>
                 </TouchableOpacity>
@@ -164,13 +163,13 @@ const styles = StyleSheet.create({
         height: 400,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.background,
         padding: 20,
         marginTop: 20,
         marginLeft: 20,
         marginRight: 20,
         borderRadius: 10,
-        shadowColor: '#000',
+        shadowColor: COLORS.shadow,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
         shadowRadius: 4,
@@ -182,17 +181,17 @@ const styles = StyleSheet.create({
         height: 200,
     },
     title: {
-        fontSize: 18,
+        fontSize: FONT_SIZES.title,
         fontWeight: "bold",
-        color: "#560022",
+        color: COLORS.primary,
         marginBottom: 20,
         textAlign: "center",
     },
 
     subTitle: {
-        fontSize: 14,
+        fontSize: FONT_SIZES.subtitle,
         fontWeight: "bold",
-        color: "#560022",
+        color: COLORS.subtitle,
         marginBottom: 20,
         marginTop: 10,
         textAlign: "center",
@@ -202,9 +201,9 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: "#fff",
+        backgroundColor: COLORS.background,
         borderWidth: 1,
-        borderColor: "#ddd",
+        borderColor: COLORS.border,
         borderRadius: 8,
         marginBottom: 15,
         paddingHorizontal: 10,
@@ -215,8 +214,8 @@ const styles = StyleSheet.create({
     input: {
         flex: 1,
         height: 40,
-        fontSize: 16,
-        color: "#333",
+        fontSize: FONT_SIZES.medium,
+        color: COLORS.secondary,
         backgroundColor: "transparent",
         borderWidth: 0,
     },
@@ -233,7 +232,7 @@ const styles = StyleSheet.create({
 
     errorText: {
         color: 'red',
-        fontSize: 14,
+        fontSize: FONT_SIZES.small,
         marginBottom: 10,
         textAlign: 'center',
     },
@@ -242,19 +241,19 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 40,
         borderRadius: 8,
-        backgroundColor: "#560022",
+        backgroundColor: COLORS.primary,
         justifyContent: "center",
         alignItems: "center",
         marginTop: 10,
-        shadowColor: "#000",
+        shadowColor: COLORS.shadow,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
         shadowRadius: 4,
         elevation: 3,
     },
     textBtn: {
-        color: "#fff",
+        color: COLORS.secondary,
         fontWeight: "bold",
-        fontSize: 14,
+        fontSize: FONT_SIZES.small,
     },
 });

@@ -1,6 +1,8 @@
 import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity, Linking } from "react-native";
 import { useCart } from '../../context/carrinhoContext';
 import { FontAwesome5 } from "@expo/vector-icons";
+import { COLORS } from "@/src/constants/colors";
+import { FONT_SIZES } from "@/src/constants/fontSize";
 
 
 export default function Carrinho() {
@@ -57,11 +59,11 @@ export default function Carrinho() {
                             <Text style={styles.text}>R${item.price.toFixed(2)}</Text>
                             <View style={styles.btnCard}>
                                 <TouchableOpacity onPress={() => removeToCart(item.id)}>
-                                    <FontAwesome5 name='minus' size={20} color='#550026' />
+                                    <FontAwesome5 name='minus' size={20} color={COLORS.primary} />
                                 </TouchableOpacity>
                                 <Text style={{ fontSize: 20, marginLeft: 10, marginRight: 10 }}>{item.quant}</Text>
                                 <TouchableOpacity onPress={() => addToCart(item)}>
-                                    <FontAwesome5 name='plus' size={18} color='#550026' />
+                                    <FontAwesome5 name='plus' size={18} color={COLORS.primary} />
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -76,7 +78,7 @@ export default function Carrinho() {
                     <Text style={styles.textBtn}>
                         Enviar Pedido
                     </Text>
-                    <FontAwesome5 name='whatsapp' size={22} color='#fff' />
+                    <FontAwesome5 name='whatsapp' size={22} color={COLORS.background} />
                 </View>
             </TouchableOpacity>
 
@@ -92,11 +94,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 20,
         gap: 10,
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.background,
     },
 
     text: {
-        fontSize: 16,
+        fontSize: FONT_SIZES.medium,
         marginBottom: 10,
         padding: 10,
     },
@@ -104,11 +106,11 @@ const styles = StyleSheet.create({
     carrinhoContainer: {
         width: '100%',
         height: 100,
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.background,
         borderRadius: 10,
         padding: 10,
         marginBottom: 20,
-        shadowColor: '#000',
+        shadowColor: COLORS.shadow,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,
@@ -136,8 +138,8 @@ const styles = StyleSheet.create({
 
     textTotal: {
         fontWeight: 'bold',
-        color: '#550026',
-        fontSize: 18
+        color: COLORS.primary,
+        fontSize: FONT_SIZES.title,
     },
 
     sendOrderContainer: {
@@ -151,7 +153,7 @@ const styles = StyleSheet.create({
         height: 40,
         margin: 5,
         marginBottom: 25,
-        backgroundColor: "#560022",
+        backgroundColor: COLORS.primary,
         alignItems: 'center',
         borderRadius: 10
         
@@ -165,9 +167,9 @@ const styles = StyleSheet.create({
     },
 
     textBtn: {
-        color: '#fff',
+        color: COLORS.background,
         fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: FONT_SIZES.title,
         alignItems: 'center',
         padding: 10
     },
@@ -176,7 +178,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.background,
     },
     emptyImage: {
         width: 500,
@@ -184,9 +186,9 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     emptyText: {
-        fontSize: 18,
+        fontSize: FONT_SIZES.title,
         fontWeight: 'bold',
-        color: '#560022',
+        color: COLORS.primary,
     }
 
 })

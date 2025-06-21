@@ -4,11 +4,8 @@ import ProductSparkling from '../productSparkling';
 //import { BASE_URL } from '../../../utils/conectaDb';
 import SearchBar from '../../components/searchBar';
 import { supabase } from '@/src/utils/supabaseClient';
-<<<<<<< HEAD
-=======
 import { COLORS } from '@/src/constants/colors';
 import { FONT_SIZES } from '@/src/constants/fontSize';
->>>>>>> constants
 
 export interface ProdutoProps {
     id: string;
@@ -45,11 +42,7 @@ export default function FlatItemsVinhos() {
         return (
             item.category === 'Espumante' && (
                 item.name.toLowerCase().includes(searchLower) ||
-<<<<<<< HEAD
-                item.brand.toLowerCase().includes(searchLower) ||
-=======
                 //item.brand.toLowerCase().includes(searchLower) ||
->>>>>>> constants
                 item.type.toLowerCase().includes(searchLower) ||
                 item.origin.toLowerCase().includes(searchLower)
             )
@@ -60,11 +53,7 @@ export default function FlatItemsVinhos() {
         <View style={styles.container}>
             <SearchBar onChangeText={setSearch} value={search} placeholder="Pesquisar" />
             {loading ? (
-<<<<<<< HEAD
-                <ActivityIndicator size="large" color="#560022" style={{ marginTop: 40 }} />
-=======
                 <ActivityIndicator size="large" color={COLORS.primary} style={{ marginTop: 40 }} />
->>>>>>> constants
             ) : (
                 <FlatList
                     data={filteredSparkling}
