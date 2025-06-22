@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { ProdutoProps } from '../flatItemsWine/index'
+import { ProductProps } from '../flatItemsWine/index'
 import { router } from 'expo-router'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useCart } from '../../../context/carrinhoContext';
 import { COLORS } from '@/src/constants/colors';
 import { FONT_SIZES } from '@/src/constants/fontSize';
 
-export default function ProductWine({ wine }: { wine: ProdutoProps }) {
+export default React.memo(function ProductWine({ wine }: { wine: ProductProps }) {
     const { addToCart } = useCart();
     const [icon, setIcon] = useState('cart-plus');
 
@@ -72,7 +72,7 @@ export default function ProductWine({ wine }: { wine: ProdutoProps }) {
 
         </View>
     );
-}
+});
 
 
 const styles = StyleSheet.create({
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
            fontSize: FONT_SIZES.title,
            fontWeight: 'bold',
            marginBottom: 10,
+           textAlign: 'center',
        },
        subtitle: {
            fontSize: FONT_SIZES.subtitle,

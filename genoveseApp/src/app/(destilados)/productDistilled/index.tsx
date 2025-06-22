@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { ProdutoProps } from '../flatItemsDistilled/index'
+import { ProductProps } from '../flatItemsDistilled/index'
 import { router } from 'expo-router'
 import { useCart } from '../../../context/carrinhoContext';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { COLORS } from '@/src/constants/colors';
 import { FONT_SIZES } from '@/src/constants/fontSize';
 
-export default function ProductDistilled({ distilled }: { distilled: ProdutoProps }) {
+export default function ProductDistilled({ distilled }: { distilled: ProductProps }) {
     const { addToCart } = useCart();
 
     const handleAddToCart = () => {

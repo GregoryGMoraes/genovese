@@ -1,6 +1,8 @@
 import React from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { router } from 'expo-router';
+import { COLORS } from '@/src/constants/colors';
+import { FONT_SIZES } from '@/src/constants/fontSize';
 
 
 export default function Home() {
@@ -65,7 +67,7 @@ export default function Home() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.background,
         padding: 10,
     },
     logoContainer: {
@@ -83,10 +85,10 @@ const styles = StyleSheet.create({
         gap: 15,
     },
     category: {
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.background,
         borderRadius: 10,
         overflow: 'hidden',
-        shadowColor: '#000',
+        shadowColor: COLORS.shadow,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,
@@ -103,10 +105,9 @@ const styles = StyleSheet.create({
 
     overlayText: {
         position: 'absolute',
-        color: '#560022',
-        fontSize: 16,
+        fontSize: FONT_SIZES.medium,
         fontWeight: 'bold',
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.background,
         height: 30,
         width: 150,
         alignItems: 'center',

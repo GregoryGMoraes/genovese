@@ -52,14 +52,12 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 500,
         marginBottom: -30,
-        overflow: 'hidden',
+        resizeMode: 'contain',
     },
     infoContainer: {
         width: '100%',
         backgroundColor: COLORS.background,
         padding: 15,
-        borderTopLeftRadius: 40,
-        borderTopRightRadius: 40,
     },
 
     title: {

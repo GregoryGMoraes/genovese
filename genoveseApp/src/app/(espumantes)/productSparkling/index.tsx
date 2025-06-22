@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { ProdutoProps } from '../flatItemsSparkling/index'
+import { ProductProps } from '../flatItemsSparkling/index'
 import { router } from 'expo-router'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useCart } from '../../../context/carrinhoContext';
 import { COLORS } from '@/src/constants/colors';
 import { FONT_SIZES } from '@/src/constants/fontSize';
 
-export default function ProductSparkling({ sparkling }: { sparkling: ProdutoProps }) {
+export default function ProductSparkling({ sparkling }: { sparkling: ProductProps }) {
     const { addToCart } = useCart();
 
     const handleAddToCart = () => {
