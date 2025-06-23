@@ -1,8 +1,8 @@
 import { COLORS } from '@/src/constants/colors';
 import { FONT_SIZES } from '@/src/constants/fontSize';
 import React from 'react';
-import { FontAwesome5 } from '@expo/vector-icons'
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import { FlagCountry } from '../flagCountry';
 
 interface ProductDetailsProps {
     name: string;
@@ -23,11 +23,14 @@ export default function ProductDetails({
 }: ProductDetailsProps) {
     return (
         <ScrollView style={styles.scrollContainer} contentContainerStyle={{ flexGrow: 1 }}>
-            <Image style={styles.image} source={{ uri: image }}/>
+            <Image style={styles.image} source={{ uri: image }} />
             <View style={styles.infoContainer}>
                 <Text style={styles.title}>{name}</Text>
                 {type && <Text style={styles.subtitle}>Tipo: {type}</Text>}
-                {origin && <Text style={styles.subtitle}>País/Origem: {origin}</Text>}
+                <View style={styles.flagRow}>
+                    <FlagCountry country={origin ?? ''} size={30} />
+                    <Text style={styles.countryName}>{origin}</Text>
+                </View>
                 {description && <Text style={styles.description}>{description}</Text>}
                 <Text style={styles.price}>R${price.toFixed(2)}</Text>
             </View>
@@ -60,13 +63,26 @@ const styles = StyleSheet.create({
         padding: 15,
     },
 
+    flagRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginVertical: 8,
+        marginLeft: 10,
+    },
+
+    countryName: {
+        fontSize: FONT_SIZES.title,
+        fontWeight: '600',
+        marginLeft: 10,
+    },
+
     title: {
         fontSize: FONT_SIZES.title,
         fontWeight: '600',
         textAlign: 'center',
         marginBottom: 10,
     },
-    
+
     subtitle: {
         fontSize: 18,
         fontWeight: 'semibold',
@@ -84,7 +100,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
     },
     price: {
-       fontSize: FONT_SIZES.price,
+        fontSize: FONT_SIZES.price,
         fontWeight: '600',
         marginTop: 10,
         textAlign: 'center',

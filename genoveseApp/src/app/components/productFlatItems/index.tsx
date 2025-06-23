@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, View, StyleSheet, ActivityIndicator } from 'react-native';
 import SearchBar from '../searchBar';
-import { supabase } from '@/src/utils/supabaseClient';
+import { supabase } from '@/src/services/supabaseClient';
 import { COLORS } from '@/src/constants/colors';
 
 interface ProductFlatItemsProps<T> {

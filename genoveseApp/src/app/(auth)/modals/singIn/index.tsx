@@ -4,7 +4,7 @@ import { router } from 'expo-router';
 import Modal from 'react-native-modal';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useAuth } from '../../../../context/authContext';
-import { supabase } from '@/src/utils/supabaseClient';
+import { supabase } from '@/src/services/supabaseClient';
 import { COLORS } from '@/src/constants/colors';
 import { FONT_SIZES } from '@/src/constants/fontSize';
 
@@ -215,9 +215,9 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 40,
         fontSize: FONT_SIZES.medium,
-        color: COLORS.secondary,
         backgroundColor: "transparent",
         borderWidth: 0,
+        padding: 5
     },
 
     backButton: {
