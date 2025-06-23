@@ -1,50 +1,100 @@
-# Welcome to your Expo app 👋
+##### Discente : Grégory Gonçalves Moraes
+##### Orientador : Wagner Loch
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+# 📱 Genovese
 
-## Get started
+Este repositório contém o desenvolvimento de um sistema composto por um aplicativo mobile (React Native), criado como Trabalho da cadeira de Frameworks para o curso de Análise e desenvolvimento de sistemas na Faculdade de Tecnologia Senac Pelotas-RS.
 
-1. Install dependencies
+## Motivação
+O trabalho tem como objetivo desenvolver um cardápio de produtos para um comércio de alimentos com foco em vinhos, para atender uma demanda existente
+do cliente.
 
-   ```bash
-   npm install
-   ```
+## 🧰 Tecnologias Utilizadas
 
-2. Start the app
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.dev/)
+- [Node JS](https://nodejs.org/pt)
 
-   ```bash
-    npx expo start
-   ```
+## Funcionalidades
 
-In the output, you'll find options to open the app in a
+- Listagem de produtos por categoria (vinhos, espumantes, etc)
+- Detalhes do produto com bandeira do país de origem
+- Carrinho de compras
+- Autenticação de usuário
+- Busca por produtos
+- Interface moderna e responsiva
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Tecnologias
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- React Native + Expo
+- TypeScript
+- Context API para gerenciamento de estado (carrinho, autenticação)
+- Supabase (backend)
+- REST Countries API (bandeiras)
+- FontAwesome5 (ícones)
 
-## Get a fresh project
+## Estrutura de Pastas
 
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+src/
+  app/
+    (vinhos)/
+    (espumantes)/
+    (pescados)/
+    (chocolates)/
+    (frios)/
+    (destilados)/
+    components/
+      flagCountry/
+      productDetails/
+      productFlatItems/
+      ...
+    context/
+    constants/
+      colors.ts
+      fontSize.ts
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🚀 Como rodar o projeto
 
-## Learn more
+### ✅ Pré-requisitos
 
-To learn more about developing your project with Expo, look at the following resources:
+- Node.js instalado
+- Expo CLI (para o app genoveseApp)
+- Navegador moderno (para a versão web)
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+1. **Clone o repositório**
+   ```sh
+   git clone https://github.com/GregoryGMoraes/genovese
+   cd genoveseApp
+   ```
 
-## Join the community
+2. **Instale as dependências**
+   ```sh
+   npm install
+   # ou
+   yarn
+   ```
 
-Join our community of developers creating universal apps.
+3. **Configure as variáveis de ambiente**
+   - Crie um arquivo `.env` com as chaves do Supabase e outras APIs, se necessário.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+4. **Rode o projeto**
+   ```sh
+   npx expo start
+   ```
+
+5. **Acesse no seu dispositivo**
+   - Use o app Expo Go no seu celular para escanear o QR code, ou rode em um emulador.
+   
+## Observações
+
+- Para as bandeiras dos países, é utilizada a [REST Countries API](https://restcountries.com/).
+- Para ícones, utilize a biblioteca [@expo/vector-icons](https://docs.expo.dev/guides/icons/).
+- As fontes e cores estão centralizadas em `src/constants`.
+
+## Personalização
+
+- Para adicionar novas categorias, basta criar uma nova pasta em `src/app` e usar o componente genérico de listagem.
+
+**Desenvolvido por Grégory Moraes**
